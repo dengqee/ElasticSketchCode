@@ -60,14 +60,14 @@ public:
         printf("\tMemory: %.6lfMB\n", w * 4.0 / 1024 / 1024);
     }
 
-    void insert(uint8_t * key, int f = 1)
+    void insert(const char * key, int f = 1)
     {
         for (int i = 0; i < d; i++) {
             int index = (hash[i]->run((const char *)key, key_len)) % w;
             counters[i][index] += f;
         }
     }
-	int query(uint8_t * key)
+	int query(const char * key)
     {
         int ret = 1 << 30;
         for (int i = 0; i < d; i++) {

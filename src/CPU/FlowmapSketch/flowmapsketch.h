@@ -29,9 +29,9 @@ using namespace std;
 class FlowMapSketch
 {
 private:
-	shared_ptr<FlowMap<FLOWMAP_NHASH>>m_flowMap;
-	shared_ptr<BloomFilter<BLOOMFILTER_NHASH>>m_bloomFilter;
-	shared_ptr<CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>>m_cmSketch;
+	FlowMap<FLOWMAP_NHASH>*m_flowMap;
+	BloomFilter<BLOOMFILTER_NHASH>*m_bloomFilter;
+	CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>*m_cmSketch;
 	long m_theta;
 public:
 	FlowMapSketch():
@@ -41,7 +41,11 @@ public:
 		m_theta(1000)
 	{}
 	~FlowMapSketch()
-	{}
+	{
+		delete m_flowMap;
+		delete m_bloomFilter;
+		delete m_cmSketch;
+	}
 	void settheta(long theta)
 	{
 		m_theta=theta;

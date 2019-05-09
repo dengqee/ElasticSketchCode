@@ -4,8 +4,7 @@
 #include <vector>
 
 #include "./elastic/ElasticSketch.h"
-#include "./BloomFilter/bloomfilter.h"
-#include "./FlowMap/flowmap.h"
+#include "./FlowmapSketch/flowmapsketch.h"
 #include "./CMSketch/CM.h"
 //#include "../MultiCore/setup.h"
 using namespace std;
@@ -48,32 +47,33 @@ int main()
 #define HEAVY_MEM (150 * 1024)
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
-	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
-
+//	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
+	FlowMapSketch *flowmapsketch = NULL;
 
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
-		elastic = NULL;
+		flowmapsketch = NULL;
 
 		timespec time1, time2;
 		long long resns;
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
 
-		uint8_t **keys = new uint8_t*[(int)traces[datafileCnt - 1].size()];
+		char **keys = new char*[(int)traces[datafileCnt - 1].size()];
 		for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
 		{
-			keys[i] = new uint8_t[13];
+			keys[i] = new char[13];
 			memcpy(keys[i], traces[datafileCnt - 1][i].key, 13);
 		}
 
 		clock_gettime(CLOCK_MONOTONIC, &time1);
 		for(int t = 0; t < test_cycles; ++t)
 		{
-			elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
+			flowmapsketch = new FlowMapSketch();
 			for(int i = 0; i < packet_cnt; ++i)
-				elastic->insert(keys[i]);
-			delete elastic;
+				flowmapsketch->insert(keys[i]);
+			//flowmapsketch->out_cplex();
+			delete flowmapsketch;
 		}
 		clock_gettime(CLOCK_MONOTONIC, &time2);
 		resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
