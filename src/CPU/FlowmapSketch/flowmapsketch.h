@@ -68,6 +68,11 @@ public:
 
 		}
 	}
+	long query(string key)
+	{
+		long ret=0;
+		return ret;
+	}
 	void out_cplex()
 	{
 		m_flowMap->output_cplex();
