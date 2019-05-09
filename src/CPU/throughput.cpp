@@ -7,6 +7,7 @@
 #include "./BloomFilter/bloomfilter.h"
 #include "./FlowMap/flowmap.h"
 #include "./CMSketch/CM.h"
+#include "./SpaceSaving/SpaceSaving.h"
 //#include "../MultiCore/setup.h"
 using namespace std;
 
@@ -48,13 +49,13 @@ int main()
 #define HEAVY_MEM (150 * 1024)
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
-	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
-
+//	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
+	SpaceSaving<4> *ss = NULL;
 
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
-		elastic = NULL;
+		ss = NULL;
 
 		timespec time1, time2;
 		long long resns;
@@ -70,10 +71,10 @@ int main()
 		clock_gettime(CLOCK_MONOTONIC, &time1);
 		for(int t = 0; t < test_cycles; ++t)
 		{
-			elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
+			ss = new SpaceSaving<4>(TOT_MEM_IN_BYTES);
 			for(int i = 0; i < packet_cnt; ++i)
-				elastic->insert(keys[i]);
-			delete elastic;
+				ss->insert(keys[i]);
+			delete ss;
 		}
 		clock_gettime(CLOCK_MONOTONIC, &time2);
 		resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
