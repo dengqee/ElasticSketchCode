@@ -18,7 +18,7 @@
 #include "../BloomFilter/bloomfilter.h"
 #include "../FlowMap/flowmap.h"
 
-#define FLOWMAP_SIZE 1000
+#define FLOWMAP_SIZE 100
 #define FLOWMAP_NHASH 3
 #define BLOOMFILTER_SIZE 1000
 #define BLOOMFILTER_NHASH 3
@@ -38,7 +38,7 @@ public:
 		m_flowMap(new FlowMap<FLOWMAP_NHASH>(FLOWMAP_SIZE)),
 		m_bloomFilter(new BloomFilter<BLOOMFILTER_NHASH>(BLOOMFILTER_NHASH)),
 		m_cmSketch(new CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>(CMSKETCH_MEMORY)),
-		m_theta(1000)
+		m_theta(100)
 	{}
 	~FlowMapSketch()
 	{
@@ -73,9 +73,9 @@ public:
 		long ret=0;
 		return ret;
 	}
-	void out_cplex()
+	void out_cplex(string filename)
 	{
-		m_flowMap->output_cplex();
+		m_flowMap->output_cplex(filename);
 	}
 };
 

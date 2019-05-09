@@ -11,6 +11,7 @@ CPP_SRCS += \
 ../src/CPU/demo/css.cpp \
 ../src/CPU/demo/cusketch.cpp \
 ../src/CPU/demo/elastic.cpp \
+../src/CPU/demo/flowmapsketch.cpp \
 ../src/CPU/demo/flowradar.cpp \
 ../src/CPU/demo/hashpipe.cpp \
 ../src/CPU/demo/linearcounting.cpp \
@@ -33,6 +34,7 @@ OBJS += \
 ./src/CPU/demo/css.o \
 ./src/CPU/demo/cusketch.o \
 ./src/CPU/demo/elastic.o \
+./src/CPU/demo/flowmapsketch.o \
 ./src/CPU/demo/flowradar.o \
 ./src/CPU/demo/hashpipe.o \
 ./src/CPU/demo/linearcounting.o \
@@ -50,6 +52,7 @@ CPP_DEPS += \
 ./src/CPU/demo/css.d \
 ./src/CPU/demo/cusketch.d \
 ./src/CPU/demo/elastic.d \
+./src/CPU/demo/flowmapsketch.d \
 ./src/CPU/demo/flowradar.d \
 ./src/CPU/demo/hashpipe.d \
 ./src/CPU/demo/linearcounting.d \

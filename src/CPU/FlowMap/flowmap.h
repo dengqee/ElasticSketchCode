@@ -41,7 +41,7 @@ class FlowMap
 			}
 
 		}
-		void output_cplex()
+		void output_cplex(string filename)
 		{			
 
 			int r, c;//A的行数和列数
@@ -55,13 +55,18 @@ class FlowMap
 			{
 				for(int i = 0; i < nhash; i++)
 				{
-					size_t index = (hash[i]->run((const char *)m_IDs[i].c_str(), m_IDs[i].size()+1)) % m_counters.size();
+					size_t index = (hash[i]->run((const char *)m_IDs[j].c_str(), m_IDs[i].size()+1)) % m_counters.size();
 					A[index][j] = 1;
 				}
 
 			}
 
-			ofstream ofs("../flowmap_cplex/flowmap.dat");
+			ofstream ofs(filename.c_str());
+			if(!ofs)
+			{
+				cerr<<"can't open file: "<<filename<<endl;
+				exit(1);
+			}
 			ofs << "r_range=" << r << ";" <<endl << "c_range=" << c << ";"<<endl;
 
 			//打印Y	

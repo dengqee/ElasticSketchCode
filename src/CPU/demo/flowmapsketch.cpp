@@ -43,8 +43,8 @@ void ReadInTraces(const char *trace_prefix)
 
 int main()
 {
-	ReadInTraces("../../../data/");
-
+//	ReadInTraces("../../../data/");
+	ReadInTraces("/home/dengqi/eclipse-workspace/ElasticSketchCode/data/");
 
 //#define SK_D 3
 	FlowMapSketch *flowmapsketch = NULL;
@@ -56,30 +56,33 @@ int main()
 		flowmapsketch = new FlowMapSketch();
 
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
-		for(int i = 0; i < packet_cnt; ++i)
+//		for(int i = 0; i < packet_cnt; ++i)
+		for(int i = 0; i < 10000; ++i)
 		{
 			flowmapsketch->insert((char*)(traces[datafileCnt - 1][i].key));
 
 			string str((const char*)(traces[datafileCnt - 1][i].key), 4);
 			Real_Freq[str]++;
 		}
+		string data = "/home/dengqi/eclipse-workspace/ElasticSketchCode/src/CPU/FlowmapSketch/data_cplex/";
+		data +=std::to_string(datafileCnt)+".dat";
+		flowmapsketch->out_cplex(data);
+//		double ARE = 0;
+//		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
+//		{
+//			uint8_t key[4];
+//			memcpy(key, (it->first).c_str(), 4);
+//			int est_val = flowmapsketch->query(key);
+//			int dist = std::abs(it->second - est_val);
+//			ARE += dist * 1.0 / (it->second);
+//		}
+//		ARE /= (int)Real_Freq.size();
+//
+//
+//		printf("%d.dat: ARE=%.3lf\n", datafileCnt - 1, ARE);
 
-		double ARE = 0;
-		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
-		{
-			uint8_t key[4];
-			memcpy(key, (it->first).c_str(), 4);
-			int est_val = flowmapsketch->query(key);
-			int dist = std::abs(it->second - est_val);
-			ARE += dist * 1.0 / (it->second);
-		}
-		ARE /= (int)Real_Freq.size();
 
-
-		printf("%d.dat: ARE=%.3lf\n", datafileCnt - 1, ARE);
-
-
-		delete cm;
+		delete flowmapsketch;
 		Real_Freq.clear();
 	}
 }

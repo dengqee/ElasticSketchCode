@@ -52,7 +52,7 @@ int main()
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
 		for(int i = 0; i < packet_cnt; ++i)
 		{
-			cm->insert((uint8_t*)(traces[datafileCnt - 1][i].key));
+			cm->insert((char*)(traces[datafileCnt - 1][i].key));
 
 			string str((const char*)(traces[datafileCnt - 1][i].key), 4);
 			Real_Freq[str]++;
@@ -61,7 +61,7 @@ int main()
 		double ARE = 0;
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
-			uint8_t key[4];
+			char key[4];
 			memcpy(key, (it->first).c_str(), 4);
 			int est_val = cm->query(key);
 			int dist = std::abs(it->second - est_val);
