@@ -58,8 +58,8 @@ public:
 		}
 		else
 		{
-			m_cmSketch->insert(key.c_str());
-			int count=m_cmSketch->query(key.c_str());
+			int count=m_cmSketch->insert(key.c_str());
+			
 			if(count>m_theta)
 			{
 				m_flowMap->insert(key,count);

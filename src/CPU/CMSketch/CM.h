@@ -60,12 +60,15 @@ public:
         printf("\tMemory: %.6lfMB\n", w * 4.0 / 1024 / 1024);
     }
 
-    void insert(const char * key, int f = 1)
+    int insert(const char * key, int f = 1)
     {
+    	int ret = 1 << 30;
         for (int i = 0; i < d; i++) {
             int index = (hash[i]->run((const char *)key, key_len)) % w;
-            counters[i][index] += f;
+
+            ret = min(ret, (counters[i][index] += f));
         }
+        return ret;
     }
 	int query(const char * key)
     {
