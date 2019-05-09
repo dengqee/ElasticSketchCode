@@ -3,7 +3,7 @@
 
 #include "HeavyPart.h"
 #include "LightPart.h"
-
+#include <memory>
 
 template<int bucket_num, int tot_memory_in_bytes>
 class ElasticSketch
