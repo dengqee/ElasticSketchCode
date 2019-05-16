@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "./elastic/ElasticSketch.h"
-#include "./FlowmapSketch/flowmapsketch.h"
 #include "./CMSketch/CM.h"
+#include "TCAMSketch/TCAMsketch.h"
 //#include "../MultiCore/setup.h"
 using namespace std;
 
@@ -48,12 +48,12 @@ int main()
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
 //	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
-	FlowMapSketch *flowmapsketch = NULL;
-
-
+	TCAMSketch *tcamsketch = NULL;
+	vector<vector<bool>>heavy(END_FILE_NO - START_FILE_NO + 1,vector<bool>());
+	/*****************preprocess*********************************/
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
-		flowmapsketch = NULL;
+		tcamsketch = NULL;
 
 		timespec time1, time2;
 		long long resns;
@@ -69,21 +69,41 @@ int main()
 		clock_gettime(CLOCK_MONOTONIC, &time1);
 		for(int t = 0; t < test_cycles; ++t)
 		{
-			flowmapsketch = new FlowMapSketch();
+			tcamsketch = new TCAMSketch();
 			for(int i = 0; i < packet_cnt; ++i)
-				flowmapsketch->insert(keys[i]);
+
+				heavy[datafileCnt - 1].push_back(tcamsketch->insert(keys[i]));
 			//flowmapsketch->out_cplex();
-			delete flowmapsketch;
+			delete tcamsketch;
 		}
 		clock_gettime(CLOCK_MONOTONIC, &time2);
 		resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
 		double th = (double)1000.0 * test_cycles * packet_cnt / resns;
+
+
+
+		printf("preprocess throughput is %lf mbps\n", th);
+
+		/**********true test throughput**************/
+		clock_gettime(CLOCK_MONOTONIC, &time1);
+		for(int t = 0; t < test_cycles; ++t)
+		{
+			tcamsketch = new TCAMSketch();
+			for(int i = 0; i < packet_cnt; ++i)
+				tcamsketch->insert(keys[i],heavy[datafileCnt - 1][i]);
+			//flowmapsketch->out_cplex();
+			delete tcamsketch;
+		}
+		clock_gettime(CLOCK_MONOTONIC, &time2);
+		resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
+		th = (double)1000.0 * test_cycles * packet_cnt / resns;
 
 		/* free memory */
 		for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
 			delete[] keys[i];
 		delete[] keys;
 
-		printf("throughput is %lf mbps\n", th);
+		printf("true throughput is %lf mbps\n", th);
 	}
+
 }

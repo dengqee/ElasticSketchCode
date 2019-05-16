@@ -11,7 +11,6 @@ CPP_SRCS += \
 ../src/CPU/demo/css.cpp \
 ../src/CPU/demo/cusketch.cpp \
 ../src/CPU/demo/elastic.cpp \
-../src/CPU/demo/flowmapsketch.cpp \
 ../src/CPU/demo/flowradar.cpp \
 ../src/CPU/demo/hashpipe.cpp \
 ../src/CPU/demo/linearcounting.cpp \
@@ -19,6 +18,7 @@ CPP_SRCS += \
 ../src/CPU/demo/reversiblesketch.cpp \
 ../src/CPU/demo/sieving.cpp \
 ../src/CPU/demo/spacesaving.cpp \
+../src/CPU/demo/tcamsketch.cpp \
 ../src/CPU/demo/univmon.cpp 
 
 O_SRCS += \
@@ -34,7 +34,6 @@ OBJS += \
 ./src/CPU/demo/css.o \
 ./src/CPU/demo/cusketch.o \
 ./src/CPU/demo/elastic.o \
-./src/CPU/demo/flowmapsketch.o \
 ./src/CPU/demo/flowradar.o \
 ./src/CPU/demo/hashpipe.o \
 ./src/CPU/demo/linearcounting.o \
@@ -42,6 +41,7 @@ OBJS += \
 ./src/CPU/demo/reversiblesketch.o \
 ./src/CPU/demo/sieving.o \
 ./src/CPU/demo/spacesaving.o \
+./src/CPU/demo/tcamsketch.o \
 ./src/CPU/demo/univmon.o 
 
 CPP_DEPS += \
@@ -52,7 +52,6 @@ CPP_DEPS += \
 ./src/CPU/demo/css.d \
 ./src/CPU/demo/cusketch.d \
 ./src/CPU/demo/elastic.d \
-./src/CPU/demo/flowmapsketch.d \
 ./src/CPU/demo/flowradar.d \
 ./src/CPU/demo/hashpipe.d \
 ./src/CPU/demo/linearcounting.d \
@@ -60,6 +59,7 @@ CPP_DEPS += \
 ./src/CPU/demo/reversiblesketch.d \
 ./src/CPU/demo/sieving.d \
 ./src/CPU/demo/spacesaving.d \
+./src/CPU/demo/tcamsketch.d \
 ./src/CPU/demo/univmon.d 
 
 
