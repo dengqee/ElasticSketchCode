@@ -1,5 +1,5 @@
 GCC = g++
-CFLAGS = -O2 -g -std=c++14 
+CFLAGS = -O1 -g -std=c++14 
 SSEFLAGS = -msse2 -mssse3 -msse4.1 -msse4.2 -mavx -march=native
 FILES = elastic.out cmheap.out cmsketch.out cusketch.out countheap.out countsketch.out \
 		linearcounting.out mrac.out hashpipe.out sieving.out spacesaving.out univmon.out \
