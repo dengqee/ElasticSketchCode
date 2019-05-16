@@ -35,7 +35,7 @@ public:
 	TCAMSketch():
 
 		m_cmSketch(new CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>(CMSKETCH_MEMORY)),
-		m_theta(100)
+		m_theta(1000)
 	{}
 	~TCAMSketch()
 	{
