@@ -20,7 +20,7 @@
 
 
 
-#define CMSKETCH_D 4
+#define CMSKETCH_D 3
 #define CMSKETCH_KEY_LEN 4
 #define CMSKETCH_MEMORY 600 * 1024
 using namespace std;
@@ -32,10 +32,10 @@ private:
 	CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>*m_cmSketch;
 	long m_theta;
 public:
-	TCAMSketch():
+	TCAMSketch(int theta=1000):
 
 		m_cmSketch(new CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>(CMSKETCH_MEMORY)),
-		m_theta(1000)
+		m_theta(theta)
 	{}
 	~TCAMSketch()
 	{
@@ -73,14 +73,14 @@ public:
 		if(b)
 			m_cmSketch->insert(key);
 	}
-	unsigned int query(string key)
+	unsigned int query(const char* key)
 	{
 		auto it=m_tcam.find(key);
 		if(it!=m_tcam.end())//found
 		{
 			return it->second;
 		}
-		return m_cmSketch->query(key.c_str());
+		return m_cmSketch->query(key);
 	}
 
 };

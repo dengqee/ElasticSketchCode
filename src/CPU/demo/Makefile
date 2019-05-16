@@ -35,7 +35,7 @@ mrac.out: mrac.cpp
 	$(GCC) $(CFLAGS) -o mrac.out mrac.cpp
 
 throughput.out: ../throughput.cpp
-	$(GCC) $(CFLAGS) $(SSEFLAGS) -o ../throughput.out ../throughput.cpp
+	$(GCC) $(CFLAGS) -o ../throughput.out ../throughput.cpp
 
 sieving.out:
 	$(GCC) $(CFLAGS) -o sieving.out sieving.cpp

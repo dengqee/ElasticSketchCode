@@ -49,7 +49,7 @@ int main()
 #define TOT_MEM_IN_BYTES (600 * 1024)
 //	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
 	TCAMSketch *tcamsketch = NULL;
-	vector<vector<bool>>heavy(END_FILE_NO - START_FILE_NO + 1,vector<bool>());
+
 	/*****************preprocess*********************************/
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
@@ -58,7 +58,7 @@ int main()
 		timespec time1, time2;
 		long long resns;
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
-
+		char* heavy=new char[packet_cnt];
 		char **keys = new char*[(int)traces[datafileCnt - 1].size()];
 		for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
 		{
@@ -69,10 +69,10 @@ int main()
 		clock_gettime(CLOCK_MONOTONIC, &time1);
 		for(int t = 0; t < test_cycles; ++t)
 		{
-			tcamsketch = new TCAMSketch();
+			tcamsketch = new TCAMSketch(packet_cnt/1000);
 			for(int i = 0; i < packet_cnt; ++i)
 
-				heavy[datafileCnt - 1].push_back(tcamsketch->insert(keys[i]));
+				heavy[i]=tcamsketch->insert(keys[i]);
 			//flowmapsketch->out_cplex();
 			delete tcamsketch;
 		}
@@ -88,9 +88,9 @@ int main()
 		clock_gettime(CLOCK_MONOTONIC, &time1);
 		for(int t = 0; t < test_cycles; ++t)
 		{
-			tcamsketch = new TCAMSketch();
+			tcamsketch = new TCAMSketch(packet_cnt/1000);
 			for(int i = 0; i < packet_cnt; ++i)
-				tcamsketch->insert(keys[i],heavy[datafileCnt - 1][i]);
+				tcamsketch->insert(keys[i],heavy[i]);
 			//flowmapsketch->out_cplex();
 			delete tcamsketch;
 		}
@@ -102,7 +102,7 @@ int main()
 		for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
 			delete[] keys[i];
 		delete[] keys;
-
+		delete[] heavy;
 		printf("true throughput is %lf mbps\n", th);
 	}
 

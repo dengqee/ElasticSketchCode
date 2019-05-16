@@ -53,33 +53,34 @@ int main()
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
 		unordered_map<string, int> Real_Freq;
-		tcamsketch = new TCAMSketch();
+
 
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
-//		for(int i = 0; i < packet_cnt; ++i)
-		for(int i = 0; i < 10000; ++i)
+		tcamsketch = new TCAMSketch(packet_cnt/1000);
+		for(int i = 0; i < packet_cnt; ++i)
+//		for(int i = 0; i < 10000; ++i)
 		{
 			tcamsketch->insert((char*)(traces[datafileCnt - 1][i].key));
 
 			string str((const char*)(traces[datafileCnt - 1][i].key), 4);
 			Real_Freq[str]++;
 		}
-		string data = "/home/dengqi/eclipse-workspace/ElasticSketchCode/src/CPU/FlowmapSketch/data_cplex/";
-		data +=std::to_string(datafileCnt)+".dat";
+//		string data = "/home/dengqi/eclipse-workspace/ElasticSketchCode/src/CPU/FlowmapSketch/data_cplex/";
+//		data +=std::to_string(datafileCnt)+".dat";
 //		tcamsketch->out_cplex(data);
-//		double ARE = 0;
-//		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
-//		{
-//			uint8_t key[4];
-//			memcpy(key, (it->first).c_str(), 4);
-//			int est_val = flowmapsketch->query(key);
-//			int dist = std::abs(it->second - est_val);
-//			ARE += dist * 1.0 / (it->second);
-//		}
-//		ARE /= (int)Real_Freq.size();
-//
-//
-//		printf("%d.dat: ARE=%.3lf\n", datafileCnt - 1, ARE);
+		double ARE = 0;
+		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
+		{
+			char key[4];
+			memcpy(key, (it->first).c_str(), 4);
+			int est_val = tcamsketch->query(key);
+			int dist = std::abs(it->second - est_val);
+			ARE += dist * 1.0 / (it->second);
+		}
+		ARE /= (int)Real_Freq.size();
+
+
+		printf("%d.dat: ARE=%.3lf\n", datafileCnt - 1, ARE);
 
 
 		delete tcamsketch;
