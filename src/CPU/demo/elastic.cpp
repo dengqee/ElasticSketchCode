@@ -51,7 +51,8 @@ int main()
 	{
 		unordered_map<string, int> Real_Freq;
 		elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
-
+		int sz=sizeof(*elastic);
+		printf("size:%d",sz);
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
 		for(int i = 0; i < packet_cnt; ++i)
 		{

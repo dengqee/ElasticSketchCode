@@ -1,0 +1,1295 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+A	common/common.h	/^  const uint64 A[] = {59032440799460394,\\$/;"	m	namespace:hash_ns
+ALIGNMENT	elastic/param.h	19;"	d
+Add	common/os_galoisField.h	/^	uint64 Add(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+B	common/common.h	/^  const uint64 B[] = {832108633134565846,\\$/;"	m	namespace:hash_ns
+BIT_TO_DETERMINE_COUNTER	elastic/param.h	22;"	d
+BOB	Hashpipe/hashpipe.h	/^        BOBHash32 * BOB[d+5];$/;"	m	class:HashPipe	access:private
+BOB	common/hash_functions.h	/^uint32_t BOB(uint32_t key, uint32_t len) {$/;"	f	signature:(uint32_t key, uint32_t len)
+BOBHash32	common/BOBHash32.h	/^	BOBHash32();$/;"	p	class:BOBHash32	access:public	signature:()
+BOBHash32	common/BOBHash32.h	/^	BOBHash32(uint32_t prime32Num);$/;"	p	class:BOBHash32	access:public	signature:(uint32_t prime32Num)
+BOBHash32	common/BOBHash32.h	/^BOBHash32::BOBHash32()$/;"	f	class:BOBHash32	signature:()
+BOBHash32	common/BOBHash32.h	/^BOBHash32::BOBHash32(uint32_t prime32Num)$/;"	f	class:BOBHash32	signature:(uint32_t prime32Num)
+BOBHash32	common/BOBHash32.h	/^class BOBHash32$/;"	c
+BOBHash32::BOBHash32	common/BOBHash32.h	/^	BOBHash32();$/;"	p	class:BOBHash32	access:public	signature:()
+BOBHash32::BOBHash32	common/BOBHash32.h	/^	BOBHash32(uint32_t prime32Num);$/;"	p	class:BOBHash32	access:public	signature:(uint32_t prime32Num)
+BOBHash32::BOBHash32	common/BOBHash32.h	/^BOBHash32::BOBHash32()$/;"	f	class:BOBHash32	signature:()
+BOBHash32::BOBHash32	common/BOBHash32.h	/^BOBHash32::BOBHash32(uint32_t prime32Num)$/;"	f	class:BOBHash32	signature:(uint32_t prime32Num)
+BOBHash32::get_random_prime_index	common/BOBHash32.h	/^	static uint32_t get_random_prime_index()$/;"	f	class:BOBHash32	access:public	signature:()
+BOBHash32::get_random_prime_index_list	common/BOBHash32.h	/^    static vector<uint32_t> get_random_prime_index_list(int n)$/;"	f	class:BOBHash32	access:public	signature:(int n)
+BOBHash32::initialize	common/BOBHash32.h	/^	void initialize(uint32_t prime32Num);$/;"	p	class:BOBHash32	access:public	signature:(uint32_t prime32Num)
+BOBHash32::initialize	common/BOBHash32.h	/^void BOBHash32::initialize(uint32_t prime32Num)$/;"	f	class:BOBHash32	signature:(uint32_t prime32Num)
+BOBHash32::prime32Num	common/BOBHash32.h	/^	uint32_t prime32Num;$/;"	m	class:BOBHash32	access:private
+BOBHash32::run	common/BOBHash32.h	/^	uint32_t run(const char * str, uint32_t len);	\/\/ produce a hash number$/;"	p	class:BOBHash32	access:public	signature:(const char * str, uint32_t len)
+BOBHash32::run	common/BOBHash32.h	/^uint32_t BOBHash32::run(const char * str, uint32_t len)$/;"	f	class:BOBHash32	signature:(const char * str, uint32_t len)
+BOBHash32::~BOBHash32	common/BOBHash32.h	/^	~BOBHash32();$/;"	p	class:BOBHash32	access:public	signature:()
+BOBHash32::~BOBHash32	common/BOBHash32.h	/^BOBHash32::~BOBHash32()$/;"	f	class:BOBHash32	signature:()
+BUCKET_NUM	demo/elastic.cpp	44;"	d	file:
+BUCKET_NUM	throughput.cpp	48;"	d	file:
+BetaGenerator	common/EMFSD.h	/^        explicit BetaGenerator(int _sum): sum(_sum)$/;"	f	struct:EMFSD::BetaGenerator	access:public	signature:(int _sum)
+BetaGenerator	common/EMFSD.h	/^    struct BetaGenerator$/;"	s	class:EMFSD	access:private
+BloomFilter	BloomFilter/bloomfilter.h	/^		BloomFilter(int bloom_size):m_bitVec(vector<int>(bloom_size,0))$/;"	f	class:BloomFilter	access:public	signature:(int bloom_size)
+BloomFilter	BloomFilter/bloomfilter.h	/^class BloomFilter$/;"	c
+BloomFilter::BloomFilter	BloomFilter/bloomfilter.h	/^		BloomFilter(int bloom_size):m_bitVec(vector<int>(bloom_size,0))$/;"	f	class:BloomFilter	access:public	signature:(int bloom_size)
+BloomFilter::Check	BloomFilter/bloomfilter.h	/^		bool Check(string key)$/;"	f	class:BloomFilter	access:public	signature:(string key)
+BloomFilter::Update	BloomFilter/bloomfilter.h	/^		void Update(string key)$/;"	f	class:BloomFilter	access:public	signature:(string key)
+BloomFilter::hash	BloomFilter/bloomfilter.h	/^		BOBHash32* hash[nhash] = {NULL};$/;"	m	class:BloomFilter	access:private
+BloomFilter::m_bitVec	BloomFilter/bloomfilter.h	/^		vector<int>m_bitVec;\/\/bloomflilter的位数组$/;"	m	class:BloomFilter	access:private
+BloomFilter::~BloomFilter	BloomFilter/bloomfilter.h	/^		~BloomFilter()$/;"	f	class:BloomFilter	access:public	signature:()
+Bucket	elastic/param.h	/^struct Bucket$/;"	s
+Bucket::key	elastic/param.h	/^	uint32_t key[COUNTER_PER_BUCKET];$/;"	m	struct:Bucket	access:public
+Bucket::val	elastic/param.h	/^	uint32_t val[COUNTER_PER_BUCKET];$/;"	m	struct:Bucket	access:public
+CFLAGS	demo/Makefile	/^CFLAGS = -O1 -g -std=c++14 $/;"	m
+CMHeap	CMHeap/CMHeap.h	/^    CMHeap(int mem_in_bytes_) : mem_in_bytes(mem_in_bytes_), heap_element_num(0) {$/;"	f	struct:CMHeap	access:public	signature:(int mem_in_bytes_)
+CMHeap	CMHeap/CMHeap.h	/^struct CMHeap {$/;"	s
+CMHeap::CMHeap	CMHeap/CMHeap.h	/^    CMHeap(int mem_in_bytes_) : mem_in_bytes(mem_in_bytes_), heap_element_num(0) {$/;"	f	struct:CMHeap	access:public	signature:(int mem_in_bytes_)
+CMHeap::KV	CMHeap/CMHeap.h	/^    typedef pair <uint8_t[key_len], int> KV;$/;"	t	struct:CMHeap	access:public
+CMHeap::cm_sketch	CMHeap/CMHeap.h	/^    int * cm_sketch[d];$/;"	m	struct:CMHeap	access:public
+CMHeap::get_heavy_hitters	CMHeap/CMHeap.h	/^    void get_heavy_hitters(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)$/;"	f	struct:CMHeap	access:public	signature:(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)
+CMHeap::hash	CMHeap/CMHeap.h	/^    BOBHash32 * hash[d];$/;"	m	struct:CMHeap	access:public
+CMHeap::heap	CMHeap/CMHeap.h	/^    KV heap[capacity];$/;"	m	struct:CMHeap	access:public
+CMHeap::heap_adjust_down	CMHeap/CMHeap.h	/^    void heap_adjust_down(int i) {$/;"	f	struct:CMHeap	access:public	signature:(int i)
+CMHeap::heap_adjust_up	CMHeap/CMHeap.h	/^    void heap_adjust_up(int i) {$/;"	f	struct:CMHeap	access:public	signature:(int i)
+CMHeap::heap_element_num	CMHeap/CMHeap.h	/^    int heap_element_num;$/;"	m	struct:CMHeap	access:public
+CMHeap::ht	CMHeap/CMHeap.h	/^    cuckoo::CuckooHashing<key_len, int(capacity * 2)> ht;$/;"	m	struct:CMHeap	access:public
+CMHeap::insert	CMHeap/CMHeap.h	/^    void insert(uint8_t * key) {$/;"	f	struct:CMHeap	access:public	signature:(uint8_t * key)
+CMHeap::mem_in_bytes	CMHeap/CMHeap.h	/^    int mem_in_bytes;$/;"	m	struct:CMHeap	access:public
+CMHeap::name	CMHeap/CMHeap.h	/^    string name;$/;"	m	struct:CMHeap	access:public
+CMHeap::query	CMHeap/CMHeap.h	/^    int query(uint8_t * key) {$/;"	f	struct:CMHeap	access:public	signature:(uint8_t * key)
+CMHeap::w	CMHeap/CMHeap.h	/^    int w;$/;"	m	struct:CMHeap	access:public
+CMHeap::~CMHeap	CMHeap/CMHeap.h	/^    ~CMHeap() {$/;"	f	struct:CMHeap	access:public	signature:()
+CMSKETCH_D	TCAMSketch/TCAMsketch.h	23;"	d
+CMSKETCH_KEY_LEN	TCAMSketch/TCAMsketch.h	24;"	d
+CMSKETCH_MEMORY	TCAMSketch/TCAMsketch.h	25;"	d
+CMSketch	CMSketch/CM.h	/^	CMSketch(){}$/;"	f	class:CMSketch	access:public	signature:()
+CMSketch	CMSketch/CM.h	/^	CMSketch(int memory_in_bytes)$/;"	f	class:CMSketch	access:public	signature:(int memory_in_bytes)
+CMSketch	CMSketch/CM.h	/^class CMSketch$/;"	c
+CMSketch::CMSketch	CMSketch/CM.h	/^	CMSketch(){}$/;"	f	class:CMSketch	access:public	signature:()
+CMSketch::CMSketch	CMSketch/CM.h	/^	CMSketch(int memory_in_bytes)$/;"	f	class:CMSketch	access:public	signature:(int memory_in_bytes)
+CMSketch::clear	CMSketch/CM.h	/^	void clear()$/;"	f	class:CMSketch	access:public	signature:()
+CMSketch::counters	CMSketch/CM.h	/^	int* counters[d] = {NULL};$/;"	m	class:CMSketch	access:private
+CMSketch::hash	CMSketch/CM.h	/^	BOBHash32* hash[d] = {NULL};$/;"	m	class:CMSketch	access:private
+CMSketch::initial	CMSketch/CM.h	/^	void initial(int memory_in_bytes)$/;"	f	class:CMSketch	access:public	signature:(int memory_in_bytes)
+CMSketch::insert	CMSketch/CM.h	/^    int insert(const char * key, int f = 1)$/;"	f	class:CMSketch	access:public	signature:(const char * key, int f = 1)
+CMSketch::memory_in_bytes	CMSketch/CM.h	/^	int memory_in_bytes = 0;$/;"	m	class:CMSketch	access:private
+CMSketch::name	CMSketch/CM.h	/^	string name;$/;"	m	class:CMSketch	access:public
+CMSketch::print_basic_info	CMSketch/CM.h	/^	void print_basic_info()$/;"	f	class:CMSketch	access:public	signature:()
+CMSketch::query	CMSketch/CM.h	/^	int query(const char * key)$/;"	f	class:CMSketch	access:public	signature:(const char * key)
+CMSketch::w	CMSketch/CM.h	/^	int w = 0;$/;"	m	class:CMSketch	access:private
+CMSketch::~CMSketch	CMSketch/CM.h	/^	~CMSketch(){clear();}$/;"	f	class:CMSketch	access:public	signature:()
+CONSTANT_NUMBER	elastic/param.h	29;"	d
+COUNTER_PER_BUCKET	elastic/param.h	16;"	d
+COUNTER_PER_WORD	elastic/param.h	21;"	d
+CSS	CSS/CSS.h	/^    CSS(int memory)$/;"	f	class:CSS	access:public	signature:(int memory)
+CSS	CSS/CSS.h	/^class CSS$/;"	c
+CSS::CSS	CSS/CSS.h	/^    CSS(int memory)$/;"	f	class:CSS	access:public	signature:(int memory)
+CSS::CounterArr	CSS/CSS.h	/^    uint32_t CounterArr[max_K];$/;"	m	class:CSS	access:private
+CSS::FindVacantIDidx	CSS/CSS.h	/^    int FindVacantIDidx()$/;"	f	class:CSS	access:public	signature:()
+CSS::ID_index	CSS/CSS.h	/^    } ID_index[max_K];$/;"	m	class:CSS	typeref:struct:CSS::Key_CAidx_pair	access:private
+CSS::Insert_cnt	CSS/CSS.h	/^    int Insert_cnt = 0;$/;"	m	class:CSS	access:private
+CSS::K	CSS/CSS.h	/^    int K;		\/\/ need calculation$/;"	m	class:CSS	access:private
+CSS::Key_CAidx_pair	CSS/CSS.h	/^    struct Key_CAidx_pair{$/;"	s	class:CSS	access:private
+CSS::Key_CAidx_pair::CounterArrayIndex	CSS/CSS.h	/^        int CounterArrayIndex;$/;"	m	struct:CSS::Key_CAidx_pair	access:public
+CSS::Key_CAidx_pair::key	CSS/CSS.h	/^        uint8_t key[key_length];$/;"	m	struct:CSS::Key_CAidx_pair	access:public
+CSS::Reverse_CA_2_IDidx	CSS/CSS.h	/^    int Reverse_CA_2_IDidx[max_K];		\/\/ reverse index from CounterArray to ID index$/;"	m	class:CSS	access:private
+CSS::SwapCSS	CSS/CSS.h	/^    void SwapCSS(int cur_idx, int largest_idx)$/;"	f	class:CSS	access:public	signature:(int cur_idx, int largest_idx)
+CSS::Value_index	CSS/CSS.h	/^    map<uint32_t, int> Value_index;		\/\/ mapping from value to counter array index;$/;"	m	class:CSS	access:private
+CSS::bobHash	CSS/CSS.h	/^    BOBHash32 *bobHash;$/;"	m	class:CSS	access:private
+CSS::find	CSS/CSS.h	/^    int find(uint8_t *key)		\/\/ return an index of counter array$/;"	f	class:CSS	access:public	signature:(uint8_t *key)
+CSS::get_top_k	CSS/CSS.h	/^    void get_top_k(uint32_t k, std::vector<pair<string, uint32_t> >& result)$/;"	f	class:CSS	access:public	signature:(uint32_t k, std::vector<pair<string, uint32_t> >& result)
+CSS::insert	CSS/CSS.h	/^    void insert(uint8_t *key)$/;"	f	class:CSS	access:public	signature:(uint8_t *key)
+CSS::next_idx	CSS/CSS.h	/^    int next_idx[max_K];$/;"	m	class:CSS	access:private
+CSS::query	CSS/CSS.h	/^    int query(uint8_t *key)$/;"	f	class:CSS	access:public	signature:(uint8_t *key)
+CSS::total_cnt	CSS/CSS.h	/^    int total_cnt = 0;$/;"	m	class:CSS	access:private
+CSS::~CSS	CSS/CSS.h	/^    ~CSS(){	delete bobHash;	}$/;"	f	class:CSS	access:public	signature:()
+CUHeap	CUSketch/CUHeap.h	/^    CUHeap() : heap_element_num(0) {$/;"	f	class:CUHeap	access:public	signature:()
+CUHeap	CUSketch/CUHeap.h	/^class CUHeap {$/;"	c
+CUHeap::CUHeap	CUSketch/CUHeap.h	/^    CUHeap() : heap_element_num(0) {$/;"	f	class:CUHeap	access:public	signature:()
+CUHeap::KV	CUSketch/CUHeap.h	/^    typedef pair <uint32_t, uint32_t> KV;$/;"	t	class:CUHeap	access:private
+CUHeap::build	CUSketch/CUHeap.h	/^    void build(uint32_t * items, int n)$/;"	f	class:CUHeap	access:public	signature:(uint32_t * items, int n)
+CUHeap::cu_sketch	CUSketch/CUHeap.h	/^    uint32_t cu_sketch[d][w];$/;"	m	class:CUHeap	access:private
+CUHeap::get_top_k	CUSketch/CUHeap.h	/^    void get_top_k(uint16_t k, vector<pair<uint32_t, uint32_t>> & result) {$/;"	f	class:CUHeap	access:public	signature:(uint16_t k, vector<pair<uint32_t, uint32_t>> & result)
+CUHeap::get_top_k_old	CUSketch/CUHeap.h	/^    void get_top_k_old(uint16_t k, uint32_t * result) {$/;"	f	class:CUHeap	access:public	signature:(uint16_t k, uint32_t * result)
+CUHeap::hash	CUSketch/CUHeap.h	/^    BOBHash32 *hash[d];$/;"	m	class:CUHeap	access:private
+CUHeap::heap	CUSketch/CUHeap.h	/^    KV heap[capacity];$/;"	m	class:CUHeap	access:private
+CUHeap::heap_adjust_down	CUSketch/CUHeap.h	/^    void heap_adjust_down(int i) {$/;"	f	class:CUHeap	access:private	signature:(int i)
+CUHeap::heap_adjust_up	CUSketch/CUHeap.h	/^    void heap_adjust_up(int i) {$/;"	f	class:CUHeap	access:private	signature:(int i)
+CUHeap::heap_element_num	CUSketch/CUHeap.h	/^    int heap_element_num;$/;"	m	class:CUHeap	access:private
+CUHeap::ht	CUSketch/CUHeap.h	/^    unordered_map<uint32_t, uint32_t> ht;$/;"	m	class:CUHeap	access:private
+CUHeap::insert	CUSketch/CUHeap.h	/^    void insert(uint32_t key) {$/;"	f	class:CUHeap	access:public	signature:(uint32_t key)
+CUHeap::name	CUSketch/CUHeap.h	/^    const string name = "CU with Heap";$/;"	m	class:CUHeap	access:public
+CUHeap::w	CUSketch/CUHeap.h	/^    static constexpr int w = cm_memory_in_bytes \/ 4 \/ d;$/;"	m	class:CUHeap	access:private
+CUHeap::~CUHeap	CUSketch/CUHeap.h	/^    ~CUHeap() {$/;"	f	class:CUHeap	access:public	signature:()
+CUSketch	CUSketch/CU.h	/^	CUSketch(){}$/;"	f	class:CUSketch	access:public	signature:()
+CUSketch	CUSketch/CU.h	/^	CUSketch(int memory_in_bytes)$/;"	f	class:CUSketch	access:public	signature:(int memory_in_bytes)
+CUSketch	CUSketch/CU.h	/^class CUSketch$/;"	c
+CUSketch::CUSketch	CUSketch/CU.h	/^	CUSketch(){}$/;"	f	class:CUSketch	access:public	signature:()
+CUSketch::CUSketch	CUSketch/CU.h	/^	CUSketch(int memory_in_bytes)$/;"	f	class:CUSketch	access:public	signature:(int memory_in_bytes)
+CUSketch::clear	CUSketch/CU.h	/^	void clear()$/;"	f	class:CUSketch	access:public	signature:()
+CUSketch::counters	CUSketch/CU.h	/^	int* counters[d] = {NULL};$/;"	m	class:CUSketch	access:private
+CUSketch::hash	CUSketch/CU.h	/^	BOBHash32* hash[d] = {NULL};$/;"	m	class:CUSketch	access:private
+CUSketch::initial	CUSketch/CU.h	/^	void initial(int memory_in_bytes)$/;"	f	class:CUSketch	access:public	signature:(int memory_in_bytes)
+CUSketch::insert	CUSketch/CU.h	/^    void insert(uint8_t *key, int f = 1)$/;"	f	class:CUSketch	access:public	signature:(uint8_t *key, int f = 1)
+CUSketch::memory_in_bytes	CUSketch/CU.h	/^	int memory_in_bytes = 0;$/;"	m	class:CUSketch	access:private
+CUSketch::name	CUSketch/CU.h	/^	string name;$/;"	m	class:CUSketch	access:public
+CUSketch::print_basic_info	CUSketch/CU.h	/^	void print_basic_info()$/;"	f	class:CUSketch	access:public	signature:()
+CUSketch::query	CUSketch/CU.h	/^    int query(uint8_t *key)$/;"	f	class:CUSketch	access:public	signature:(uint8_t *key)
+CUSketch::w	CUSketch/CU.h	/^	int w = 0;$/;"	m	class:CUSketch	access:private
+CUSketch::~CUSketch	CUSketch/CU.h	/^	~CUSketch(){clear();}$/;"	f	class:CUSketch	access:public	signature:()
+CalculateBucketPos	elastic/param.h	30;"	d
+CalculateFP	elastic/HeavyPart.h	/^	int CalculateFP(uint8_t *key, uint32_t &fp)$/;"	f	class:HeavyPart	access:private	signature:(uint8_t *key, uint32_t &fp)
+Check	BloomFilter/bloomfilter.h	/^		bool Check(string key)$/;"	f	class:BloomFilter	access:public	signature:(string key)
+CountHeap	CountHeap/CountHeap.h	/^    CountHeap(int mem_in_bytes_) : mem_in_bytes(mem_in_bytes_), heap_element_num(0) {$/;"	f	struct:CountHeap	access:public	signature:(int mem_in_bytes_)
+CountHeap	CountHeap/CountHeap.h	/^struct CountHeap {$/;"	s
+CountHeap::CountHeap	CountHeap/CountHeap.h	/^    CountHeap(int mem_in_bytes_) : mem_in_bytes(mem_in_bytes_), heap_element_num(0) {$/;"	f	struct:CountHeap	access:public	signature:(int mem_in_bytes_)
+CountHeap::KV	CountHeap/CountHeap.h	/^    typedef pair <string, int> KV;$/;"	t	struct:CountHeap	access:public
+CountHeap::VK	CountHeap/CountHeap.h	/^    typedef pair <int, string> VK;$/;"	t	struct:CountHeap	access:public
+CountHeap::cm_sketch	CountHeap/CountHeap.h	/^    int * cm_sketch[d];$/;"	m	struct:CountHeap	access:public
+CountHeap::get_f2	CountHeap/CountHeap.h	/^    double get_f2()$/;"	f	struct:CountHeap	access:public	signature:()
+CountHeap::get_heavy_hitters	CountHeap/CountHeap.h	/^    void get_heavy_hitters(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)$/;"	f	struct:CountHeap	access:public	signature:(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)
+CountHeap::get_l2_heavy_hitters	CountHeap/CountHeap.h	/^    void get_l2_heavy_hitters(double alpha, vector<KV> & result)$/;"	f	struct:CountHeap	access:public	signature:(double alpha, vector<KV> & result)
+CountHeap::get_top_k_with_frequency	CountHeap/CountHeap.h	/^    void get_top_k_with_frequency(uint16_t k, vector<KV> & result) {$/;"	f	struct:CountHeap	access:public	signature:(uint16_t k, vector<KV> & result)
+CountHeap::hash	CountHeap/CountHeap.h	/^    BOBHash32 * hash[d];$/;"	m	struct:CountHeap	access:public
+CountHeap::hash_polar	CountHeap/CountHeap.h	/^    BOBHash32 * hash_polar[d];$/;"	m	struct:CountHeap	access:public
+CountHeap::heap	CountHeap/CountHeap.h	/^    VK heap[capacity];$/;"	m	struct:CountHeap	access:public
+CountHeap::heap_adjust_down	CountHeap/CountHeap.h	/^    void heap_adjust_down(int i) {$/;"	f	struct:CountHeap	access:public	signature:(int i)
+CountHeap::heap_adjust_up	CountHeap/CountHeap.h	/^    void heap_adjust_up(int i) {$/;"	f	struct:CountHeap	access:public	signature:(int i)
+CountHeap::heap_element_num	CountHeap/CountHeap.h	/^    int heap_element_num;$/;"	m	struct:CountHeap	access:public
+CountHeap::ht	CountHeap/CountHeap.h	/^    unordered_map<string, uint32_t> ht;$/;"	m	struct:CountHeap	access:public
+CountHeap::insert	CountHeap/CountHeap.h	/^    void insert(uint8_t * key) {$/;"	f	struct:CountHeap	access:public	signature:(uint8_t * key)
+CountHeap::mem_in_bytes	CountHeap/CountHeap.h	/^    int mem_in_bytes;$/;"	m	struct:CountHeap	access:public
+CountHeap::name	CountHeap/CountHeap.h	/^    string name;$/;"	m	struct:CountHeap	access:public
+CountHeap::w	CountHeap/CountHeap.h	/^    int w;$/;"	m	struct:CountHeap	access:public
+CountHeap::~CountHeap	CountHeap/CountHeap.h	/^    ~CountHeap() {$/;"	f	struct:CountHeap	access:public	signature:()
+CountSketch	CountSketch/Count.h	/^	CountSketch(){}$/;"	f	class:CountSketch	access:public	signature:()
+CountSketch	CountSketch/Count.h	/^	CountSketch(int memory_in_bytes)$/;"	f	class:CountSketch	access:public	signature:(int memory_in_bytes)
+CountSketch	CountSketch/Count.h	/^class CountSketch$/;"	c
+CountSketch::CountSketch	CountSketch/Count.h	/^	CountSketch(){}$/;"	f	class:CountSketch	access:public	signature:()
+CountSketch::CountSketch	CountSketch/Count.h	/^	CountSketch(int memory_in_bytes)$/;"	f	class:CountSketch	access:public	signature:(int memory_in_bytes)
+CountSketch::clear	CountSketch/Count.h	/^	void clear()$/;"	f	class:CountSketch	access:public	signature:()
+CountSketch::counters	CountSketch/Count.h	/^	int* counters[d] = {NULL};$/;"	m	class:CountSketch	access:private
+CountSketch::hash	CountSketch/Count.h	/^	BOBHash32* hash[d] = {NULL};$/;"	m	class:CountSketch	access:private
+CountSketch::initial	CountSketch/Count.h	/^	void initial(int memory_in_bytes)$/;"	f	class:CountSketch	access:public	signature:(int memory_in_bytes)
+CountSketch::insert	CountSketch/Count.h	/^    void insert(uint8_t *key, int f = 1)$/;"	f	class:CountSketch	access:public	signature:(uint8_t *key, int f = 1)
+CountSketch::memory_in_bytes	CountSketch/Count.h	/^	int memory_in_bytes = 0;$/;"	m	class:CountSketch	access:private
+CountSketch::print_basic_info	CountSketch/Count.h	/^	void print_basic_info()$/;"	f	class:CountSketch	access:public	signature:()
+CountSketch::query	CountSketch/Count.h	/^    int query(uint8_t *key)$/;"	f	class:CountSketch	access:public	signature:(uint8_t *key)
+CountSketch::sign_hash	CountSketch/Count.h	/^	BOBHash32* sign_hash[d] = {NULL};$/;"	m	class:CountSketch	access:private
+CountSketch::w	CountSketch/Count.h	/^	int w = 0;$/;"	m	class:CountSketch	access:private
+CountSketch::~CountSketch	CountSketch/Count.h	/^	~CountSketch(){clear();}$/;"	f	class:CountSketch	access:public	signature:()
+CounterArr	CSS/CSS.h	/^    uint32_t CounterArr[max_K];$/;"	m	class:CSS	access:private
+CounterArrayIndex	CSS/CSS.h	/^        int CounterArrayIndex;$/;"	m	struct:CSS::Key_CAidx_pair	access:public
+CounterInfo	common/counterInfo.h	/^typedef struct CounterInfo {$/;"	s
+CounterInfo::counterSize	common/counterInfo.h	/^  int counterSize;$/;"	m	struct:CounterInfo	access:public
+CounterInfo::countersPerRow	common/counterInfo.h	/^  int countersPerRow;$/;"	m	struct:CounterInfo	access:public
+CounterInfo::nextOffset	common/counterInfo.h	/^  int nextOffset;$/;"	m	struct:CounterInfo	access:public
+CounterInfo::numRows	common/counterInfo.h	/^  int numRows;$/;"	m	struct:CounterInfo	access:public
+CounterInfo::sketch_id	common/counterInfo.h	/^  int sketch_id;$/;"	m	struct:CounterInfo	access:public
+CounterInfo::updateType	common/counterInfo.h	/^  int updateType;$/;"	m	struct:CounterInfo	access:public
+CuckooHashing	common/cuckoo_hashing.h	/^    CuckooHashing()$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:()
+CuckooHashing	common/cuckoo_hashing.h	/^class CuckooHashing$/;"	c	namespace:cuckoo
+Div	common/os_galoisField.h	/^	uint64 Div(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+E	common/common.h	/^const double E = (double) (2.71828182846);$/;"	v
+EMFSD	common/EMFSD.h	/^    EMFSD()$/;"	f	class:EMFSD	access:public	signature:()
+EMFSD	common/EMFSD.h	/^class EMFSD$/;"	c
+EMFSD::BetaGenerator	common/EMFSD.h	/^    struct BetaGenerator$/;"	s	class:EMFSD	access:private
+EMFSD::BetaGenerator::BetaGenerator	common/EMFSD.h	/^        explicit BetaGenerator(int _sum): sum(_sum)$/;"	f	struct:EMFSD::BetaGenerator	access:public	signature:(int _sum)
+EMFSD::BetaGenerator::flow_num_limit	common/EMFSD.h	/^        int flow_num_limit;$/;"	m	struct:EMFSD::BetaGenerator	access:public
+EMFSD::BetaGenerator::get_new_comb	common/EMFSD.h	/^        bool get_new_comb()$/;"	f	struct:EMFSD::BetaGenerator	access:public	signature:()
+EMFSD::BetaGenerator::get_next	common/EMFSD.h	/^        bool get_next()$/;"	f	struct:EMFSD::BetaGenerator	access:public	signature:()
+EMFSD::BetaGenerator::now_flow_num	common/EMFSD.h	/^        int now_flow_num;$/;"	m	struct:EMFSD::BetaGenerator	access:public
+EMFSD::BetaGenerator::now_result	common/EMFSD.h	/^        vector<int> now_result;$/;"	m	struct:EMFSD::BetaGenerator	access:public
+EMFSD::BetaGenerator::sum	common/EMFSD.h	/^        int sum;$/;"	m	struct:EMFSD::BetaGenerator	access:public
+EMFSD::EMFSD	common/EMFSD.h	/^    EMFSD()$/;"	f	class:EMFSD	access:public	signature:()
+EMFSD::card_init	common/EMFSD.h	/^    double card_init;$/;"	m	class:EMFSD	access:public
+EMFSD::collect_counters	common/EMFSD.h	/^    int collect_counters(uint16_t * counters)$/;"	f	class:EMFSD	access:private	signature:(uint16_t * counters)
+EMFSD::collect_counters	common/EMFSD.h	/^    int collect_counters(uint32_t * counters)$/;"	f	class:EMFSD	access:private	signature:(uint32_t * counters)
+EMFSD::counter_dist	common/EMFSD.h	/^    vector<int> counter_dist;$/;"	m	class:EMFSD	access:private
+EMFSD::dist_new	common/EMFSD.h	/^    vector<double> dist_old, dist_new;$/;"	m	class:EMFSD	access:private
+EMFSD::dist_old	common/EMFSD.h	/^    vector<double> dist_old, dist_new;$/;"	m	class:EMFSD	access:private
+EMFSD::factorial	common/EMFSD.h	/^    static constexpr int factorial(int n) {$/;"	f	class:EMFSD	access:private	signature:(int n)
+EMFSD::get_p_from_beta	common/EMFSD.h	/^    double get_p_from_beta(BetaGenerator & bt, double lambda, vector<double> & now_dist, double now_n)$/;"	f	class:EMFSD	access:private	signature:(BetaGenerator & bt, double lambda, vector<double> & now_dist, double now_n)
+EMFSD::inited	common/EMFSD.h	/^    bool inited = false;$/;"	m	class:EMFSD	access:public
+EMFSD::n_new	common/EMFSD.h	/^    double n_old, n_new;$/;"	m	class:EMFSD	access:private
+EMFSD::n_old	common/EMFSD.h	/^    double n_old, n_new;$/;"	m	class:EMFSD	access:private
+EMFSD::n_sum	common/EMFSD.h	/^    double n_sum;$/;"	m	class:EMFSD	access:public
+EMFSD::next_epoch	common/EMFSD.h	/^    void next_epoch()$/;"	f	class:EMFSD	access:public	signature:()
+EMFSD::ns	common/EMFSD.h	/^    vector<double> ns;$/;"	m	class:EMFSD	access:public
+EMFSD::set_counters	common/EMFSD.h	/^    void set_counters(uint32_t _w, uint16_t * counters)$/;"	f	class:EMFSD	access:public	signature:(uint32_t _w, uint16_t * counters)
+EMFSD::set_counters	common/EMFSD.h	/^    void set_counters(uint32_t _w, uint32_t * counters)$/;"	f	class:EMFSD	access:public	signature:(uint32_t _w, uint32_t * counters)
+EMFSD::w	common/EMFSD.h	/^    uint32_t w;$/;"	m	class:EMFSD	access:private
+END_FILE_NO	demo/cmheap.cpp	10;"	d	file:
+END_FILE_NO	demo/cmsketch.cpp	10;"	d	file:
+END_FILE_NO	demo/countheap.cpp	10;"	d	file:
+END_FILE_NO	demo/countsketch.cpp	10;"	d	file:
+END_FILE_NO	demo/css.cpp	10;"	d	file:
+END_FILE_NO	demo/cusketch.cpp	10;"	d	file:
+END_FILE_NO	demo/elastic.cpp	10;"	d	file:
+END_FILE_NO	demo/flowradar.cpp	10;"	d	file:
+END_FILE_NO	demo/hashpipe.cpp	10;"	d	file:
+END_FILE_NO	demo/linearcounting.cpp	10;"	d	file:
+END_FILE_NO	demo/mrac.cpp	10;"	d	file:
+END_FILE_NO	demo/reversiblesketch.cpp	10;"	d	file:
+END_FILE_NO	demo/sieving.cpp	10;"	d	file:
+END_FILE_NO	demo/spacesaving.cpp	10;"	d	file:
+END_FILE_NO	demo/tcamsketch.cpp	16;"	d	file:
+END_FILE_NO	demo/univmon.cpp	10;"	d	file:
+END_FILE_NO	throughput.cpp	13;"	d	file:
+ElasticSketch	elastic/ElasticSketch.h	/^    ElasticSketch(){}$/;"	f	class:ElasticSketch	access:public	signature:()
+ElasticSketch	elastic/ElasticSketch.h	/^class ElasticSketch$/;"	c
+ElasticSketch::ElasticSketch	elastic/ElasticSketch.h	/^    ElasticSketch(){}$/;"	f	class:ElasticSketch	access:public	signature:()
+ElasticSketch::clear	elastic/ElasticSketch.h	/^    void clear()$/;"	f	class:ElasticSketch	access:public	signature:()
+ElasticSketch::compress	elastic/ElasticSketch.h	/^    void compress(int ratio, uint8_t *dst) {    light_part.compress(ratio, dst); }$/;"	f	class:ElasticSketch	access:public	signature:(int ratio, uint8_t *dst)
+ElasticSketch::get_bandwidth	elastic/ElasticSketch.h	/^    double get_bandwidth(int compress_ratio) $/;"	f	class:ElasticSketch	access:public	signature:(int compress_ratio)
+ElasticSketch::get_bucket_num	elastic/ElasticSketch.h	/^    int get_bucket_num() { return heavy_part.get_bucket_num(); }$/;"	f	class:ElasticSketch	access:public	signature:()
+ElasticSketch::get_cardinality	elastic/ElasticSketch.h	/^    int get_cardinality()$/;"	f	class:ElasticSketch	access:public	signature:()
+ElasticSketch::get_compress_width	elastic/ElasticSketch.h	/^    int get_compress_width(int ratio) { return light_part.get_compress_width(ratio);}$/;"	f	class:ElasticSketch	access:public	signature:(int ratio)
+ElasticSketch::get_distribution	elastic/ElasticSketch.h	/^    void get_distribution(vector<double> &dist)$/;"	f	class:ElasticSketch	access:public	signature:(vector<double> &dist)
+ElasticSketch::get_entropy	elastic/ElasticSketch.h	/^    double get_entropy()$/;"	f	class:ElasticSketch	access:public	signature:()
+ElasticSketch::get_heavy_hitters	elastic/ElasticSketch.h	/^    void get_heavy_hitters(int threshold, vector<pair<string, int>> & results)$/;"	f	class:ElasticSketch	access:public	signature:(int threshold, vector<pair<string, int>> & results)
+ElasticSketch::heavy_mem	elastic/ElasticSketch.h	/^    static constexpr int heavy_mem = bucket_num * COUNTER_PER_BUCKET * 8;$/;"	m	class:ElasticSketch	access:private
+ElasticSketch::heavy_part	elastic/ElasticSketch.h	/^    HeavyPart<bucket_num> heavy_part;$/;"	m	class:ElasticSketch	access:private
+ElasticSketch::insert	elastic/ElasticSketch.h	/^    void insert(uint8_t *key, int f = 1)$/;"	f	class:ElasticSketch	access:public	signature:(uint8_t *key, int f = 1)
+ElasticSketch::light_mem	elastic/ElasticSketch.h	/^    static constexpr int light_mem = tot_memory_in_bytes - heavy_mem;$/;"	m	class:ElasticSketch	access:private
+ElasticSketch::light_part	elastic/ElasticSketch.h	/^    LightPart<light_mem> light_part;$/;"	m	class:ElasticSketch	access:private
+ElasticSketch::operator delete	elastic/ElasticSketch.h	/^    void operator delete(void *p)$/;"	f	class:ElasticSketch	access:public	signature:(void *p)
+ElasticSketch::operator new	elastic/ElasticSketch.h	/^    void *operator new(size_t sz)$/;"	f	class:ElasticSketch	access:public	signature:(size_t sz)
+ElasticSketch::query	elastic/ElasticSketch.h	/^    int query(uint8_t *key)$/;"	f	class:ElasticSketch	access:public	signature:(uint8_t *key)
+ElasticSketch::query_compressed_part	elastic/ElasticSketch.h	/^    int query_compressed_part(uint8_t *key, uint8_t *compress_part, int compress_counter_num)$/;"	f	class:ElasticSketch	access:public	signature:(uint8_t *key, uint8_t *compress_part, int compress_counter_num)
+ElasticSketch::quick_insert	elastic/ElasticSketch.h	/^    void quick_insert(uint8_t *key, int f = 1)$/;"	f	class:ElasticSketch	access:public	signature:(uint8_t *key, int f = 1)
+ElasticSketch::~ElasticSketch	elastic/ElasticSketch.h	/^    ~ElasticSketch(){}$/;"	f	class:ElasticSketch	access:public	signature:()
+EntropyAMS	Sieving/entropy_ams.h	/^        EntropyAMS() {$/;"	f	class:algorithms::entropy::EntropyAMS	access:public	signature:()
+EntropyAMS	Sieving/entropy_ams.h	/^template <int key_len, uint32_t g, uint32_t z> class EntropyAMS {$/;"	c	namespace:algorithms::entropy
+Euclid	ReversibleSketch/ReversibleSketch.h	/^        uint64_t Euclid(uint64_t m, uint64_t b){$/;"	f	class:ReversibleSketch::KeyMangler	access:private	signature:(uint64_t m, uint64_t b)
+ExtendedEuclid	common/os_galoisField.cc	/^void GaloisField::ExtendedEuclid(uint64 a, uint64 b,$/;"	f	class:GaloisField	signature:(uint64 a, uint64 b, uint64 &g, uint64 &u, uint64 &v) const
+ExtendedEuclid	common/os_galoisField.h	/^	void ExtendedEuclid(uint64 a, uint64 b,$/;"	p	class:GaloisField	access:public	signature:(uint64 a, uint64 b, uint64 &g, uint64 &u, uint64 &v) const
+FIELD_DSTIP	common/common.h	/^const int FIELD_DSTIP = 2;$/;"	v
+FIELD_SRCIP	common/common.h	/^const int FIELD_SRCIP = 1;$/;"	v
+FIELD_SRCIP_DSTIP	common/common.h	/^const int FIELD_SRCIP_DSTIP = 12;$/;"	v
+FILES	demo/Makefile	/^FILES = elastic.out cmheap.out cmsketch.out cusketch.out countheap.out countsketch.out \\$/;"	m
+FIVE_TUPLE	demo/cmheap.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/cmsketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/countheap.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/countsketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/css.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/cusketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/elastic.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/flowradar.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/hashpipe.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/linearcounting.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/mrac.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/reversiblesketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/sieving.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/spacesaving.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/tcamsketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	demo/univmon.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE	throughput.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	s	file:
+FIVE_TUPLE::key	demo/cmheap.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/cmsketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/countheap.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/countsketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/css.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/cusketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/elastic.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/flowradar.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/hashpipe.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/linearcounting.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/mrac.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/reversiblesketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/sieving.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/spacesaving.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/tcamsketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	demo/univmon.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FIVE_TUPLE::key	throughput.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+FindVacantIDidx	CSS/CSS.h	/^    int FindVacantIDidx()$/;"	f	class:CSS	access:public	signature:()
+FlowMap	FlowMap/flowmap.h	/^		FlowMap(unsigned int flowmapsize):m_counters(vector<long>(flowmapsize,0))$/;"	f	class:FlowMap	access:public	signature:(unsigned int flowmapsize)
+FlowMap	FlowMap/flowmap.h	/^class FlowMap $/;"	c
+FlowMap::FlowMap	FlowMap/flowmap.h	/^		FlowMap(unsigned int flowmapsize):m_counters(vector<long>(flowmapsize,0))$/;"	f	class:FlowMap	access:public	signature:(unsigned int flowmapsize)
+FlowMap::hash	FlowMap/flowmap.h	/^		BOBHash32* hash[nhash] = {NULL};$/;"	m	class:FlowMap	access:private
+FlowMap::insert	FlowMap/flowmap.h	/^		void insert(const string &key,int count=1)$/;"	f	class:FlowMap	access:public	signature:(const string &key,int count=1)
+FlowMap::m_IDs	FlowMap/flowmap.h	/^		vector<string>m_IDs;\/\/存储流ID$/;"	m	class:FlowMap	access:private
+FlowMap::m_counters	FlowMap/flowmap.h	/^		vector<long>m_counters;\/\/counter$/;"	m	class:FlowMap	access:private
+FlowMap::output_cplex	FlowMap/flowmap.h	/^		void output_cplex(string filename)$/;"	f	class:FlowMap	access:public	signature:(string filename)
+FlowMap::~FlowMap	FlowMap/flowmap.h	/^		~FlowMap()$/;"	f	class:FlowMap	access:public	signature:()
+G	demo/sieving.cpp	44;"	d	file:
+GCC	demo/Makefile	/^GCC = g++$/;"	m
+GaloisField	common/os_galoisField.h	/^	GaloisField(int arg_n)$/;"	f	class:GaloisField	access:public	signature:(int arg_n)
+GaloisField	common/os_galoisField.h	/^class GaloisField {$/;"	c
+GaloisField::Add	common/os_galoisField.h	/^	uint64 Add(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+GaloisField::Div	common/os_galoisField.h	/^	uint64 Div(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+GaloisField::ExtendedEuclid	common/os_galoisField.cc	/^void GaloisField::ExtendedEuclid(uint64 a, uint64 b,$/;"	f	class:GaloisField	signature:(uint64 a, uint64 b, uint64 &g, uint64 &u, uint64 &v) const
+GaloisField::ExtendedEuclid	common/os_galoisField.h	/^	void ExtendedEuclid(uint64 a, uint64 b,$/;"	p	class:GaloisField	access:public	signature:(uint64 a, uint64 b, uint64 &g, uint64 &u, uint64 &v) const
+GaloisField::GaloisField	common/os_galoisField.h	/^	GaloisField(int arg_n)$/;"	f	class:GaloisField	access:public	signature:(int arg_n)
+GaloisField::Inv	common/os_galoisField.h	/^	uint64 Inv(uint64 a) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a) const
+GaloisField::LongDiv	common/os_galoisField.cc	/^void GaloisField::LongDiv(uint64 a, uint64 b, uint64 &q, uint64 &r) const$/;"	f	class:GaloisField	signature:(uint64 a, uint64 b, uint64 &q, uint64 &r) const
+GaloisField::LongDiv	common/os_galoisField.h	/^	void LongDiv(uint64 a, uint64 b, uint64 &q, uint64 &r) const;$/;"	p	class:GaloisField	access:public	signature:(uint64 a, uint64 b, uint64 &q, uint64 &r) const
+GaloisField::Mod	common/os_galoisField.h	/^	uint64 Mod(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+GaloisField::Mul	common/os_galoisField.h	/^	uint64 Mul(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+GaloisField::Sub	common/os_galoisField.h	/^	uint64 Sub(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+GaloisField::Test	common/os_galoisField.cc	/^void GaloisField::Test(int N1)$/;"	f	class:GaloisField	signature:(int N1)
+GaloisField::Test	common/os_galoisField.h	/^	void Test(int N1 = 1024);$/;"	p	class:GaloisField	access:public	signature:(int N1 = 1024)
+GaloisField::n	common/os_galoisField.h	/^	int n;       \/\/ GF(2^n)$/;"	m	class:GaloisField	access:private
+GaloisField::prim	common/os_galoisField.h	/^	uint64 prim; \/\/ primitive polynomial$/;"	m	class:GaloisField	access:private
+GaloisField::primTable	common/os_galoisField.cc	/^uint64 GaloisField::primTable[33] =$/;"	m	class:GaloisField	file:
+GaloisField::primTable	common/os_galoisField.h	/^	static uint64 primTable[33];$/;"	m	class:GaloisField	access:private
+GaloisField::~GaloisField	common/os_galoisField.h	/^	~GaloisField()$/;"	f	class:GaloisField	access:public	signature:()
+GetCounterVal	elastic/param.h	32;"	d
+H	ReversibleSketch/ReversibleSketch.h	15;"	d
+HASHTYPE_DIETZTHORUP32	common/common.h	/^const int HASHTYPE_DIETZTHORUP32 = 1;$/;"	v
+HASHTYPE_REVERSIBLE8TO3	common/common.h	/^const int HASHTYPE_REVERSIBLE8TO3 = 2;$/;"	v
+HEAP_CAPACITY	demo/cmheap.cpp	43;"	d	file:
+HEAP_CAPACITY	demo/countheap.cpp	43;"	d	file:
+HEAVY_HITTER_THRESHOLD	demo/cmheap.cpp	64;"	d	file:
+HEAVY_HITTER_THRESHOLD	demo/countheap.cpp	64;"	d	file:
+HEAVY_HITTER_THRESHOLD	demo/css.cpp	65;"	d	file:
+HEAVY_HITTER_THRESHOLD	demo/elastic.cpp	80;"	d	file:
+HEAVY_HITTER_THRESHOLD	demo/hashpipe.cpp	64;"	d	file:
+HEAVY_HITTER_THRESHOLD	demo/spacesaving.cpp	64;"	d	file:
+HEAVY_HITTER_THRESHOLD	demo/univmon.cpp	65;"	d	file:
+HEAVY_MEM	demo/elastic.cpp	43;"	d	file:
+HEAVY_MEM	throughput.cpp	47;"	d	file:
+HIGHEST_BIT_IS_1	elastic/param.h	40;"	d
+HashInfo	common/hashInfo.h	/^typedef struct HashInfo {$/;"	s
+HashInfo::field	common/hashInfo.h	/^  int field;$/;"	m	struct:HashInfo	access:public
+HashInfo::numHashValues	common/hashInfo.h	/^  int numHashValues;$/;"	m	struct:HashInfo	access:public
+HashInfo::range	common/hashInfo.h	/^  unsigned long long range;$/;"	m	struct:HashInfo	access:public
+HashInfo::rev	common/hashInfo.h	/^  int rev; \/\/ 1 if reversible, 0 otherwise$/;"	m	struct:HashInfo	access:public
+HashPipe	Hashpipe/hashpipe.h	/^        HashPipe (int MEM) {$/;"	f	class:HashPipe	access:public	signature:(int MEM)
+HashPipe	Hashpipe/hashpipe.h	/^class HashPipe$/;"	c
+HashPipe::BOB	Hashpipe/hashpipe.h	/^        BOBHash32 * BOB[d+5];$/;"	m	class:HashPipe	access:private
+HashPipe::HashPipe	Hashpipe/hashpipe.h	/^        HashPipe (int MEM) {$/;"	f	class:HashPipe	access:public	signature:(int MEM)
+HashPipe::M	Hashpipe/hashpipe.h	/^        int M,val[d][3000005],i,j;$/;"	m	class:HashPipe	access:private
+HashPipe::get_heavy_hitters	Hashpipe/hashpipe.h	/^        void get_heavy_hitters(int threshold, vector <pair<uint32_t, int> > &v)$/;"	f	class:HashPipe	access:public	signature:(int threshold, vector <pair<uint32_t, int> > &v)
+HashPipe::i	Hashpipe/hashpipe.h	/^        int M,val[d][3000005],i,j;$/;"	m	class:HashPipe	access:private
+HashPipe::insert	Hashpipe/hashpipe.h	/^        void insert(uint8_t * _x)$/;"	f	class:HashPipe	access:public	signature:(uint8_t * _x)
+HashPipe::j	Hashpipe/hashpipe.h	/^        int M,val[d][3000005],i,j;$/;"	m	class:HashPipe	access:private
+HashPipe::key	Hashpipe/hashpipe.h	/^        string key[d][3000005];$/;"	m	class:HashPipe	access:private
+HashPipe::val	Hashpipe/hashpipe.h	/^        int M,val[d][3000005],i,j;$/;"	m	class:HashPipe	access:private
+HashPipe::work	Hashpipe/hashpipe.h	/^        void work(string x,int y)$/;"	f	class:HashPipe	access:public	signature:(string x,int y)
+HeavyPart	elastic/HeavyPart.h	/^	HeavyPart()$/;"	f	class:HeavyPart	access:public	signature:()
+HeavyPart	elastic/HeavyPart.h	/^class HeavyPart$/;"	c
+HeavyPart::CalculateFP	elastic/HeavyPart.h	/^	int CalculateFP(uint8_t *key, uint32_t &fp)$/;"	f	class:HeavyPart	access:private	signature:(uint8_t *key, uint32_t &fp)
+HeavyPart::HeavyPart	elastic/HeavyPart.h	/^	HeavyPart()$/;"	f	class:HeavyPart	access:public	signature:()
+HeavyPart::buckets	elastic/HeavyPart.h	/^	alignas(64) Bucket buckets[bucket_num];$/;"	m	class:HeavyPart	access:public
+HeavyPart::clear	elastic/HeavyPart.h	/^	void clear()$/;"	f	class:HeavyPart	access:public	signature:()
+HeavyPart::get_bucket_num	elastic/HeavyPart.h	/^	int get_bucket_num()$/;"	f	class:HeavyPart	access:public	signature:()
+HeavyPart::get_memory_usage	elastic/HeavyPart.h	/^	int get_memory_usage()$/;"	f	class:HeavyPart	access:public	signature:()
+HeavyPart::insert	elastic/HeavyPart.h	/^	int insert(uint8_t *key, uint8_t *swap_key, uint32_t &swap_val, uint32_t f = 1)$/;"	f	class:HeavyPart	access:public	signature:(uint8_t *key, uint8_t *swap_key, uint32_t &swap_val, uint32_t f = 1)
+HeavyPart::query	elastic/HeavyPart.h	/^	uint32_t query(uint8_t *key)$/;"	f	class:HeavyPart	access:public	signature:(uint8_t *key)
+HeavyPart::quick_insert	elastic/HeavyPart.h	/^	int quick_insert(uint8_t *key, uint32_t f = 1)$/;"	f	class:HeavyPart	access:public	signature:(uint8_t *key, uint32_t f = 1)
+HeavyPart::~HeavyPart	elastic/HeavyPart.h	/^	~HeavyPart(){}$/;"	f	class:HeavyPart	access:public	signature:()
+ID_index	CSS/CSS.h	/^    } ID_index[max_K];$/;"	m	class:CSS	typeref:struct:CSS::Key_CAidx_pair	access:private
+InitCharTable	common/os_mangler.cc	/^void Mangler::InitCharTable(GaloisField *gf)$/;"	f	class:Mangler	signature:(GaloisField *gf)
+InitCharTable	common/os_mangler.h	/^	void InitCharTable(GaloisField *gf);$/;"	p	class:Mangler	access:protected	signature:(GaloisField *gf)
+InitShortTable	common/os_mangler.cc	/^void Mangler::InitShortTable(GaloisField *gf)$/;"	f	class:Mangler	signature:(GaloisField *gf)
+InitShortTable	common/os_mangler.h	/^	void InitShortTable(GaloisField *gf);$/;"	p	class:Mangler	access:protected	signature:(GaloisField *gf)
+Insert_cnt	CSS/CSS.h	/^    int Insert_cnt = 0;$/;"	m	class:CSS	access:private
+InsertableIBLT	FlowRadar/insertable_iblt.h	/^    InsertableIBLT(uint64_t total_in_bytes_, uint32_t bf_k_ = 4, uint32_t iblt_k_ = 3):$/;"	f	class:InsertableIBLT	access:public	signature:(uint64_t total_in_bytes_, uint32_t bf_k_ = 4, uint32_t iblt_k_ = 3)
+InsertableIBLT	FlowRadar/insertable_iblt.h	/^class InsertableIBLT\/\/: public SPA$/;"	c
+InsertableIBLT::InsertableIBLT	FlowRadar/insertable_iblt.h	/^    InsertableIBLT(uint64_t total_in_bytes_, uint32_t bf_k_ = 4, uint32_t iblt_k_ = 3):$/;"	f	class:InsertableIBLT	access:public	signature:(uint64_t total_in_bytes_, uint32_t bf_k_ = 4, uint32_t iblt_k_ = 3)
+InsertableIBLT::Node	FlowRadar/insertable_iblt.h	/^    struct Node {$/;"	s	class:InsertableIBLT	access:private
+InsertableIBLT::Node::flow_num	FlowRadar/insertable_iblt.h	/^        int flow_num;$/;"	m	struct:InsertableIBLT::Node	access:public
+InsertableIBLT::Node::flow_sum	FlowRadar/insertable_iblt.h	/^        uint32_t flow_sum;$/;"	m	struct:InsertableIBLT::Node	access:public
+InsertableIBLT::Node::packet_num	FlowRadar/insertable_iblt.h	/^        int packet_num;$/;"	m	struct:InsertableIBLT::Node	access:public
+InsertableIBLT::approximate_query	FlowRadar/insertable_iblt.h	/^    int approximate_query(uint32_t key) {$/;"	f	class:InsertableIBLT	access:public	signature:(uint32_t key)
+InsertableIBLT::bf	FlowRadar/insertable_iblt.h	/^    uint64_t * bf;$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::bf_k	FlowRadar/insertable_iblt.h	/^    int bf_k, iblt_k;$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::bf_size_in_bytes	FlowRadar/insertable_iblt.h	/^	int bf_size_in_bytes;$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::bobhash	FlowRadar/insertable_iblt.h	/^    BOBHash32 * bobhash[7];$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::build	FlowRadar/insertable_iblt.h	/^    void build(uint32_t * data, int n) {$/;"	f	class:InsertableIBLT	access:public	signature:(uint32_t * data, int n)
+InsertableIBLT::dump	FlowRadar/insertable_iblt.h	/^    void dump(unordered_map<uint32_t, int> &result) {$/;"	f	class:InsertableIBLT	access:public	signature:(unordered_map<uint32_t, int> &result)
+InsertableIBLT::iblt	FlowRadar/insertable_iblt.h	/^    Node * iblt;$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::iblt_k	FlowRadar/insertable_iblt.h	/^    int bf_k, iblt_k;$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::iblt_size_in_bytes	FlowRadar/insertable_iblt.h	/^    int iblt_size_in_bytes;$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::insert	FlowRadar/insertable_iblt.h	/^    void insert(uint32_t key, int f = 1) {$/;"	f	class:InsertableIBLT	access:public	signature:(uint32_t key, int f = 1)
+InsertableIBLT::num_flow	FlowRadar/insertable_iblt.h	/^    int num_flow = 0;$/;"	m	class:InsertableIBLT	access:public
+InsertableIBLT::total_in_bytes	FlowRadar/insertable_iblt.h	/^    int total_in_bytes;$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::w_bf	FlowRadar/insertable_iblt.h	/^    int w_bf;$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::w_iblt	FlowRadar/insertable_iblt.h	/^    int w_iblt;$/;"	m	class:InsertableIBLT	access:private
+InsertableIBLT::~InsertableIBLT	FlowRadar/insertable_iblt.h	/^    ~InsertableIBLT()$/;"	f	class:InsertableIBLT	access:public	signature:()
+Inv	common/os_galoisField.h	/^	uint64 Inv(uint64 a) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a) const
+Item	Sieving/entropy_ams.h	/^struct Item {$/;"	s	namespace:algorithms::entropy
+JUDGE_IF_SWAP	elastic/param.h	34;"	d
+K	CSS/CSS.h	/^    int K;		\/\/ need calculation$/;"	m	class:CSS	access:private
+K	demo/css.cpp	44;"	d	file:
+KAry	common/k-ary.h	/^    KAry(){;}$/;"	f	class:KAry	access:public	signature:()
+KAry	common/k-ary.h	/^    KAry(uint8_t keylen_, uint32_t mem_in_bytes_, int d_ = 3): keylen(keylen_), mem_in_bytes(mem_in_bytes_), d(d_)$/;"	f	class:KAry	access:public	signature:(uint8_t keylen_, uint32_t mem_in_bytes_, int d_ = 3)
+KAry	common/k-ary.h	/^class KAry$/;"	c
+KAry::KAry	common/k-ary.h	/^    KAry(){;}$/;"	f	class:KAry	access:public	signature:()
+KAry::KAry	common/k-ary.h	/^    KAry(uint8_t keylen_, uint32_t mem_in_bytes_, int d_ = 3): keylen(keylen_), mem_in_bytes(mem_in_bytes_), d(d_)$/;"	f	class:KAry	access:public	signature:(uint8_t keylen_, uint32_t mem_in_bytes_, int d_ = 3)
+KAry::copy_configurations	common/k-ary.h	/^    void copy_configurations(KAry & another)$/;"	f	class:KAry	access:public	signature:(KAry & another)
+KAry::counters	common/k-ary.h	/^    int ** counters;$/;"	m	class:KAry	access:public
+KAry::d	common/k-ary.h	/^    int d;$/;"	m	class:KAry	access:public
+KAry::hashs	common/k-ary.h	/^    BOBHash32 ** hashs;$/;"	m	class:KAry	access:public
+KAry::insert	common/k-ary.h	/^    void insert(const uint8_t * key, int f = 1)$/;"	f	class:KAry	access:public	signature:(const uint8_t * key, int f = 1)
+KAry::keylen	common/k-ary.h	/^    int keylen;$/;"	m	class:KAry	access:public
+KAry::mem_in_bytes	common/k-ary.h	/^    int mem_in_bytes;$/;"	m	class:KAry	access:public
+KAry::operator =	common/k-ary.h	/^    KAry &operator =(const KAry &another){$/;"	f	class:KAry	access:public	signature:(const KAry &another)
+KAry::query	common/k-ary.h	/^    double query(const uint8_t * key)$/;"	f	class:KAry	access:public	signature:(const uint8_t * key)
+KAry::seed_idxs	common/k-ary.h	/^    uint32_t * seed_idxs;$/;"	m	class:KAry	access:public
+KAry::sum	common/k-ary.h	/^    int sum = 0;$/;"	m	class:KAry	access:public
+KAry::w	common/k-ary.h	/^    int w;$/;"	m	class:KAry	access:public
+KAry::~KAry	common/k-ary.h	/^    ~KAry()$/;"	f	class:KAry	access:public	signature:()
+KEY_LENGTH_13	elastic/param.h	27;"	d
+KEY_LENGTH_4	elastic/param.h	26;"	d
+KV	CMHeap/CMHeap.h	/^    typedef pair <uint8_t[key_len], int> KV;$/;"	t	struct:CMHeap	access:public
+KV	CUSketch/CUHeap.h	/^    typedef pair <uint32_t, uint32_t> KV;$/;"	t	class:CUHeap	access:private
+KV	CountHeap/CountHeap.h	/^    typedef pair <string, int> KV;$/;"	t	struct:CountHeap	access:public
+KVPair	common/cuckoo_hashing.h	/^        KVPair()$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:()
+KVPair	common/cuckoo_hashing.h	/^        KVPair(const KVPair & b)$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:(const KVPair & b)
+KVPair	common/cuckoo_hashing.h	/^    struct KVPair$/;"	s	class:cuckoo::CuckooHashing	access:private
+K_HASH_WORD	elastic/param.h	23;"	d
+KeyMangler	ReversibleSketch/ReversibleSketch.h	/^        KeyMangler()$/;"	f	class:ReversibleSketch::KeyMangler	access:public	signature:()
+KeyMangler	ReversibleSketch/ReversibleSketch.h	/^    class KeyMangler$/;"	c	class:ReversibleSketch	access:public
+KeyNode	SpaceSaving/SpaceSaving.h	/^struct KeyNode$/;"	s
+KeyNode::key	SpaceSaving/SpaceSaving.h	/^    uint8_t key[keylen];$/;"	m	struct:KeyNode	access:public
+KeyNode::next	SpaceSaving/SpaceSaving.h	/^    KeyNode<keylen> * next = NULL;$/;"	m	struct:KeyNode	access:public
+KeyNode::parent	SpaceSaving/SpaceSaving.h	/^    ValueNode<keylen> * parent = NULL;$/;"	m	struct:KeyNode	access:public
+KeyNode::prev	SpaceSaving/SpaceSaving.h	/^    KeyNode<keylen> * prev = NULL;$/;"	m	struct:KeyNode	access:public
+Key_CAidx_pair	CSS/CSS.h	/^    struct Key_CAidx_pair{$/;"	s	class:CSS	access:private
+L2HitterDetector	UnivMon/UnivMon.h	/^    typedef CountHeap<key_len, k, 5> L2HitterDetector;$/;"	t	class:UnivMon	access:public
+LightPart	elastic/LightPart.h	/^	LightPart()$/;"	f	class:LightPart	access:public	signature:()
+LightPart	elastic/LightPart.h	/^class LightPart$/;"	c
+LightPart::LightPart	elastic/LightPart.h	/^	LightPart()$/;"	f	class:LightPart	access:public	signature:()
+LightPart::bobhash	elastic/LightPart.h	/^	BOBHash32 *bobhash = NULL;$/;"	m	class:LightPart	access:private
+LightPart::clear	elastic/LightPart.h	/^	void clear()$/;"	f	class:LightPart	access:public	signature:()
+LightPart::compress	elastic/LightPart.h	/^    void compress(int ratio, uint8_t *dst) $/;"	f	class:LightPart	access:public	signature:(int ratio, uint8_t *dst)
+LightPart::counter_num	elastic/LightPart.h	/^	static constexpr int counter_num = init_mem_in_bytes;$/;"	m	class:LightPart	access:private
+LightPart::counters	elastic/LightPart.h	/^	uint8_t counters[counter_num];$/;"	m	class:LightPart	access:public
+LightPart::em_fsd_algo	elastic/LightPart.h	/^	EMFSD *em_fsd_algo = NULL;$/;"	m	class:LightPart	access:public
+LightPart::get_cardinality	elastic/LightPart.h	/^   	int get_cardinality() $/;"	f	class:LightPart	access:public	signature:()
+LightPart::get_compress_memory	elastic/LightPart.h	/^    int get_compress_memory(int ratio) {	return (uint32_t)(counter_num \/ ratio); }$/;"	f	class:LightPart	access:public	signature:(int ratio)
+LightPart::get_compress_width	elastic/LightPart.h	/^    int get_compress_width(int ratio) { return (counter_num \/ ratio); }$/;"	f	class:LightPart	access:public	signature:(int ratio)
+LightPart::get_distribution	elastic/LightPart.h	/^    void get_distribution(vector<double> &dist) $/;"	f	class:LightPart	access:public	signature:(vector<double> &dist)
+LightPart::get_entropy	elastic/LightPart.h	/^    void get_entropy(int &tot, double &entr)$/;"	f	class:LightPart	access:public	signature:(int &tot, double &entr)
+LightPart::get_memory_usage	elastic/LightPart.h	/^    int get_memory_usage() { return counter_num; }$/;"	f	class:LightPart	access:public	signature:()
+LightPart::insert	elastic/LightPart.h	/^	void insert(uint8_t *key, int f = 1)$/;"	f	class:LightPart	access:public	signature:(uint8_t *key, int f = 1)
+LightPart::mice_dist	elastic/LightPart.h	/^	int mice_dist[256];$/;"	m	class:LightPart	access:public
+LightPart::query	elastic/LightPart.h	/^	int query(uint8_t *key) $/;"	f	class:LightPart	access:public	signature:(uint8_t *key)
+LightPart::query_compressed_part	elastic/LightPart.h	/^	int query_compressed_part(uint8_t *key, uint8_t *compress_part, int compress_counter_num) $/;"	f	class:LightPart	access:public	signature:(uint8_t *key, uint8_t *compress_part, int compress_counter_num)
+LightPart::swap_insert	elastic/LightPart.h	/^	void swap_insert(uint8_t *key, int f)$/;"	f	class:LightPart	access:public	signature:(uint8_t *key, int f)
+LightPart::~LightPart	elastic/LightPart.h	/^	~LightPart()$/;"	f	class:LightPart	access:public	signature:()
+LinearCounting	LinearCounting/Linear_counting.h	/^        LinearCounting() {$/;"	f	class:LinearCounting	access:public	signature:()
+LinearCounting	LinearCounting/Linear_counting.h	/^template <int key_len, int tot_memory_in_bytes> class LinearCounting {$/;"	c
+LinearCounting::LinearCounting	LinearCounting/Linear_counting.h	/^        LinearCounting() {$/;"	f	class:LinearCounting	access:public	signature:()
+LinearCounting::bit_map	LinearCounting/Linear_counting.h	/^        uint8_t bit_map[map_num];$/;"	m	class:LinearCounting	access:private
+LinearCounting::clear	LinearCounting/Linear_counting.h	/^        void clear() { memset(bit_map, 0, map_num); }$/;"	f	class:LinearCounting	access:public	signature:()
+LinearCounting::get_cardinality	LinearCounting/Linear_counting.h	/^        int get_cardinality() {$/;"	f	class:LinearCounting	access:public	signature:()
+LinearCounting::hash_gen	LinearCounting/Linear_counting.h	/^        BOBHash32 *hash_gen;$/;"	m	class:LinearCounting	access:private
+LinearCounting::insert	LinearCounting/Linear_counting.h	/^        void insert(uint8_t *key) {$/;"	f	class:LinearCounting	access:public	signature:(uint8_t *key)
+LinearCounting::map_num	LinearCounting/Linear_counting.h	/^        static constexpr int map_num = tot_memory_in_bytes;$/;"	m	class:LinearCounting	access:private
+LinearCounting::name	LinearCounting/Linear_counting.h	/^        string name = "FM";$/;"	m	class:LinearCounting	access:public
+LinearCounting::~LinearCounting	LinearCounting/Linear_counting.h	/^        ~LinearCounting() {}$/;"	f	class:LinearCounting	access:public	signature:()
+LongDiv	common/os_galoisField.cc	/^void GaloisField::LongDiv(uint64 a, uint64 b, uint64 &q, uint64 &r) const$/;"	f	class:GaloisField	signature:(uint64 a, uint64 b, uint64 &q, uint64 &r) const
+LongDiv	common/os_galoisField.h	/^	void LongDiv(uint64 a, uint64 b, uint64 &q, uint64 &r) const;$/;"	p	class:GaloisField	access:public	signature:(uint64 a, uint64 b, uint64 &q, uint64 &r) const
+M	Hashpipe/hashpipe.h	/^        int M,val[d][3000005],i,j;$/;"	m	class:HashPipe	access:private
+MAXUINT16	common/common.h	/^const uint16 MAXUINT16 = (uint16) (-1);$/;"	v
+MAXUINT32	common/common.h	/^const uint32 MAXUINT32 = (uint32) (-1);$/;"	v
+MAXUINT64	common/common.h	/^const uint64 MAXUINT64 = (uint64) (-1);$/;"	v
+MAXUINT8	common/common.h	/^const uint8  MAXUINT8  = (uint8)  (-1);$/;"	v
+MAX_BIG_PRIME32	common/BOBHash32.h	10;"	d
+MAX_PRIME32	common/BOBHash32.h	9;"	d
+MAX_VALID_COUNTER	elastic/param.h	17;"	d
+MRAC	MRAC/MRAC.h	/^        MRAC() {$/;"	f	class:MRAC	access:public	signature:()
+MRAC	MRAC/MRAC.h	/^template <uint32_t key_length, uint32_t memory_in_bytes> class MRAC {$/;"	c
+MRAC::MRAC	MRAC/MRAC.h	/^        MRAC() {$/;"	f	class:MRAC	access:public	signature:()
+MRAC::bob_hash	MRAC/MRAC.h	/^        BOBHash32 *bob_hash;$/;"	m	class:MRAC	access:private
+MRAC::collect_fsd	MRAC/MRAC.h	/^        void collect_fsd() {$/;"	f	class:MRAC	access:public	signature:()
+MRAC::counters	MRAC/MRAC.h	/^        uint32_t counters[w];$/;"	m	class:MRAC	access:private
+MRAC::em_fsd_algo	MRAC/MRAC.h	/^        EMFSD *em_fsd_algo = NULL;$/;"	m	class:MRAC	access:private
+MRAC::est_cardinality	MRAC/MRAC.h	/^        double est_cardinality = 0;$/;"	m	class:MRAC	access:private
+MRAC::get_cardinality	MRAC/MRAC.h	/^        double get_cardinality() {$/;"	f	class:MRAC	access:public	signature:()
+MRAC::get_distribution	MRAC/MRAC.h	/^        void get_distribution(vector<double> &dist_est) {$/;"	f	class:MRAC	access:public	signature:(vector<double> &dist_est)
+MRAC::insert	MRAC/MRAC.h	/^        void insert(uint8_t *item) {$/;"	f	class:MRAC	access:public	signature:(uint8_t *item)
+MRAC::name	MRAC/MRAC.h	/^        string name;$/;"	m	class:MRAC	access:public
+MRAC::next_epoch	MRAC/MRAC.h	/^        void next_epoch() { em_fsd_algo->next_epoch(); }$/;"	f	class:MRAC	access:public	signature:()
+MRAC::w	MRAC/MRAC.h	/^        static constexpr uint32_t w = memory_in_bytes \/ 4;$/;"	m	class:MRAC	access:private
+MangleCharTable	common/os_mangler.h	/^	uint32 MangleCharTable(uint32 k)$/;"	f	class:Mangler	access:public	signature:(uint32 k)
+MangleShortTable	common/os_mangler.h	/^	uint32 MangleShortTable(uint32 k)$/;"	f	class:Mangler	access:public	signature:(uint32 k)
+Mangler	common/os_mangler.h	/^	Mangler(uint64 a1, uint64 a2)$/;"	f	class:Mangler	access:public	signature:(uint64 a1, uint64 a2)
+Mangler	common/os_mangler.h	/^class Mangler {$/;"	c
+Mangler::InitCharTable	common/os_mangler.cc	/^void Mangler::InitCharTable(GaloisField *gf)$/;"	f	class:Mangler	signature:(GaloisField *gf)
+Mangler::InitCharTable	common/os_mangler.h	/^	void InitCharTable(GaloisField *gf);$/;"	p	class:Mangler	access:protected	signature:(GaloisField *gf)
+Mangler::InitShortTable	common/os_mangler.cc	/^void Mangler::InitShortTable(GaloisField *gf)$/;"	f	class:Mangler	signature:(GaloisField *gf)
+Mangler::InitShortTable	common/os_mangler.h	/^	void InitShortTable(GaloisField *gf);$/;"	p	class:Mangler	access:protected	signature:(GaloisField *gf)
+Mangler::MangleCharTable	common/os_mangler.h	/^	uint32 MangleCharTable(uint32 k)$/;"	f	class:Mangler	access:public	signature:(uint32 k)
+Mangler::MangleShortTable	common/os_mangler.h	/^	uint32 MangleShortTable(uint32 k)$/;"	f	class:Mangler	access:public	signature:(uint32 k)
+Mangler::Mangler	common/os_mangler.h	/^	Mangler(uint64 a1, uint64 a2)$/;"	f	class:Mangler	access:public	signature:(uint64 a1, uint64 a2)
+Mangler::ReverseCharTable	common/os_mangler.h	/^	uint32 ReverseCharTable(uint32 k)$/;"	f	class:Mangler	access:public	signature:(uint32 k)
+Mangler::ReverseShortTable	common/os_mangler.h	/^	uint32 ReverseShortTable(uint32 k)$/;"	f	class:Mangler	access:public	signature:(uint32 k)
+Mangler::TestCorrectness	common/os_mangler.cc	/^void Mangler::TestCorrectness(uint32 N1)$/;"	f	class:Mangler	signature:(uint32 N1)
+Mangler::TestCorrectness	common/os_mangler.h	/^	void TestCorrectness(uint32 N1);$/;"	p	class:Mangler	access:public	signature:(uint32 N1)
+Mangler::TestSpeed	common/os_mangler.cc	/^void Mangler::TestSpeed(uint32 N1)$/;"	f	class:Mangler	signature:(uint32 N1)
+Mangler::TestSpeed	common/os_mangler.h	/^	void TestSpeed(uint32 N1);$/;"	p	class:Mangler	access:public	signature:(uint32 N1)
+Mangler::char_mgltbl0	common/os_mangler.h	/^	uint32 char_mgltbl0[256];$/;"	m	class:Mangler	access:private
+Mangler::char_mgltbl1	common/os_mangler.h	/^	uint32 char_mgltbl1[256];$/;"	m	class:Mangler	access:private
+Mangler::char_mgltbl2	common/os_mangler.h	/^	uint32 char_mgltbl2[256];$/;"	m	class:Mangler	access:private
+Mangler::char_mgltbl3	common/os_mangler.h	/^	uint32 char_mgltbl3[256];$/;"	m	class:Mangler	access:private
+Mangler::char_revtbl0	common/os_mangler.h	/^	uint32 char_revtbl0[256];$/;"	m	class:Mangler	access:private
+Mangler::char_revtbl1	common/os_mangler.h	/^	uint32 char_revtbl1[256];$/;"	m	class:Mangler	access:private
+Mangler::char_revtbl2	common/os_mangler.h	/^	uint32 char_revtbl2[256];$/;"	m	class:Mangler	access:private
+Mangler::char_revtbl3	common/os_mangler.h	/^	uint32 char_revtbl3[256];$/;"	m	class:Mangler	access:private
+Mangler::seed1	common/os_mangler.h	/^	uint64 seed1, seed2;$/;"	m	class:Mangler	access:public
+Mangler::seed2	common/os_mangler.h	/^	uint64 seed1, seed2;$/;"	m	class:Mangler	access:public
+Mangler::short_mgltbl0	common/os_mangler.h	/^	uint32 short_mgltbl0[65536];$/;"	m	class:Mangler	access:private
+Mangler::short_mgltbl1	common/os_mangler.h	/^	uint32 short_mgltbl1[65536];$/;"	m	class:Mangler	access:private
+Mangler::short_revtbl0	common/os_mangler.h	/^	uint32 short_revtbl0[65536];$/;"	m	class:Mangler	access:private
+Mangler::short_revtbl1	common/os_mangler.h	/^	uint32 short_revtbl1[65536];$/;"	m	class:Mangler	access:private
+Mangler::~Mangler	common/os_mangler.h	/^	~Mangler()$/;"	f	class:Mangler	access:public	signature:()
+Mod	common/os_galoisField.h	/^	uint64 Mod(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+Mul	common/os_galoisField.h	/^	uint64 Mul(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+Node	FlowRadar/insertable_iblt.h	/^    struct Node {$/;"	s	class:InsertableIBLT	access:private
+Node	SpaceSaving/SpaceSavingUtils.h	/^struct Node$/;"	s
+Node::key	SpaceSaving/SpaceSavingUtils.h	/^    uint8_t key[key_len];$/;"	m	struct:Node	access:public
+Node::next	SpaceSaving/SpaceSavingUtils.h	/^    Node * next;$/;"	m	struct:Node	access:public
+Node::parent	SpaceSaving/SpaceSavingUtils.h	/^    Node * parent;$/;"	m	struct:Node	access:public
+Node::prev	SpaceSaving/SpaceSavingUtils.h	/^    Node * prev;$/;"	m	struct:Node	access:public
+Node::val	SpaceSaving/SpaceSavingUtils.h	/^    uint32_t val;$/;"	m	struct:Node	access:public
+Packet	common/packet.h	/^  Packet()$/;"	f	class:Packet	access:public	signature:()
+Packet	common/packet.h	/^class Packet$/;"	c
+Packet::Packet	common/packet.h	/^  Packet()$/;"	f	class:Packet	access:public	signature:()
+Packet::dstip	common/packet.h	/^  uint32_t dstip;$/;"	m	class:Packet	access:public
+Packet::dstport	common/packet.h	/^  uint32_t dstport;$/;"	m	class:Packet	access:public
+Packet::proto	common/packet.h	/^  uint8_t proto; $/;"	m	class:Packet	access:public
+Packet::srcip	common/packet.h	/^  uint32_t srcip;$/;"	m	class:Packet	access:public
+Packet::srcport	common/packet.h	/^  uint32_t srcport;$/;"	m	class:Packet	access:public
+REVERSIBLE_BINSPERDIV	common/common.h	/^const uint32 REVERSIBLE_BINSPERDIV = 8;$/;"	v
+REVERSIBLE_COUNTERSPERROW	common/common.h	/^const uint32 REVERSIBLE_COUNTERSPERROW = 4096;$/;"	v
+REVERSIBLE_ITERSIZE	common/common.h	/^const uint32 REVERSIBLE_ITERSIZE = 128;\/\/64;$/;"	v
+REVERSIBLE_NUMDIVS	common/common.h	/^const uint32 REVERSIBLE_NUMDIVS = 4;$/;"	v
+REVERSIBLE_NUMKEYS	common/common.h	/^const uint32 REVERSIBLE_NUMKEYS = 256;$/;"	v
+REVERSIBLE_NUMROWS	common/common.h	/^const uint32 REVERSIBLE_NUMROWS = 5;$/;"	v
+REVERSIBLE_R	common/common.h	/^const uint32 REVERSIBLE_R = 2;$/;"	v
+ReadInTraces	demo/cmheap.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/cmsketch.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/countheap.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/countsketch.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/css.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/cusketch.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/elastic.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/flowradar.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/hashpipe.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/linearcounting.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/mrac.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/reversiblesketch.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/sieving.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/spacesaving.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/tcamsketch.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	demo/univmon.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReadInTraces	throughput.cpp	/^void ReadInTraces(const char *trace_prefix)$/;"	f	signature:(const char *trace_prefix)
+ReverseCharTable	common/os_mangler.h	/^	uint32 ReverseCharTable(uint32 k)$/;"	f	class:Mangler	access:public	signature:(uint32 k)
+ReverseShortTable	common/os_mangler.h	/^	uint32 ReverseShortTable(uint32 k)$/;"	f	class:Mangler	access:public	signature:(uint32 k)
+Reverse_CA_2_IDidx	CSS/CSS.h	/^    int Reverse_CA_2_IDidx[max_K];		\/\/ reverse index from CounterArray to ID index$/;"	m	class:CSS	access:private
+ReversibleSketch	ReversibleSketch/ReversibleSketch.h	/^    ReversibleSketch(uint8_t keylen_, uint32_t mem_in_bytes_, int H_ = 6): keylen(keylen_), mem_in_bytes(mem_in_bytes_)\/\/, H(H_)$/;"	f	class:ReversibleSketch	access:public	signature:(uint8_t keylen_, uint32_t mem_in_bytes_, int H_ = 6)
+ReversibleSketch	ReversibleSketch/ReversibleSketch.h	/^class ReversibleSketch {$/;"	c
+ReversibleSketch::KeyMangler	ReversibleSketch/ReversibleSketch.h	/^    class KeyMangler$/;"	c	class:ReversibleSketch	access:public
+ReversibleSketch::KeyMangler::Euclid	ReversibleSketch/ReversibleSketch.h	/^        uint64_t Euclid(uint64_t m, uint64_t b){$/;"	f	class:ReversibleSketch::KeyMangler	access:private	signature:(uint64_t m, uint64_t b)
+ReversibleSketch::KeyMangler::KeyMangler	ReversibleSketch/ReversibleSketch.h	/^        KeyMangler()$/;"	f	class:ReversibleSketch::KeyMangler	access:public	signature:()
+ReversibleSketch::KeyMangler::a	ReversibleSketch/ReversibleSketch.h	/^        uint8_t a[4], b[4];$/;"	m	class:ReversibleSketch::KeyMangler	access:private
+ReversibleSketch::KeyMangler::b	ReversibleSketch/ReversibleSketch.h	/^        uint8_t a[4], b[4];$/;"	m	class:ReversibleSketch::KeyMangler	access:private
+ReversibleSketch::KeyMangler::convert	ReversibleSketch/ReversibleSketch.h	/^        void convert(const uint8_t * a, uint8_t *b, int direction)$/;"	f	class:ReversibleSketch::KeyMangler	access:private	signature:(const uint8_t * a, uint8_t *b, int direction)
+ReversibleSketch::KeyMangler::demangling	ReversibleSketch/ReversibleSketch.h	/^        void demangling(const uint8_t *key, uint8_t *original_key)$/;"	f	class:ReversibleSketch::KeyMangler	access:public	signature:(const uint8_t *key, uint8_t *original_key)
+ReversibleSketch::KeyMangler::gcd	ReversibleSketch/ReversibleSketch.h	/^        uint64_t gcd(uint64_t a, uint64_t b) {$/;"	f	class:ReversibleSketch::KeyMangler	access:private	signature:(uint64_t a, uint64_t b)
+ReversibleSketch::KeyMangler::mangler	ReversibleSketch/ReversibleSketch.h	/^        Mangler *mangler = NULL;$/;"	m	class:ReversibleSketch::KeyMangler	access:public
+ReversibleSketch::KeyMangler::mangling	ReversibleSketch/ReversibleSketch.h	/^        void mangling(const uint8_t *key, uint8_t *new_key)$/;"	f	class:ReversibleSketch::KeyMangler	access:public	signature:(const uint8_t *key, uint8_t *new_key)
+ReversibleSketch::KeyMangler::mul32	ReversibleSketch/ReversibleSketch.h	/^        uint32_t mul32[2][4];$/;"	m	class:ReversibleSketch::KeyMangler	access:private
+ReversibleSketch::KeyMangler::mul8	ReversibleSketch/ReversibleSketch.h	/^        uint8_t mul8[2][4];$/;"	m	class:ReversibleSketch::KeyMangler	access:private
+ReversibleSketch::ReversibleSketch	ReversibleSketch/ReversibleSketch.h	/^    ReversibleSketch(uint8_t keylen_, uint32_t mem_in_bytes_, int H_ = 6): keylen(keylen_), mem_in_bytes(mem_in_bytes_)\/\/, H(H_)$/;"	f	class:ReversibleSketch	access:public	signature:(uint8_t keylen_, uint32_t mem_in_bytes_, int H_ = 6)
+ReversibleSketch::compute_small_hash	ReversibleSketch/ReversibleSketch.h	/^    uint8_t compute_small_hash(uint8_t original_key, int i, int j)$/;"	f	class:ReversibleSketch	access:public	signature:(uint8_t original_key, int i, int j)
+ReversibleSketch::copy_configurations	ReversibleSketch/ReversibleSketch.h	/^    void copy_configurations(ReversibleSketch & another)$/;"	f	class:ReversibleSketch	access:public	signature:(ReversibleSketch & another)
+ReversibleSketch::counters	ReversibleSketch/ReversibleSketch.h	/^    int* counters[H];$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::get_heavy_hitters	ReversibleSketch/ReversibleSketch.h	/^    void get_heavy_hitters(int threshold, std::vector<pair<string, uint32_t> >& ret)$/;"	f	class:ReversibleSketch	access:public	signature:(int threshold, std::vector<pair<string, uint32_t> >& ret)
+ReversibleSketch::insert	ReversibleSketch/ReversibleSketch.h	/^    void insert(const uint8_t * key, int f = 1)$/;"	f	class:ReversibleSketch	access:public	signature:(const uint8_t * key, int f = 1)
+ReversibleSketch::keylen	ReversibleSketch/ReversibleSketch.h	/^	uint8_t keylen;$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::km	ReversibleSketch/ReversibleSketch.h	/^    KeyMangler km;$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::map_sh	ReversibleSketch/ReversibleSketch.h	/^    int map_sh[H][4];$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::map_xor	ReversibleSketch/ReversibleSketch.h	/^    uint8_t map_xor[H][4];$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::mapped_sl	ReversibleSketch/ReversibleSketch.h	/^    int mapped_sl;$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::mem_by_rev	ReversibleSketch/ReversibleSketch.h	/^    int mem_by_rev;$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::mem_in_bytes	ReversibleSketch/ReversibleSketch.h	/^	uint32_t mem_in_bytes;$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::mem_k_ary	ReversibleSketch/ReversibleSketch.h	/^    int mem_k_ary;$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::modular_potentials	ReversibleSketch/ReversibleSketch.h	/^    void modular_potentials($/;"	f	class:ReversibleSketch	access:public	signature:( const vector<int> heavy_buckets[H], int w, set<uint8_t> & Iw, set<int> Bw[256][H])
+ReversibleSketch::name	ReversibleSketch/ReversibleSketch.h	/^    string name;$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::normal_sk	ReversibleSketch/ReversibleSketch.h	/^    KAry normal_sk;$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::r	ReversibleSketch/ReversibleSketch.h	/^    static constexpr int r = 1;$/;"	m	class:ReversibleSketch	access:public
+ReversibleSketch::rev_insert	ReversibleSketch/ReversibleSketch.h	/^    void rev_insert(const uint8_t * key, int f = 1)$/;"	f	class:ReversibleSketch	access:public	signature:(const uint8_t * key, int f = 1)
+ReversibleSketch::w	ReversibleSketch/ReversibleSketch.h	/^    int w;$/;"	m	class:ReversibleSketch	access:public
+SK_D	demo/cmsketch.cpp	43;"	d	file:
+SK_D	demo/countsketch.cpp	43;"	d	file:
+SK_D	demo/cusketch.cpp	43;"	d	file:
+SQR	CountHeap/CountHeap.h	16;"	d
+SRC_TCAMSKETCH_FLOWMAPSKETCH_H_	TCAMSketch/TCAMsketch.h	9;"	d
+SSEFLAGS	demo/Makefile	/^SSEFLAGS = -msse2 -mssse3 -msse4.1 -msse4.2 -mavx -march=native$/;"	m
+SSKeyNode	SpaceSaving/SpaceSaving.h	/^    typedef KeyNode<key_len> SSKeyNode;$/;"	t	class:SpaceSaving	access:private
+SSValNode	SpaceSaving/SpaceSaving.h	/^    typedef ValueNode<key_len> SSValNode;$/;"	t	class:SpaceSaving	access:private
+START_FILE_NO	demo/cmheap.cpp	9;"	d	file:
+START_FILE_NO	demo/cmsketch.cpp	9;"	d	file:
+START_FILE_NO	demo/countheap.cpp	9;"	d	file:
+START_FILE_NO	demo/countsketch.cpp	9;"	d	file:
+START_FILE_NO	demo/css.cpp	9;"	d	file:
+START_FILE_NO	demo/cusketch.cpp	9;"	d	file:
+START_FILE_NO	demo/elastic.cpp	9;"	d	file:
+START_FILE_NO	demo/flowradar.cpp	9;"	d	file:
+START_FILE_NO	demo/hashpipe.cpp	9;"	d	file:
+START_FILE_NO	demo/linearcounting.cpp	9;"	d	file:
+START_FILE_NO	demo/mrac.cpp	9;"	d	file:
+START_FILE_NO	demo/reversiblesketch.cpp	9;"	d	file:
+START_FILE_NO	demo/sieving.cpp	9;"	d	file:
+START_FILE_NO	demo/spacesaving.cpp	9;"	d	file:
+START_FILE_NO	demo/tcamsketch.cpp	15;"	d	file:
+START_FILE_NO	demo/univmon.cpp	9;"	d	file:
+START_FILE_NO	throughput.cpp	12;"	d	file:
+STREAMCLASSIFIER_CM_HEAP_H	CMHeap/CMHeap.h	2;"	d
+STREAMCLASSIFIER_CUHEAP_H	CUSketch/CUHeap.h	2;"	d
+STREAMCLASSIFIER_HASH_FUNCTIONS_H	common/hash_functions.h	2;"	d
+STREAMCLASSIFIER_SPACESAVINGUTILS_H	SpaceSaving/SpaceSavingUtils.h	2;"	d
+STREAMCLASSIFIER_SPACESAVING_H	SpaceSaving/SpaceSaving.h	2;"	d
+STREAMCLASSIFIER_TOPK_COUNT_HEAP_H	CountHeap/CountHeap.h	2;"	d
+STREAMMEASUREMENTSYSTEM_CUCKOO_HASHING_H	common/cuckoo_hashing.h	2;"	d
+STREAMMEASUREMENTSYSTEM_EMFSD_H	common/EMFSD.h	2;"	d
+STREAMMEASUREMENTSYSTEM_ENTROPHY_AMS_H	Sieving/entropy_ams.h	10;"	d
+STREAMMEASUREMENTSYSTEM_K_ARY_H	common/k-ary.h	2;"	d
+STREAMMEASUREMENTSYSTEM_MRAC_H	MRAC/MRAC.h	2;"	d
+STREAMMEASUREMENTSYSTEM_REVERSIBLESKETCH_H	ReversibleSketch/ReversibleSketch.h	2;"	d
+STREAMMEASUREMENTSYSTEM_UNIVMON_H	UnivMon/UnivMon.h	2;"	d
+SWAP_MIN_VAL_THRESHOLD	elastic/param.h	38;"	d
+SpaceSaving	SpaceSaving/SpaceSaving.h	/^    SpaceSaving(uint32_t mem_in_bytes_): mem_in_bytes(mem_in_bytes_)$/;"	f	class:SpaceSaving	access:public	signature:(uint32_t mem_in_bytes_)
+SpaceSaving	SpaceSaving/SpaceSaving.h	/^class SpaceSaving$/;"	c
+SpaceSaving::SSKeyNode	SpaceSaving/SpaceSaving.h	/^    typedef KeyNode<key_len> SSKeyNode;$/;"	t	class:SpaceSaving	access:private
+SpaceSaving::SSValNode	SpaceSaving/SpaceSaving.h	/^    typedef ValueNode<key_len> SSValNode;$/;"	t	class:SpaceSaving	access:private
+SpaceSaving::SpaceSaving	SpaceSaving/SpaceSaving.h	/^    SpaceSaving(uint32_t mem_in_bytes_): mem_in_bytes(mem_in_bytes_)$/;"	f	class:SpaceSaving	access:public	signature:(uint32_t mem_in_bytes_)
+SpaceSaving::add_counter	SpaceSaving/SpaceSaving.h	/^    void add_counter(SSKeyNode * my) {$/;"	f	class:SpaceSaving	access:private	signature:(SSKeyNode * my)
+SpaceSaving::append_new_key	SpaceSaving/SpaceSaving.h	/^    void append_new_key(uint8_t * key) {$/;"	f	class:SpaceSaving	access:private	signature:(uint8_t * key)
+SpaceSaving::bytes_per_item	SpaceSaving/SpaceSaving.h	/^    static constexpr int bytes_per_item = 36 + key_len * 2;$/;"	m	class:SpaceSaving	access:private
+SpaceSaving::capacity	SpaceSaving/SpaceSaving.h	/^    int capacity = mem_in_bytes \/ bytes_per_item;$/;"	m	class:SpaceSaving	access:private
+SpaceSaving::get_heavy_hitters	SpaceSaving/SpaceSaving.h	/^    void get_heavy_hitters(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)$/;"	f	class:SpaceSaving	access:public	signature:(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)
+SpaceSaving::get_top_k	SpaceSaving/SpaceSaving.h	/^    void get_top_k(uint16_t k, vector<pair<string, uint32_t>> & result)$/;"	f	class:SpaceSaving	access:public	signature:(uint16_t k, vector<pair<string, uint32_t>> & result)
+SpaceSaving::hash_table	SpaceSaving/SpaceSaving.h	/^    unordered_map<string, SSKeyNode *> hash_table;$/;"	m	class:SpaceSaving	access:private
+SpaceSaving::insert	SpaceSaving/SpaceSaving.h	/^    void insert(uint8_t * key)$/;"	f	class:SpaceSaving	access:public	signature:(uint8_t * key)
+SpaceSaving::key_nodes	SpaceSaving/SpaceSaving.h	/^    SSKeyNode *key_nodes;$/;"	m	class:SpaceSaving	access:private
+SpaceSaving::mem_in_bytes	SpaceSaving/SpaceSaving.h	/^	uint32_t mem_in_bytes;$/;"	m	class:SpaceSaving	access:private
+SpaceSaving::name	SpaceSaving/SpaceSaving.h	/^    string name;$/;"	m	class:SpaceSaving	access:public
+SpaceSaving::tail_node	SpaceSaving/SpaceSaving.h	/^    SSValNode * tail_node;$/;"	m	class:SpaceSaving	access:private
+SpaceSaving::val_node_empty_cnt	SpaceSaving/SpaceSaving.h	/^    int val_node_empty_cnt;$/;"	m	class:SpaceSaving	access:private
+SpaceSaving::val_node_pool	SpaceSaving/SpaceSaving.h	/^    SSValNode ** val_node_pool;$/;"	m	class:SpaceSaving	access:private
+SpaceSaving::val_nodes	SpaceSaving/SpaceSaving.h	/^    SSValNode *val_nodes;$/;"	m	class:SpaceSaving	access:private
+Sub	common/os_galoisField.h	/^	uint64 Sub(uint64 a, uint64 b) const$/;"	f	class:GaloisField	access:public	signature:(uint64 a, uint64 b) const
+SwapCSS	CSS/CSS.h	/^    void SwapCSS(int cur_idx, int largest_idx)$/;"	f	class:CSS	access:public	signature:(int cur_idx, int largest_idx)
+TCAMSketch	TCAMSketch/TCAMsketch.h	/^	TCAMSketch(int theta=1000):$/;"	f	class:TCAMSketch	access:public	signature:(int theta=1000)
+TCAMSketch	TCAMSketch/TCAMsketch.h	/^class TCAMSketch$/;"	c
+TCAMSketch::TCAMSketch	TCAMSketch/TCAMsketch.h	/^	TCAMSketch(int theta=1000):$/;"	f	class:TCAMSketch	access:public	signature:(int theta=1000)
+TCAMSketch::insert	TCAMSketch/TCAMsketch.h	/^	bool insert(string key)$/;"	f	class:TCAMSketch	access:public	signature:(string key)
+TCAMSketch::insert	TCAMSketch/TCAMsketch.h	/^	void insert(const char* key,bool b)\/\/only for throughput$/;"	f	class:TCAMSketch	access:public	signature:(const char* key,bool b)
+TCAMSketch::m_cmSketch	TCAMSketch/TCAMsketch.h	/^	CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>*m_cmSketch;$/;"	m	class:TCAMSketch	access:private
+TCAMSketch::m_tcam	TCAMSketch/TCAMsketch.h	/^	map<string,unsigned int>m_tcam;$/;"	m	class:TCAMSketch	access:private
+TCAMSketch::m_theta	TCAMSketch/TCAMsketch.h	/^	long m_theta;$/;"	m	class:TCAMSketch	access:private
+TCAMSketch::query	TCAMSketch/TCAMsketch.h	/^	unsigned int query(const char* key)$/;"	f	class:TCAMSketch	access:public	signature:(const char* key)
+TCAMSketch::settheta	TCAMSketch/TCAMsketch.h	/^	void settheta(long theta)$/;"	f	class:TCAMSketch	access:public	signature:(long theta)
+TCAMSketch::~TCAMSketch	TCAMSketch/TCAMsketch.h	/^	~TCAMSketch()$/;"	f	class:TCAMSketch	access:public	signature:()
+TOT_MEM_IN_BYTES	demo/css.cpp	43;"	d	file:
+TOT_MEM_IN_BYTES	demo/elastic.cpp	45;"	d	file:
+TOT_MEM_IN_BYTES	demo/flowradar.cpp	43;"	d	file:
+TOT_MEM_IN_BYTES	demo/hashpipe.cpp	43;"	d	file:
+TOT_MEM_IN_BYTES	demo/linearcounting.cpp	43;"	d	file:
+TOT_MEM_IN_BYTES	demo/mrac.cpp	44;"	d	file:
+TOT_MEM_IN_BYTES	demo/reversiblesketch.cpp	43;"	d	file:
+TOT_MEM_IN_BYTES	demo/sieving.cpp	43;"	d	file:
+TOT_MEM_IN_BYTES	demo/spacesaving.cpp	43;"	d	file:
+TOT_MEM_IN_BYTES	demo/univmon.cpp	43;"	d	file:
+TOT_MEM_IN_BYTES	throughput.cpp	49;"	d	file:
+TRACE	demo/cmheap.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/cmsketch.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/countheap.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/countsketch.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/css.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/cusketch.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/elastic.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/flowradar.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/hashpipe.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/linearcounting.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/mrac.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/reversiblesketch.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/sieving.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/spacesaving.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/tcamsketch.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	demo/univmon.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+TRACE	throughput.cpp	/^typedef vector<FIVE_TUPLE> TRACE;$/;"	t	file:
+Test	common/os_galoisField.cc	/^void GaloisField::Test(int N1)$/;"	f	class:GaloisField	signature:(int N1)
+Test	common/os_galoisField.h	/^	void Test(int N1 = 1024);$/;"	p	class:GaloisField	access:public	signature:(int N1 = 1024)
+TestCorrectness	common/os_mangler.cc	/^void Mangler::TestCorrectness(uint32 N1)$/;"	f	class:Mangler	signature:(uint32 N1)
+TestCorrectness	common/os_mangler.h	/^	void TestCorrectness(uint32 N1);$/;"	p	class:Mangler	access:public	signature:(uint32 N1)
+TestSpeed	common/os_mangler.cc	/^void Mangler::TestSpeed(uint32 N1)$/;"	f	class:Mangler	signature:(uint32 N1)
+TestSpeed	common/os_mangler.h	/^	void TestSpeed(uint32 N1);$/;"	p	class:Mangler	access:public	signature:(uint32 N1)
+UPDATETYPE_INCREMENT	common/common.h	/^const int UPDATETYPE_INCREMENT = 2;$/;"	v
+UPDATETYPE_NEXT	common/common.h	/^const int UPDATETYPE_NEXT = 3;$/;"	v
+UPDATETYPE_SET	common/common.h	/^const int UPDATETYPE_SET = 1;$/;"	v
+UPDATE_GUARD_VAL	elastic/param.h	36;"	d
+UnivMon	UnivMon/UnivMon.h	/^    UnivMon()$/;"	f	class:UnivMon	access:public	signature:()
+UnivMon	UnivMon/UnivMon.h	/^class UnivMon$/;"	c
+UnivMon::L2HitterDetector	UnivMon/UnivMon.h	/^    typedef CountHeap<key_len, k, 5> L2HitterDetector;$/;"	t	class:UnivMon	access:public
+UnivMon::UnivMon	UnivMon/UnivMon.h	/^    UnivMon()$/;"	f	class:UnivMon	access:public	signature:()
+UnivMon::element_num	UnivMon/UnivMon.h	/^    int element_num = 0;$/;"	m	class:UnivMon	access:public
+UnivMon::g_sum	UnivMon/UnivMon.h	/^    double g_sum(double (*g)(double))$/;"	f	class:UnivMon	access:public	signature:(double (*g)(double))
+UnivMon::get_cardinality	UnivMon/UnivMon.h	/^    double get_cardinality()$/;"	f	class:UnivMon	access:public	signature:()
+UnivMon::get_entropy	UnivMon/UnivMon.h	/^    double get_entropy()$/;"	f	class:UnivMon	access:public	signature:()
+UnivMon::get_heavy_hitters	UnivMon/UnivMon.h	/^    void get_heavy_hitters(uint32_t threshold, std::vector<pair<uint32_t, int> >& ret)$/;"	f	class:UnivMon	access:public	signature:(uint32_t threshold, std::vector<pair<uint32_t, int> >& ret)
+UnivMon::insert	UnivMon/UnivMon.h	/^    void insert(uint8_t * key)$/;"	f	class:UnivMon	access:public	signature:(uint8_t * key)
+UnivMon::k	UnivMon/UnivMon.h	/^    static constexpr uint16_t k = 1000;$/;"	m	class:UnivMon	access:public
+UnivMon::name	UnivMon/UnivMon.h	/^    string name;$/;"	m	class:UnivMon	access:public
+UnivMon::polar_hash	UnivMon/UnivMon.h	/^    BOBHash32 * polar_hash[level];$/;"	m	class:UnivMon	access:public
+UnivMon::sketches	UnivMon/UnivMon.h	/^    L2HitterDetector * sketches[level];$/;"	m	class:UnivMon	access:public
+UnivMon::~UnivMon	UnivMon/UnivMon.h	/^    ~UnivMon()$/;"	f	class:UnivMon	access:public	signature:()
+Update	BloomFilter/bloomfilter.h	/^		void Update(string key)$/;"	f	class:BloomFilter	access:public	signature:(string key)
+VK	CountHeap/CountHeap.h	/^    typedef pair <int, string> VK;$/;"	t	struct:CountHeap	access:public
+ValueNode	SpaceSaving/SpaceSaving.h	/^struct ValueNode$/;"	s
+ValueNode::first	SpaceSaving/SpaceSaving.h	/^    KeyNode<keylen> * first = NULL;$/;"	m	struct:ValueNode	access:public
+ValueNode::next	SpaceSaving/SpaceSaving.h	/^    ValueNode<keylen> * next = NULL;$/;"	m	struct:ValueNode	access:public
+ValueNode::prev	SpaceSaving/SpaceSaving.h	/^    ValueNode<keylen> * prev = NULL;$/;"	m	struct:ValueNode	access:public
+ValueNode::val	SpaceSaving/SpaceSaving.h	/^    uint32_t val = 0;$/;"	m	struct:ValueNode	access:public
+Value_index	CSS/CSS.h	/^    map<uint32_t, int> Value_index;		\/\/ mapping from value to counter array index;$/;"	m	class:CSS	access:private
+Z	demo/sieving.cpp	45;"	d	file:
+_BLOOMFILTER_H_	BloomFilter/bloomfilter.h	8;"	d
+_BOBHASH32_H	common/BOBHash32.h	2;"	d
+_CMSKETCH_H_VERSION_2	CMSketch/CM.h	2;"	d
+_COMMON_H_	common/common.h	2;"	d
+_COUNTERINFO_H	common/counterInfo.h	2;"	d
+_COUNT_SKETCH_H_VERSION_2	CountSketch/Count.h	2;"	d
+_CSS_H	CSS/CSS.h	2;"	d
+_CU_SKETCH_H_VERSION_2	CUSketch/CU.h	2;"	d
+_ELASTIC_SKETCH_H_	elastic/ElasticSketch.h	2;"	d
+_FLOWMAP_H_	FlowMap/flowmap.h	8;"	d
+_HASHINFO_H	common/hashInfo.h	2;"	d
+_HEAVYPART_H_	elastic/HeavyPart.h	2;"	d
+_LIGHT_PART_H_	elastic/LightPart.h	2;"	d
+_LINEAR_COUNTING_4_H_	LinearCounting/Linear_counting.h	2;"	d
+_MYREV1_H	FlowRadar/insertable_iblt.h	2;"	d
+_PARAM_H_	elastic/param.h	2;"	d
+__PACKET_H_	common/packet.h	2;"	d
+__anon1::as_int16s	common/common.h	/^  uint16 as_int16s[4];$/;"	m	union:__anon1	access:public
+__anon1::as_int32s	common/common.h	/^  uint32 as_int32s[2];$/;"	m	union:__anon1	access:public
+__anon1::as_int64	common/common.h	/^  uint64 as_int64; $/;"	m	union:__anon1	access:public
+__anon1::as_int8s	common/common.h	/^  uint8  as_int8s[8];$/;"	m	union:__anon1	access:public
+__anon2::as_int16s	common/common.h	/^  uint16 as_int16s[2];$/;"	m	union:__anon2	access:public
+__anon2::as_int32	common/common.h	/^  uint32 as_int32; $/;"	m	union:__anon2	access:public
+__anon2::as_int8s	common/common.h	/^  uint8  as_int8s[4];$/;"	m	union:__anon2	access:public
+_hashpipe_H	Hashpipe/hashpipe.h	2;"	d
+a	ReversibleSketch/ReversibleSketch.h	/^        uint8_t a[4], b[4];$/;"	m	class:ReversibleSketch::KeyMangler	access:private
+add_counter	SpaceSaving/SpaceSaving.h	/^    void add_counter(SSKeyNode * my) {$/;"	f	class:SpaceSaving	access:private	signature:(SSKeyNode * my)
+algorithms	Sieving/entropy_ams.h	/^namespace algorithms {$/;"	n
+algorithms::entropy	Sieving/entropy_ams.h	/^namespace entropy {$/;"	n	namespace:algorithms
+algorithms::entropy::EntropyAMS	Sieving/entropy_ams.h	/^template <int key_len, uint32_t g, uint32_t z> class EntropyAMS {$/;"	c	namespace:algorithms::entropy
+algorithms::entropy::EntropyAMS::EntropyAMS	Sieving/entropy_ams.h	/^        EntropyAMS() {$/;"	f	class:algorithms::entropy::EntropyAMS	access:public	signature:()
+algorithms::entropy::EntropyAMS::available_stack	Sieving/entropy_ams.h	/^        Item *available_stack[g * z];$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+algorithms::entropy::EntropyAMS::available_top	Sieving/entropy_ams.h	/^        uint32_t available_top;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+algorithms::entropy::EntropyAMS::element_num	Sieving/entropy_ams.h	/^        static constexpr uint32_t element_num = 2400000;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+algorithms::entropy::EntropyAMS::get_entropy	Sieving/entropy_ams.h	/^        double get_entropy() {$/;"	f	class:algorithms::entropy::EntropyAMS	access:public	signature:()
+algorithms::entropy::EntropyAMS::hash_fun	Sieving/entropy_ams.h	/^        BOBHash32 *hash_fun;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+algorithms::entropy::EntropyAMS::hash_table	Sieving/entropy_ams.h	/^        Item *hash_table[g * z];$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+algorithms::entropy::EntropyAMS::insert	Sieving/entropy_ams.h	/^        void insert(uint8_t *key) {$/;"	f	class:algorithms::entropy::EntropyAMS	access:public	signature:(uint8_t *key)
+algorithms::entropy::EntropyAMS::items	Sieving/entropy_ams.h	/^        Item items[g * z];$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+algorithms::entropy::EntropyAMS::name	Sieving/entropy_ams.h	/^        const string name = "Entropy AMS";$/;"	m	class:algorithms::entropy::EntropyAMS	access:public
+algorithms::entropy::EntropyAMS::now_item_cnt	Sieving/entropy_ams.h	/^        uint32_t now_item_cnt = 0;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+algorithms::entropy::EntropyAMS::now_pos	Sieving/entropy_ams.h	/^        uint32_t now_pos = 0;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+algorithms::entropy::EntropyAMS::preprocessing	Sieving/entropy_ams.h	/^        void preprocessing() {$/;"	f	class:algorithms::entropy::EntropyAMS	access:private	signature:()
+algorithms::entropy::EntropyAMS::rand_pos	Sieving/entropy_ams.h	/^        uint32_t rand_pos[g * z];$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+algorithms::entropy::EntropyAMS::~EntropyAMS	Sieving/entropy_ams.h	/^        ~EntropyAMS() { delete hash_fun; }$/;"	f	class:algorithms::entropy::EntropyAMS	access:public	signature:()
+algorithms::entropy::Item	Sieving/entropy_ams.h	/^struct Item {$/;"	s	namespace:algorithms::entropy
+algorithms::entropy::Item::chaining_ptr	Sieving/entropy_ams.h	/^        Item *chaining_ptr = nullptr;$/;"	m	struct:algorithms::entropy::Item	access:public
+algorithms::entropy::Item::counter	Sieving/entropy_ams.h	/^        uint32_t counter = 0;$/;"	m	struct:algorithms::entropy::Item	access:public
+algorithms::entropy::Item::key	Sieving/entropy_ams.h	/^        uint8_t *key = nullptr;$/;"	m	struct:algorithms::entropy::Item	access:public
+algorithms::entropy::Item::prev_ptr	Sieving/entropy_ams.h	/^        Item *prev_ptr = nullptr;$/;"	m	struct:algorithms::entropy::Item	access:public
+append_new_key	SpaceSaving/SpaceSaving.h	/^    void append_new_key(uint8_t * key) {$/;"	f	class:SpaceSaving	access:private	signature:(uint8_t * key)
+approximate_query	FlowRadar/insertable_iblt.h	/^    int approximate_query(uint32_t key) {$/;"	f	class:InsertableIBLT	access:public	signature:(uint32_t key)
+as_int16s	common/common.h	/^  uint16 as_int16s[2];$/;"	m	union:__anon2	access:public
+as_int16s	common/common.h	/^  uint16 as_int16s[4];$/;"	m	union:__anon1	access:public
+as_int32	common/common.h	/^  uint32 as_int32; $/;"	m	union:__anon2	access:public
+as_int32s	common/common.h	/^  uint32 as_int32s[2];$/;"	m	union:__anon1	access:public
+as_int64	common/common.h	/^  uint64 as_int64; $/;"	m	union:__anon1	access:public
+as_int8s	common/common.h	/^  uint8  as_int8s[4];$/;"	m	union:__anon2	access:public
+as_int8s	common/common.h	/^  uint8  as_int8s[8];$/;"	m	union:__anon1	access:public
+available_stack	Sieving/entropy_ams.h	/^        Item *available_stack[g * z];$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+available_top	Sieving/entropy_ams.h	/^        uint32_t available_top;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+b	ReversibleSketch/ReversibleSketch.h	/^        uint8_t a[4], b[4];$/;"	m	class:ReversibleSketch::KeyMangler	access:private
+bf	FlowRadar/insertable_iblt.h	/^    uint64_t * bf;$/;"	m	class:InsertableIBLT	access:private
+bf_k	FlowRadar/insertable_iblt.h	/^    int bf_k, iblt_k;$/;"	m	class:InsertableIBLT	access:private
+bf_size_in_bytes	FlowRadar/insertable_iblt.h	/^	int bf_size_in_bytes;$/;"	m	class:InsertableIBLT	access:private
+big_prime3232	common/BOBHash32.h	/^uint32_t big_prime3232[MAX_BIG_PRIME32] = {$/;"	v
+bit_map	LinearCounting/Linear_counting.h	/^        uint8_t bit_map[map_num];$/;"	m	class:LinearCounting	access:private
+bobHash	CSS/CSS.h	/^    BOBHash32 *bobHash;$/;"	m	class:CSS	access:private
+bob_hash	MRAC/MRAC.h	/^        BOBHash32 *bob_hash;$/;"	m	class:MRAC	access:private
+bobhash	FlowRadar/insertable_iblt.h	/^    BOBHash32 * bobhash[7];$/;"	m	class:InsertableIBLT	access:private
+bobhash	elastic/LightPart.h	/^	BOBHash32 *bobhash = NULL;$/;"	m	class:LightPart	access:private
+buckets	common/cuckoo_hashing.h	/^    KVPair buckets[w][d];$/;"	m	class:cuckoo::CuckooHashing	access:private
+buckets	elastic/HeavyPart.h	/^	alignas(64) Bucket buckets[bucket_num];$/;"	m	class:HeavyPart	access:public
+build	CUSketch/CUHeap.h	/^    void build(uint32_t * items, int n)$/;"	f	class:CUHeap	access:public	signature:(uint32_t * items, int n)
+build	FlowRadar/insertable_iblt.h	/^    void build(uint32_t * data, int n) {$/;"	f	class:InsertableIBLT	access:public	signature:(uint32_t * data, int n)
+bytes_per_item	SpaceSaving/SpaceSaving.h	/^    static constexpr int bytes_per_item = 36 + key_len * 2;$/;"	m	class:SpaceSaving	access:private
+capacity	SpaceSaving/SpaceSaving.h	/^    int capacity = mem_in_bytes \/ bytes_per_item;$/;"	m	class:SpaceSaving	access:private
+card_init	common/EMFSD.h	/^    double card_init;$/;"	m	class:EMFSD	access:public
+chaining_ptr	Sieving/entropy_ams.h	/^        Item *chaining_ptr = nullptr;$/;"	m	struct:algorithms::entropy::Item	access:public
+char_mgltbl0	common/os_mangler.h	/^	uint32 char_mgltbl0[256];$/;"	m	class:Mangler	access:private
+char_mgltbl1	common/os_mangler.h	/^	uint32 char_mgltbl1[256];$/;"	m	class:Mangler	access:private
+char_mgltbl2	common/os_mangler.h	/^	uint32 char_mgltbl2[256];$/;"	m	class:Mangler	access:private
+char_mgltbl3	common/os_mangler.h	/^	uint32 char_mgltbl3[256];$/;"	m	class:Mangler	access:private
+char_revtbl0	common/os_mangler.h	/^	uint32 char_revtbl0[256];$/;"	m	class:Mangler	access:private
+char_revtbl1	common/os_mangler.h	/^	uint32 char_revtbl1[256];$/;"	m	class:Mangler	access:private
+char_revtbl2	common/os_mangler.h	/^	uint32 char_revtbl2[256];$/;"	m	class:Mangler	access:private
+char_revtbl3	common/os_mangler.h	/^	uint32 char_revtbl3[256];$/;"	m	class:Mangler	access:private
+clear	CMSketch/CM.h	/^	void clear()$/;"	f	class:CMSketch	access:public	signature:()
+clear	CUSketch/CU.h	/^	void clear()$/;"	f	class:CUSketch	access:public	signature:()
+clear	CountSketch/Count.h	/^	void clear()$/;"	f	class:CountSketch	access:public	signature:()
+clear	LinearCounting/Linear_counting.h	/^        void clear() { memset(bit_map, 0, map_num); }$/;"	f	class:LinearCounting	access:public	signature:()
+clear	elastic/ElasticSketch.h	/^    void clear()$/;"	f	class:ElasticSketch	access:public	signature:()
+clear	elastic/HeavyPart.h	/^	void clear()$/;"	f	class:HeavyPart	access:public	signature:()
+clear	elastic/LightPart.h	/^	void clear()$/;"	f	class:LightPart	access:public	signature:()
+cm_sketch	CMHeap/CMHeap.h	/^    int * cm_sketch[d];$/;"	m	struct:CMHeap	access:public
+cm_sketch	CountHeap/CountHeap.h	/^    int * cm_sketch[d];$/;"	m	struct:CountHeap	access:public
+collect_counters	common/EMFSD.h	/^    int collect_counters(uint16_t * counters)$/;"	f	class:EMFSD	access:private	signature:(uint16_t * counters)
+collect_counters	common/EMFSD.h	/^    int collect_counters(uint32_t * counters)$/;"	f	class:EMFSD	access:private	signature:(uint32_t * counters)
+collect_fsd	MRAC/MRAC.h	/^        void collect_fsd() {$/;"	f	class:MRAC	access:public	signature:()
+compress	elastic/ElasticSketch.h	/^    void compress(int ratio, uint8_t *dst) {    light_part.compress(ratio, dst); }$/;"	f	class:ElasticSketch	access:public	signature:(int ratio, uint8_t *dst)
+compress	elastic/LightPart.h	/^    void compress(int ratio, uint8_t *dst) $/;"	f	class:LightPart	access:public	signature:(int ratio, uint8_t *dst)
+compute_small_hash	ReversibleSketch/ReversibleSketch.h	/^    uint8_t compute_small_hash(uint8_t original_key, int i, int j)$/;"	f	class:ReversibleSketch	access:public	signature:(uint8_t original_key, int i, int j)
+convert	ReversibleSketch/ReversibleSketch.h	/^        void convert(const uint8_t * a, uint8_t *b, int direction)$/;"	f	class:ReversibleSketch::KeyMangler	access:private	signature:(const uint8_t * a, uint8_t *b, int direction)
+copy_configurations	ReversibleSketch/ReversibleSketch.h	/^    void copy_configurations(ReversibleSketch & another)$/;"	f	class:ReversibleSketch	access:public	signature:(ReversibleSketch & another)
+copy_configurations	common/k-ary.h	/^    void copy_configurations(KAry & another)$/;"	f	class:KAry	access:public	signature:(KAry & another)
+counter	Sieving/entropy_ams.h	/^        uint32_t counter = 0;$/;"	m	struct:algorithms::entropy::Item	access:public
+counterSize	common/counterInfo.h	/^  int counterSize;$/;"	m	struct:CounterInfo	access:public
+counter_dist	common/EMFSD.h	/^    vector<int> counter_dist;$/;"	m	class:EMFSD	access:private
+counter_num	elastic/LightPart.h	/^	static constexpr int counter_num = init_mem_in_bytes;$/;"	m	class:LightPart	access:private
+counters	CMSketch/CM.h	/^	int* counters[d] = {NULL};$/;"	m	class:CMSketch	access:private
+counters	CUSketch/CU.h	/^	int* counters[d] = {NULL};$/;"	m	class:CUSketch	access:private
+counters	CountSketch/Count.h	/^	int* counters[d] = {NULL};$/;"	m	class:CountSketch	access:private
+counters	MRAC/MRAC.h	/^        uint32_t counters[w];$/;"	m	class:MRAC	access:private
+counters	ReversibleSketch/ReversibleSketch.h	/^    int* counters[H];$/;"	m	class:ReversibleSketch	access:public
+counters	common/k-ary.h	/^    int ** counters;$/;"	m	class:KAry	access:public
+counters	elastic/LightPart.h	/^	uint8_t counters[counter_num];$/;"	m	class:LightPart	access:public
+countersPerRow	common/counterInfo.h	/^  int countersPerRow;$/;"	m	struct:CounterInfo	access:public
+cu_sketch	CUSketch/CUHeap.h	/^    uint32_t cu_sketch[d][w];$/;"	m	class:CUHeap	access:private
+cuckoo	common/cuckoo_hashing.h	/^namespace cuckoo {$/;"	n
+cuckoo::CuckooHashing	common/cuckoo_hashing.h	/^class CuckooHashing$/;"	c	namespace:cuckoo
+cuckoo::CuckooHashing::CuckooHashing	common/cuckoo_hashing.h	/^    CuckooHashing()$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:()
+cuckoo::CuckooHashing::KVPair	common/cuckoo_hashing.h	/^    struct KVPair$/;"	s	class:cuckoo::CuckooHashing	access:private
+cuckoo::CuckooHashing::KVPair::KVPair	common/cuckoo_hashing.h	/^        KVPair()$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:()
+cuckoo::CuckooHashing::KVPair::KVPair	common/cuckoo_hashing.h	/^        KVPair(const KVPair & b)$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:(const KVPair & b)
+cuckoo::CuckooHashing::KVPair::is_empty	common/cuckoo_hashing.h	/^        bool is_empty()$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:()
+cuckoo::CuckooHashing::KVPair::is_key_match	common/cuckoo_hashing.h	/^        bool is_key_match(const uint8_t * n_key)$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:(const uint8_t * n_key)
+cuckoo::CuckooHashing::KVPair::key	common/cuckoo_hashing.h	/^        uint8_t key[keylen];$/;"	m	struct:cuckoo::CuckooHashing::KVPair	access:public
+cuckoo::CuckooHashing::KVPair::set	common/cuckoo_hashing.h	/^        void set(const uint8_t * i_key, uint32_t i_val)$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:(const uint8_t * i_key, uint32_t i_val)
+cuckoo::CuckooHashing::KVPair::val	common/cuckoo_hashing.h	/^        uint32_t val;$/;"	m	struct:cuckoo::CuckooHashing::KVPair	access:public
+cuckoo::CuckooHashing::buckets	common/cuckoo_hashing.h	/^    KVPair buckets[w][d];$/;"	m	class:cuckoo::CuckooHashing	access:private
+cuckoo::CuckooHashing::erase	common/cuckoo_hashing.h	/^    bool erase(uint8_t * key)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key)
+cuckoo::CuckooHashing::find	common/cuckoo_hashing.h	/^    bool find(uint8_t * key)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key)
+cuckoo::CuckooHashing::hashs	common/cuckoo_hashing.h	/^    BOBHash32 * hashs[2];$/;"	m	class:cuckoo::CuckooHashing	access:private
+cuckoo::CuckooHashing::insert	common/cuckoo_hashing.h	/^    bool insert(uint8_t * key, uint32_t val, int from_k = -1, int remained = 5)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key, uint32_t val, int from_k = -1, int remained = 5)
+cuckoo::CuckooHashing::operator []	common/cuckoo_hashing.h	/^    uint32_t & operator[](uint8_t * key)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key)
+cuckoo::CuckooHashing::query	common/cuckoo_hashing.h	/^    bool query(uint8_t * key, uint32_t & val)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key, uint32_t & val)
+cuckoo::CuckooHashing::w	common/cuckoo_hashing.h	/^    constexpr static uint32_t w = capacity \/ d;$/;"	m	class:cuckoo::CuckooHashing	access:private
+cuckoo::CuckooHashing::~CuckooHashing	common/cuckoo_hashing.h	/^    ~CuckooHashing()$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:()
+d	Hashpipe/hashpipe.h	7;"	d
+d	common/k-ary.h	/^    int d;$/;"	m	class:KAry	access:public
+demangling	ReversibleSketch/ReversibleSketch.h	/^        void demangling(const uint8_t *key, uint8_t *original_key)$/;"	f	class:ReversibleSketch::KeyMangler	access:public	signature:(const uint8_t *key, uint8_t *original_key)
+dist_new	common/EMFSD.h	/^    vector<double> dist_old, dist_new;$/;"	m	class:EMFSD	access:private
+dist_old	common/EMFSD.h	/^    vector<double> dist_old, dist_new;$/;"	m	class:EMFSD	access:private
+dstip	common/packet.h	/^  uint32_t dstip;$/;"	m	class:Packet	access:public
+dstport	common/packet.h	/^  uint32_t dstport;$/;"	m	class:Packet	access:public
+dump	FlowRadar/insertable_iblt.h	/^    void dump(unordered_map<uint32_t, int> &result) {$/;"	f	class:InsertableIBLT	access:public	signature:(unordered_map<uint32_t, int> &result)
+element_num	Sieving/entropy_ams.h	/^        static constexpr uint32_t element_num = 2400000;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+element_num	UnivMon/UnivMon.h	/^    int element_num = 0;$/;"	m	class:UnivMon	access:public
+em_fsd_algo	MRAC/MRAC.h	/^        EMFSD *em_fsd_algo = NULL;$/;"	m	class:MRAC	access:private
+em_fsd_algo	elastic/LightPart.h	/^	EMFSD *em_fsd_algo = NULL;$/;"	m	class:LightPart	access:public
+entropy	Sieving/entropy_ams.h	/^namespace entropy {$/;"	n	namespace:algorithms
+erase	common/cuckoo_hashing.h	/^    bool erase(uint8_t * key)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key)
+est_cardinality	MRAC/MRAC.h	/^        double est_cardinality = 0;$/;"	m	class:MRAC	access:private
+factorial	common/EMFSD.h	/^    static constexpr int factorial(int n) {$/;"	f	class:EMFSD	access:private	signature:(int n)
+field	common/hashInfo.h	/^  int field;$/;"	m	struct:HashInfo	access:public
+find	CSS/CSS.h	/^    int find(uint8_t *key)		\/\/ return an index of counter array$/;"	f	class:CSS	access:public	signature:(uint8_t *key)
+find	common/cuckoo_hashing.h	/^    bool find(uint8_t * key)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key)
+first	SpaceSaving/SpaceSaving.h	/^    KeyNode<keylen> * first = NULL;$/;"	m	struct:ValueNode	access:public
+flow_num	FlowRadar/insertable_iblt.h	/^        int flow_num;$/;"	m	struct:InsertableIBLT::Node	access:public
+flow_num_limit	common/EMFSD.h	/^        int flow_num_limit;$/;"	m	struct:EMFSD::BetaGenerator	access:public
+flow_sum	FlowRadar/insertable_iblt.h	/^        uint32_t flow_sum;$/;"	m	struct:InsertableIBLT::Node	access:public
+g_sum	UnivMon/UnivMon.h	/^    double g_sum(double (*g)(double))$/;"	f	class:UnivMon	access:public	signature:(double (*g)(double))
+galoisfield_h	common/os_galoisField.h	10;"	d
+gcd	ReversibleSketch/ReversibleSketch.h	/^        uint64_t gcd(uint64_t a, uint64_t b) {$/;"	f	class:ReversibleSketch::KeyMangler	access:private	signature:(uint64_t a, uint64_t b)
+get_bandwidth	elastic/ElasticSketch.h	/^    double get_bandwidth(int compress_ratio) $/;"	f	class:ElasticSketch	access:public	signature:(int compress_ratio)
+get_bucket_num	elastic/ElasticSketch.h	/^    int get_bucket_num() { return heavy_part.get_bucket_num(); }$/;"	f	class:ElasticSketch	access:public	signature:()
+get_bucket_num	elastic/HeavyPart.h	/^	int get_bucket_num()$/;"	f	class:HeavyPart	access:public	signature:()
+get_cardinality	LinearCounting/Linear_counting.h	/^        int get_cardinality() {$/;"	f	class:LinearCounting	access:public	signature:()
+get_cardinality	MRAC/MRAC.h	/^        double get_cardinality() {$/;"	f	class:MRAC	access:public	signature:()
+get_cardinality	UnivMon/UnivMon.h	/^    double get_cardinality()$/;"	f	class:UnivMon	access:public	signature:()
+get_cardinality	elastic/ElasticSketch.h	/^    int get_cardinality()$/;"	f	class:ElasticSketch	access:public	signature:()
+get_cardinality	elastic/LightPart.h	/^   	int get_cardinality() $/;"	f	class:LightPart	access:public	signature:()
+get_compress_memory	elastic/LightPart.h	/^    int get_compress_memory(int ratio) {	return (uint32_t)(counter_num \/ ratio); }$/;"	f	class:LightPart	access:public	signature:(int ratio)
+get_compress_width	elastic/ElasticSketch.h	/^    int get_compress_width(int ratio) { return light_part.get_compress_width(ratio);}$/;"	f	class:ElasticSketch	access:public	signature:(int ratio)
+get_compress_width	elastic/LightPart.h	/^    int get_compress_width(int ratio) { return (counter_num \/ ratio); }$/;"	f	class:LightPart	access:public	signature:(int ratio)
+get_distribution	MRAC/MRAC.h	/^        void get_distribution(vector<double> &dist_est) {$/;"	f	class:MRAC	access:public	signature:(vector<double> &dist_est)
+get_distribution	elastic/ElasticSketch.h	/^    void get_distribution(vector<double> &dist)$/;"	f	class:ElasticSketch	access:public	signature:(vector<double> &dist)
+get_distribution	elastic/LightPart.h	/^    void get_distribution(vector<double> &dist) $/;"	f	class:LightPart	access:public	signature:(vector<double> &dist)
+get_entropy	Sieving/entropy_ams.h	/^        double get_entropy() {$/;"	f	class:algorithms::entropy::EntropyAMS	access:public	signature:()
+get_entropy	UnivMon/UnivMon.h	/^    double get_entropy()$/;"	f	class:UnivMon	access:public	signature:()
+get_entropy	elastic/ElasticSketch.h	/^    double get_entropy()$/;"	f	class:ElasticSketch	access:public	signature:()
+get_entropy	elastic/LightPart.h	/^    void get_entropy(int &tot, double &entr)$/;"	f	class:LightPart	access:public	signature:(int &tot, double &entr)
+get_f2	CountHeap/CountHeap.h	/^    double get_f2()$/;"	f	struct:CountHeap	access:public	signature:()
+get_heavy_hitters	CMHeap/CMHeap.h	/^    void get_heavy_hitters(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)$/;"	f	struct:CMHeap	access:public	signature:(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)
+get_heavy_hitters	CountHeap/CountHeap.h	/^    void get_heavy_hitters(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)$/;"	f	struct:CountHeap	access:public	signature:(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)
+get_heavy_hitters	Hashpipe/hashpipe.h	/^        void get_heavy_hitters(int threshold, vector <pair<uint32_t, int> > &v)$/;"	f	class:HashPipe	access:public	signature:(int threshold, vector <pair<uint32_t, int> > &v)
+get_heavy_hitters	ReversibleSketch/ReversibleSketch.h	/^    void get_heavy_hitters(int threshold, std::vector<pair<string, uint32_t> >& ret)$/;"	f	class:ReversibleSketch	access:public	signature:(int threshold, std::vector<pair<string, uint32_t> >& ret)
+get_heavy_hitters	SpaceSaving/SpaceSaving.h	/^    void get_heavy_hitters(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)$/;"	f	class:SpaceSaving	access:public	signature:(uint32_t threshold, std::vector<pair<string, uint32_t> >& ret)
+get_heavy_hitters	UnivMon/UnivMon.h	/^    void get_heavy_hitters(uint32_t threshold, std::vector<pair<uint32_t, int> >& ret)$/;"	f	class:UnivMon	access:public	signature:(uint32_t threshold, std::vector<pair<uint32_t, int> >& ret)
+get_heavy_hitters	elastic/ElasticSketch.h	/^    void get_heavy_hitters(int threshold, vector<pair<string, int>> & results)$/;"	f	class:ElasticSketch	access:public	signature:(int threshold, vector<pair<string, int>> & results)
+get_l2_heavy_hitters	CountHeap/CountHeap.h	/^    void get_l2_heavy_hitters(double alpha, vector<KV> & result)$/;"	f	struct:CountHeap	access:public	signature:(double alpha, vector<KV> & result)
+get_memory_usage	elastic/HeavyPart.h	/^	int get_memory_usage()$/;"	f	class:HeavyPart	access:public	signature:()
+get_memory_usage	elastic/LightPart.h	/^    int get_memory_usage() { return counter_num; }$/;"	f	class:LightPart	access:public	signature:()
+get_new_comb	common/EMFSD.h	/^        bool get_new_comb()$/;"	f	struct:EMFSD::BetaGenerator	access:public	signature:()
+get_next	common/EMFSD.h	/^        bool get_next()$/;"	f	struct:EMFSD::BetaGenerator	access:public	signature:()
+get_p_from_beta	common/EMFSD.h	/^    double get_p_from_beta(BetaGenerator & bt, double lambda, vector<double> & now_dist, double now_n)$/;"	f	class:EMFSD	access:private	signature:(BetaGenerator & bt, double lambda, vector<double> & now_dist, double now_n)
+get_random_prime_index	common/BOBHash32.h	/^	static uint32_t get_random_prime_index()$/;"	f	class:BOBHash32	access:public	signature:()
+get_random_prime_index_list	common/BOBHash32.h	/^    static vector<uint32_t> get_random_prime_index_list(int n)$/;"	f	class:BOBHash32	access:public	signature:(int n)
+get_top_k	CSS/CSS.h	/^    void get_top_k(uint32_t k, std::vector<pair<string, uint32_t> >& result)$/;"	f	class:CSS	access:public	signature:(uint32_t k, std::vector<pair<string, uint32_t> >& result)
+get_top_k	CUSketch/CUHeap.h	/^    void get_top_k(uint16_t k, vector<pair<uint32_t, uint32_t>> & result) {$/;"	f	class:CUHeap	access:public	signature:(uint16_t k, vector<pair<uint32_t, uint32_t>> & result)
+get_top_k	SpaceSaving/SpaceSaving.h	/^    void get_top_k(uint16_t k, vector<pair<string, uint32_t>> & result)$/;"	f	class:SpaceSaving	access:public	signature:(uint16_t k, vector<pair<string, uint32_t>> & result)
+get_top_k_old	CUSketch/CUHeap.h	/^    void get_top_k_old(uint16_t k, uint32_t * result) {$/;"	f	class:CUHeap	access:public	signature:(uint16_t k, uint32_t * result)
+get_top_k_with_frequency	CountHeap/CountHeap.h	/^    void get_top_k_with_frequency(uint16_t k, vector<KV> & result) {$/;"	f	struct:CountHeap	access:public	signature:(uint16_t k, vector<KV> & result)
+gf32	common/os_galoisField.cc	/^GaloisField *gf32 = new GaloisField(32);$/;"	v
+hash	BloomFilter/bloomfilter.h	/^		BOBHash32* hash[nhash] = {NULL};$/;"	m	class:BloomFilter	access:private
+hash	CMHeap/CMHeap.h	/^    BOBHash32 * hash[d];$/;"	m	struct:CMHeap	access:public
+hash	CMSketch/CM.h	/^	BOBHash32* hash[d] = {NULL};$/;"	m	class:CMSketch	access:private
+hash	CUSketch/CU.h	/^	BOBHash32* hash[d] = {NULL};$/;"	m	class:CUSketch	access:private
+hash	CUSketch/CUHeap.h	/^    BOBHash32 *hash[d];$/;"	m	class:CUHeap	access:private
+hash	CountHeap/CountHeap.h	/^    BOBHash32 * hash[d];$/;"	m	struct:CountHeap	access:public
+hash	CountSketch/Count.h	/^	BOBHash32* hash[d] = {NULL};$/;"	m	class:CountSketch	access:private
+hash	FlowMap/flowmap.h	/^		BOBHash32* hash[nhash] = {NULL};$/;"	m	class:FlowMap	access:private
+hash_fun	Sieving/entropy_ams.h	/^        BOBHash32 *hash_fun;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+hash_gen	LinearCounting/Linear_counting.h	/^        BOBHash32 *hash_gen;$/;"	m	class:LinearCounting	access:private
+hash_ns	common/common.h	/^namespace hash_ns{                                                                            $/;"	n
+hash_ns::A	common/common.h	/^  const uint64 A[] = {59032440799460394,\\$/;"	m	namespace:hash_ns
+hash_ns::B	common/common.h	/^  const uint64 B[] = {832108633134565846,\\$/;"	m	namespace:hash_ns
+hash_ns::mangleSeed1	common/common.h	/^  const uint64 mangleSeed1 = 38409845058049, mangleSeed2 = 9475047563245;$/;"	m	namespace:hash_ns
+hash_ns::mangleSeed2	common/common.h	/^  const uint64 mangleSeed1 = 38409845058049, mangleSeed2 = 9475047563245;$/;"	m	namespace:hash_ns
+hash_polar	CountHeap/CountHeap.h	/^    BOBHash32 * hash_polar[d];$/;"	m	struct:CountHeap	access:public
+hash_table	Sieving/entropy_ams.h	/^        Item *hash_table[g * z];$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+hash_table	SpaceSaving/SpaceSaving.h	/^    unordered_map<string, SSKeyNode *> hash_table;$/;"	m	class:SpaceSaving	access:private
+hashs	common/cuckoo_hashing.h	/^    BOBHash32 * hashs[2];$/;"	m	class:cuckoo::CuckooHashing	access:private
+hashs	common/k-ary.h	/^    BOBHash32 ** hashs;$/;"	m	class:KAry	access:public
+heap	CMHeap/CMHeap.h	/^    KV heap[capacity];$/;"	m	struct:CMHeap	access:public
+heap	CUSketch/CUHeap.h	/^    KV heap[capacity];$/;"	m	class:CUHeap	access:private
+heap	CountHeap/CountHeap.h	/^    VK heap[capacity];$/;"	m	struct:CountHeap	access:public
+heap_adjust_down	CMHeap/CMHeap.h	/^    void heap_adjust_down(int i) {$/;"	f	struct:CMHeap	access:public	signature:(int i)
+heap_adjust_down	CUSketch/CUHeap.h	/^    void heap_adjust_down(int i) {$/;"	f	class:CUHeap	access:private	signature:(int i)
+heap_adjust_down	CountHeap/CountHeap.h	/^    void heap_adjust_down(int i) {$/;"	f	struct:CountHeap	access:public	signature:(int i)
+heap_adjust_up	CMHeap/CMHeap.h	/^    void heap_adjust_up(int i) {$/;"	f	struct:CMHeap	access:public	signature:(int i)
+heap_adjust_up	CUSketch/CUHeap.h	/^    void heap_adjust_up(int i) {$/;"	f	class:CUHeap	access:private	signature:(int i)
+heap_adjust_up	CountHeap/CountHeap.h	/^    void heap_adjust_up(int i) {$/;"	f	struct:CountHeap	access:public	signature:(int i)
+heap_element_num	CMHeap/CMHeap.h	/^    int heap_element_num;$/;"	m	struct:CMHeap	access:public
+heap_element_num	CUSketch/CUHeap.h	/^    int heap_element_num;$/;"	m	class:CUHeap	access:private
+heap_element_num	CountHeap/CountHeap.h	/^    int heap_element_num;$/;"	m	struct:CountHeap	access:public
+heavy_mem	elastic/ElasticSketch.h	/^    static constexpr int heavy_mem = bucket_num * COUNTER_PER_BUCKET * 8;$/;"	m	class:ElasticSketch	access:private
+heavy_part	elastic/ElasticSketch.h	/^    HeavyPart<bucket_num> heavy_part;$/;"	m	class:ElasticSketch	access:private
+ht	CMHeap/CMHeap.h	/^    cuckoo::CuckooHashing<key_len, int(capacity * 2)> ht;$/;"	m	struct:CMHeap	access:public
+ht	CUSketch/CUHeap.h	/^    unordered_map<uint32_t, uint32_t> ht;$/;"	m	class:CUHeap	access:private
+ht	CountHeap/CountHeap.h	/^    unordered_map<string, uint32_t> ht;$/;"	m	struct:CountHeap	access:public
+i	Hashpipe/hashpipe.h	/^        int M,val[d][3000005],i,j;$/;"	m	class:HashPipe	access:private
+iblt	FlowRadar/insertable_iblt.h	/^    Node * iblt;$/;"	m	class:InsertableIBLT	access:private
+iblt_k	FlowRadar/insertable_iblt.h	/^    int bf_k, iblt_k;$/;"	m	class:InsertableIBLT	access:private
+iblt_size_in_bytes	FlowRadar/insertable_iblt.h	/^    int iblt_size_in_bytes;$/;"	m	class:InsertableIBLT	access:private
+inited	common/EMFSD.h	/^    bool inited = false;$/;"	m	class:EMFSD	access:public
+initial	CMSketch/CM.h	/^	void initial(int memory_in_bytes)$/;"	f	class:CMSketch	access:public	signature:(int memory_in_bytes)
+initial	CUSketch/CU.h	/^	void initial(int memory_in_bytes)$/;"	f	class:CUSketch	access:public	signature:(int memory_in_bytes)
+initial	CountSketch/Count.h	/^	void initial(int memory_in_bytes)$/;"	f	class:CountSketch	access:public	signature:(int memory_in_bytes)
+initialize	common/BOBHash32.h	/^	void initialize(uint32_t prime32Num);$/;"	p	class:BOBHash32	access:public	signature:(uint32_t prime32Num)
+initialize	common/BOBHash32.h	/^void BOBHash32::initialize(uint32_t prime32Num)$/;"	f	class:BOBHash32	signature:(uint32_t prime32Num)
+insert	CMHeap/CMHeap.h	/^    void insert(uint8_t * key) {$/;"	f	struct:CMHeap	access:public	signature:(uint8_t * key)
+insert	CMSketch/CM.h	/^    int insert(const char * key, int f = 1)$/;"	f	class:CMSketch	access:public	signature:(const char * key, int f = 1)
+insert	CSS/CSS.h	/^    void insert(uint8_t *key)$/;"	f	class:CSS	access:public	signature:(uint8_t *key)
+insert	CUSketch/CU.h	/^    void insert(uint8_t *key, int f = 1)$/;"	f	class:CUSketch	access:public	signature:(uint8_t *key, int f = 1)
+insert	CUSketch/CUHeap.h	/^    void insert(uint32_t key) {$/;"	f	class:CUHeap	access:public	signature:(uint32_t key)
+insert	CountHeap/CountHeap.h	/^    void insert(uint8_t * key) {$/;"	f	struct:CountHeap	access:public	signature:(uint8_t * key)
+insert	CountSketch/Count.h	/^    void insert(uint8_t *key, int f = 1)$/;"	f	class:CountSketch	access:public	signature:(uint8_t *key, int f = 1)
+insert	FlowMap/flowmap.h	/^		void insert(const string &key,int count=1)$/;"	f	class:FlowMap	access:public	signature:(const string &key,int count=1)
+insert	FlowRadar/insertable_iblt.h	/^    void insert(uint32_t key, int f = 1) {$/;"	f	class:InsertableIBLT	access:public	signature:(uint32_t key, int f = 1)
+insert	Hashpipe/hashpipe.h	/^        void insert(uint8_t * _x)$/;"	f	class:HashPipe	access:public	signature:(uint8_t * _x)
+insert	LinearCounting/Linear_counting.h	/^        void insert(uint8_t *key) {$/;"	f	class:LinearCounting	access:public	signature:(uint8_t *key)
+insert	MRAC/MRAC.h	/^        void insert(uint8_t *item) {$/;"	f	class:MRAC	access:public	signature:(uint8_t *item)
+insert	ReversibleSketch/ReversibleSketch.h	/^    void insert(const uint8_t * key, int f = 1)$/;"	f	class:ReversibleSketch	access:public	signature:(const uint8_t * key, int f = 1)
+insert	Sieving/entropy_ams.h	/^        void insert(uint8_t *key) {$/;"	f	class:algorithms::entropy::EntropyAMS	access:public	signature:(uint8_t *key)
+insert	SpaceSaving/SpaceSaving.h	/^    void insert(uint8_t * key)$/;"	f	class:SpaceSaving	access:public	signature:(uint8_t * key)
+insert	TCAMSketch/TCAMsketch.h	/^	bool insert(string key)$/;"	f	class:TCAMSketch	access:public	signature:(string key)
+insert	TCAMSketch/TCAMsketch.h	/^	void insert(const char* key,bool b)\/\/only for throughput$/;"	f	class:TCAMSketch	access:public	signature:(const char* key,bool b)
+insert	UnivMon/UnivMon.h	/^    void insert(uint8_t * key)$/;"	f	class:UnivMon	access:public	signature:(uint8_t * key)
+insert	common/cuckoo_hashing.h	/^    bool insert(uint8_t * key, uint32_t val, int from_k = -1, int remained = 5)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key, uint32_t val, int from_k = -1, int remained = 5)
+insert	common/k-ary.h	/^    void insert(const uint8_t * key, int f = 1)$/;"	f	class:KAry	access:public	signature:(const uint8_t * key, int f = 1)
+insert	elastic/ElasticSketch.h	/^    void insert(uint8_t *key, int f = 1)$/;"	f	class:ElasticSketch	access:public	signature:(uint8_t *key, int f = 1)
+insert	elastic/HeavyPart.h	/^	int insert(uint8_t *key, uint8_t *swap_key, uint32_t &swap_val, uint32_t f = 1)$/;"	f	class:HeavyPart	access:public	signature:(uint8_t *key, uint8_t *swap_key, uint32_t &swap_val, uint32_t f = 1)
+insert	elastic/LightPart.h	/^	void insert(uint8_t *key, int f = 1)$/;"	f	class:LightPart	access:public	signature:(uint8_t *key, int f = 1)
+int32views	common/common.h	/^} int32views;$/;"	t	typeref:union:__anon2
+int64views	common/common.h	/^} int64views;$/;"	t	typeref:union:__anon1
+is_empty	common/cuckoo_hashing.h	/^        bool is_empty()$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:()
+is_key_match	common/cuckoo_hashing.h	/^        bool is_key_match(const uint8_t * n_key)$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:(const uint8_t * n_key)
+items	Sieving/entropy_ams.h	/^        Item items[g * z];$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+j	Hashpipe/hashpipe.h	/^        int M,val[d][3000005],i,j;$/;"	m	class:HashPipe	access:private
+k	UnivMon/UnivMon.h	/^    static constexpr uint16_t k = 1000;$/;"	m	class:UnivMon	access:public
+key	CSS/CSS.h	/^        uint8_t key[key_length];$/;"	m	struct:CSS::Key_CAidx_pair	access:public
+key	Hashpipe/hashpipe.h	/^        string key[d][3000005];$/;"	m	class:HashPipe	access:private
+key	Sieving/entropy_ams.h	/^        uint8_t *key = nullptr;$/;"	m	struct:algorithms::entropy::Item	access:public
+key	SpaceSaving/SpaceSaving.h	/^    uint8_t key[keylen];$/;"	m	struct:KeyNode	access:public
+key	SpaceSaving/SpaceSavingUtils.h	/^    uint8_t key[key_len];$/;"	m	struct:Node	access:public
+key	common/cuckoo_hashing.h	/^        uint8_t key[keylen];$/;"	m	struct:cuckoo::CuckooHashing::KVPair	access:public
+key	demo/cmheap.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/cmsketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/countheap.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/countsketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/css.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/cusketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/elastic.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/flowradar.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/hashpipe.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/linearcounting.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/mrac.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/reversiblesketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/sieving.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/spacesaving.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/tcamsketch.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	demo/univmon.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key	elastic/param.h	/^	uint32_t key[COUNTER_PER_BUCKET];$/;"	m	struct:Bucket	access:public
+key	throughput.cpp	/^struct FIVE_TUPLE{	char key[13];	};$/;"	m	struct:FIVE_TUPLE	file:	access:public
+key_nodes	SpaceSaving/SpaceSaving.h	/^    SSKeyNode *key_nodes;$/;"	m	class:SpaceSaving	access:private
+keylen	ReversibleSketch/ReversibleSketch.h	/^	uint8_t keylen;$/;"	m	class:ReversibleSketch	access:public
+keylen	common/k-ary.h	/^    int keylen;$/;"	m	class:KAry	access:public
+km	ReversibleSketch/ReversibleSketch.h	/^    KeyMangler km;$/;"	m	class:ReversibleSketch	access:public
+light_mem	elastic/ElasticSketch.h	/^    static constexpr int light_mem = tot_memory_in_bytes - heavy_mem;$/;"	m	class:ElasticSketch	access:private
+light_part	elastic/ElasticSketch.h	/^    LightPart<light_mem> light_part;$/;"	m	class:ElasticSketch	access:private
+m_IDs	FlowMap/flowmap.h	/^		vector<string>m_IDs;\/\/存储流ID$/;"	m	class:FlowMap	access:private
+m_bitVec	BloomFilter/bloomfilter.h	/^		vector<int>m_bitVec;\/\/bloomflilter的位数组$/;"	m	class:BloomFilter	access:private
+m_cmSketch	TCAMSketch/TCAMsketch.h	/^	CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>*m_cmSketch;$/;"	m	class:TCAMSketch	access:private
+m_counters	FlowMap/flowmap.h	/^		vector<long>m_counters;\/\/counter$/;"	m	class:FlowMap	access:private
+m_tcam	TCAMSketch/TCAMsketch.h	/^	map<string,unsigned int>m_tcam;$/;"	m	class:TCAMSketch	access:private
+m_theta	TCAMSketch/TCAMsketch.h	/^	long m_theta;$/;"	m	class:TCAMSketch	access:private
+main	demo/cmheap.cpp	/^int main()$/;"	f	signature:()
+main	demo/cmsketch.cpp	/^int main()$/;"	f	signature:()
+main	demo/countheap.cpp	/^int main()$/;"	f	signature:()
+main	demo/countsketch.cpp	/^int main()$/;"	f	signature:()
+main	demo/css.cpp	/^int main()$/;"	f	signature:()
+main	demo/cusketch.cpp	/^int main()$/;"	f	signature:()
+main	demo/elastic.cpp	/^int main()$/;"	f	signature:()
+main	demo/flowradar.cpp	/^int main()$/;"	f	signature:()
+main	demo/hashpipe.cpp	/^int main()$/;"	f	signature:()
+main	demo/linearcounting.cpp	/^int main()$/;"	f	signature:()
+main	demo/mrac.cpp	/^int main()$/;"	f	signature:()
+main	demo/reversiblesketch.cpp	/^int main()$/;"	f	signature:()
+main	demo/sieving.cpp	/^int main()$/;"	f	signature:()
+main	demo/spacesaving.cpp	/^int main()$/;"	f	signature:()
+main	demo/tcamsketch.cpp	/^int main()$/;"	f	signature:()
+main	demo/univmon.cpp	/^int main()$/;"	f	signature:()
+main	throughput.cpp	/^int main()$/;"	f	signature:()
+mangleSeed1	common/common.h	/^  const uint64 mangleSeed1 = 38409845058049, mangleSeed2 = 9475047563245;$/;"	m	namespace:hash_ns
+mangleSeed2	common/common.h	/^  const uint64 mangleSeed1 = 38409845058049, mangleSeed2 = 9475047563245;$/;"	m	namespace:hash_ns
+mangler	ReversibleSketch/ReversibleSketch.h	/^        Mangler *mangler = NULL;$/;"	m	class:ReversibleSketch::KeyMangler	access:public
+mangler_h	common/os_mangler.h	8;"	d
+mangling	ReversibleSketch/ReversibleSketch.h	/^        void mangling(const uint8_t *key, uint8_t *new_key)$/;"	f	class:ReversibleSketch::KeyMangler	access:public	signature:(const uint8_t *key, uint8_t *new_key)
+map_num	LinearCounting/Linear_counting.h	/^        static constexpr int map_num = tot_memory_in_bytes;$/;"	m	class:LinearCounting	access:private
+map_sh	ReversibleSketch/ReversibleSketch.h	/^    int map_sh[H][4];$/;"	m	class:ReversibleSketch	access:public
+map_xor	ReversibleSketch/ReversibleSketch.h	/^    uint8_t map_xor[H][4];$/;"	m	class:ReversibleSketch	access:public
+mapped_sl	ReversibleSketch/ReversibleSketch.h	/^    int mapped_sl;$/;"	m	class:ReversibleSketch	access:public
+mem_by_rev	ReversibleSketch/ReversibleSketch.h	/^    int mem_by_rev;$/;"	m	class:ReversibleSketch	access:public
+mem_in_bytes	CMHeap/CMHeap.h	/^    int mem_in_bytes;$/;"	m	struct:CMHeap	access:public
+mem_in_bytes	CountHeap/CountHeap.h	/^    int mem_in_bytes;$/;"	m	struct:CountHeap	access:public
+mem_in_bytes	ReversibleSketch/ReversibleSketch.h	/^	uint32_t mem_in_bytes;$/;"	m	class:ReversibleSketch	access:public
+mem_in_bytes	SpaceSaving/SpaceSaving.h	/^	uint32_t mem_in_bytes;$/;"	m	class:SpaceSaving	access:private
+mem_in_bytes	common/k-ary.h	/^    int mem_in_bytes;$/;"	m	class:KAry	access:public
+mem_k_ary	ReversibleSketch/ReversibleSketch.h	/^    int mem_k_ary;$/;"	m	class:ReversibleSketch	access:public
+memory_in_bytes	CMSketch/CM.h	/^	int memory_in_bytes = 0;$/;"	m	class:CMSketch	access:private
+memory_in_bytes	CUSketch/CU.h	/^	int memory_in_bytes = 0;$/;"	m	class:CUSketch	access:private
+memory_in_bytes	CountSketch/Count.h	/^	int memory_in_bytes = 0;$/;"	m	class:CountSketch	access:private
+mice_dist	elastic/LightPart.h	/^	int mice_dist[256];$/;"	m	class:LightPart	access:public
+mix	common/BOBHash32.h	173;"	d
+mix	common/hash_functions.h	4;"	d
+modular_potentials	ReversibleSketch/ReversibleSketch.h	/^    void modular_potentials($/;"	f	class:ReversibleSketch	access:public	signature:( const vector<int> heavy_buckets[H], int w, set<uint8_t> & Iw, set<int> Bw[256][H])
+mul32	ReversibleSketch/ReversibleSketch.h	/^        uint32_t mul32[2][4];$/;"	m	class:ReversibleSketch::KeyMangler	access:private
+mul8	ReversibleSketch/ReversibleSketch.h	/^        uint8_t mul8[2][4];$/;"	m	class:ReversibleSketch::KeyMangler	access:private
+n	common/os_galoisField.h	/^	int n;       \/\/ GF(2^n)$/;"	m	class:GaloisField	access:private
+n_new	common/EMFSD.h	/^    double n_old, n_new;$/;"	m	class:EMFSD	access:private
+n_old	common/EMFSD.h	/^    double n_old, n_new;$/;"	m	class:EMFSD	access:private
+n_sum	common/EMFSD.h	/^    double n_sum;$/;"	m	class:EMFSD	access:public
+name	CMHeap/CMHeap.h	/^    string name;$/;"	m	struct:CMHeap	access:public
+name	CMSketch/CM.h	/^	string name;$/;"	m	class:CMSketch	access:public
+name	CUSketch/CU.h	/^	string name;$/;"	m	class:CUSketch	access:public
+name	CUSketch/CUHeap.h	/^    const string name = "CU with Heap";$/;"	m	class:CUHeap	access:public
+name	CountHeap/CountHeap.h	/^    string name;$/;"	m	struct:CountHeap	access:public
+name	LinearCounting/Linear_counting.h	/^        string name = "FM";$/;"	m	class:LinearCounting	access:public
+name	MRAC/MRAC.h	/^        string name;$/;"	m	class:MRAC	access:public
+name	ReversibleSketch/ReversibleSketch.h	/^    string name;$/;"	m	class:ReversibleSketch	access:public
+name	Sieving/entropy_ams.h	/^        const string name = "Entropy AMS";$/;"	m	class:algorithms::entropy::EntropyAMS	access:public
+name	SpaceSaving/SpaceSaving.h	/^    string name;$/;"	m	class:SpaceSaving	access:public
+name	UnivMon/UnivMon.h	/^    string name;$/;"	m	class:UnivMon	access:public
+next	SpaceSaving/SpaceSaving.h	/^    KeyNode<keylen> * next = NULL;$/;"	m	struct:KeyNode	access:public
+next	SpaceSaving/SpaceSaving.h	/^    ValueNode<keylen> * next = NULL;$/;"	m	struct:ValueNode	access:public
+next	SpaceSaving/SpaceSavingUtils.h	/^    Node * next;$/;"	m	struct:Node	access:public
+nextOffset	common/counterInfo.h	/^  int nextOffset;$/;"	m	struct:CounterInfo	access:public
+next_epoch	MRAC/MRAC.h	/^        void next_epoch() { em_fsd_algo->next_epoch(); }$/;"	f	class:MRAC	access:public	signature:()
+next_epoch	common/EMFSD.h	/^    void next_epoch()$/;"	f	class:EMFSD	access:public	signature:()
+next_idx	CSS/CSS.h	/^    int next_idx[max_K];$/;"	m	class:CSS	access:private
+normal_sk	ReversibleSketch/ReversibleSketch.h	/^    KAry normal_sk;$/;"	m	class:ReversibleSketch	access:public
+now_flow_num	common/EMFSD.h	/^        int now_flow_num;$/;"	m	struct:EMFSD::BetaGenerator	access:public
+now_item_cnt	Sieving/entropy_ams.h	/^        uint32_t now_item_cnt = 0;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+now_pos	Sieving/entropy_ams.h	/^        uint32_t now_pos = 0;$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+now_result	common/EMFSD.h	/^        vector<int> now_result;$/;"	m	struct:EMFSD::BetaGenerator	access:public
+ns	common/EMFSD.h	/^    vector<double> ns;$/;"	m	class:EMFSD	access:public
+numHashValues	common/hashInfo.h	/^  int numHashValues;$/;"	m	struct:HashInfo	access:public
+numRows	common/counterInfo.h	/^  int numRows;$/;"	m	struct:CounterInfo	access:public
+num_flow	FlowRadar/insertable_iblt.h	/^    int num_flow = 0;$/;"	m	class:InsertableIBLT	access:public
+operator =	common/k-ary.h	/^    KAry &operator =(const KAry &another){$/;"	f	class:KAry	access:public	signature:(const KAry &another)
+operator []	common/cuckoo_hashing.h	/^    uint32_t & operator[](uint8_t * key)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key)
+operator delete	elastic/ElasticSketch.h	/^    void operator delete(void *p)$/;"	f	class:ElasticSketch	access:public	signature:(void *p)
+operator new	elastic/ElasticSketch.h	/^    void *operator new(size_t sz)$/;"	f	class:ElasticSketch	access:public	signature:(size_t sz)
+os_current_time	common/common.cc	/^double os_current_time()$/;"	f	signature:()
+os_current_time	common/common.h	/^double os_current_time();$/;"	p	signature:()
+os_dietz64to32	common/common.cc	/^uint32 os_dietz64to32(uint64 x, uint64 a) {$/;"	f	signature:(uint64 x, uint64 a)
+os_dietz64to32	common/common.h	/^uint32 os_dietz64to32(uint64 x, uint64 a);$/;"	p	signature:(uint64 x, uint64 a)
+os_dietz8to3	common/common.cc	/^uint8 os_dietz8to3(uint8 x, uint8 a) {$/;"	f	signature:(uint8 x, uint8 a)
+os_dietz8to3	common/common.h	/^uint8 os_dietz8to3(uint8 x, uint8 a);$/;"	p	signature:(uint8 x, uint8 a)
+os_dietz_thorup32	common/common.cc	/^uint32 os_dietz_thorup32(uint32 x, uint32 bins, uint64 a, uint64 b){$/;"	f	signature:(uint32 x, uint32 bins, uint64 a, uint64 b)
+os_dietz_thorup32	common/common.h	/^uint32 os_dietz_thorup32(uint32 x, uint32 bins, uint64 a, uint64 b);$/;"	p	signature:(uint32 x, uint32 bins, uint64 a, uint64 b)
+os_ipint2string	common/common.h	/^void os_ipint2string(unsigned long int a, char  *b);$/;"	p	signature:(unsigned long int a, char *b)
+os_rand32bit	common/common.cc	/^uint32 os_rand32bit()$/;"	f	signature:()
+os_rand32bit	common/common.h	/^uint32 os_rand32bit();$/;"	p	signature:()
+output_cplex	FlowMap/flowmap.h	/^		void output_cplex(string filename)$/;"	f	class:FlowMap	access:public	signature:(string filename)
+packet_num	FlowRadar/insertable_iblt.h	/^        int packet_num;$/;"	m	struct:InsertableIBLT::Node	access:public
+parent	SpaceSaving/SpaceSaving.h	/^    ValueNode<keylen> * parent = NULL;$/;"	m	struct:KeyNode	access:public
+parent	SpaceSaving/SpaceSavingUtils.h	/^    Node * parent;$/;"	m	struct:Node	access:public
+polar_hash	UnivMon/UnivMon.h	/^    BOBHash32 * polar_hash[level];$/;"	m	class:UnivMon	access:public
+preprocessing	Sieving/entropy_ams.h	/^        void preprocessing() {$/;"	f	class:algorithms::entropy::EntropyAMS	access:private	signature:()
+prev	SpaceSaving/SpaceSaving.h	/^    KeyNode<keylen> * prev = NULL;$/;"	m	struct:KeyNode	access:public
+prev	SpaceSaving/SpaceSaving.h	/^    ValueNode<keylen> * prev = NULL;$/;"	m	struct:ValueNode	access:public
+prev	SpaceSaving/SpaceSavingUtils.h	/^    Node * prev;$/;"	m	struct:Node	access:public
+prev_ptr	Sieving/entropy_ams.h	/^        Item *prev_ptr = nullptr;$/;"	m	struct:algorithms::entropy::Item	access:public
+prim	common/os_galoisField.h	/^	uint64 prim; \/\/ primitive polynomial$/;"	m	class:GaloisField	access:private
+primTable	common/os_galoisField.cc	/^uint64 GaloisField::primTable[33] =$/;"	m	class:GaloisField	file:
+primTable	common/os_galoisField.h	/^	static uint64 primTable[33];$/;"	m	class:GaloisField	access:private
+prime32	common/BOBHash32.h	/^uint32_t prime32[MAX_PRIME32] = {$/;"	v
+prime32Num	common/BOBHash32.h	/^	uint32_t prime32Num;$/;"	m	class:BOBHash32	access:private
+print_basic_info	CMSketch/CM.h	/^	void print_basic_info()$/;"	f	class:CMSketch	access:public	signature:()
+print_basic_info	CUSketch/CU.h	/^	void print_basic_info()$/;"	f	class:CUSketch	access:public	signature:()
+print_basic_info	CountSketch/Count.h	/^	void print_basic_info()$/;"	f	class:CountSketch	access:public	signature:()
+proto	common/packet.h	/^  uint8_t proto; $/;"	m	class:Packet	access:public
+query	CMHeap/CMHeap.h	/^    int query(uint8_t * key) {$/;"	f	struct:CMHeap	access:public	signature:(uint8_t * key)
+query	CMSketch/CM.h	/^	int query(const char * key)$/;"	f	class:CMSketch	access:public	signature:(const char * key)
+query	CSS/CSS.h	/^    int query(uint8_t *key)$/;"	f	class:CSS	access:public	signature:(uint8_t *key)
+query	CUSketch/CU.h	/^    int query(uint8_t *key)$/;"	f	class:CUSketch	access:public	signature:(uint8_t *key)
+query	CountSketch/Count.h	/^    int query(uint8_t *key)$/;"	f	class:CountSketch	access:public	signature:(uint8_t *key)
+query	TCAMSketch/TCAMsketch.h	/^	unsigned int query(const char* key)$/;"	f	class:TCAMSketch	access:public	signature:(const char* key)
+query	common/cuckoo_hashing.h	/^    bool query(uint8_t * key, uint32_t & val)$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:(uint8_t * key, uint32_t & val)
+query	common/k-ary.h	/^    double query(const uint8_t * key)$/;"	f	class:KAry	access:public	signature:(const uint8_t * key)
+query	elastic/ElasticSketch.h	/^    int query(uint8_t *key)$/;"	f	class:ElasticSketch	access:public	signature:(uint8_t *key)
+query	elastic/HeavyPart.h	/^	uint32_t query(uint8_t *key)$/;"	f	class:HeavyPart	access:public	signature:(uint8_t *key)
+query	elastic/LightPart.h	/^	int query(uint8_t *key) $/;"	f	class:LightPart	access:public	signature:(uint8_t *key)
+query_compressed_part	elastic/ElasticSketch.h	/^    int query_compressed_part(uint8_t *key, uint8_t *compress_part, int compress_counter_num)$/;"	f	class:ElasticSketch	access:public	signature:(uint8_t *key, uint8_t *compress_part, int compress_counter_num)
+query_compressed_part	elastic/LightPart.h	/^	int query_compressed_part(uint8_t *key, uint8_t *compress_part, int compress_counter_num) $/;"	f	class:LightPart	access:public	signature:(uint8_t *key, uint8_t *compress_part, int compress_counter_num)
+quick_insert	elastic/ElasticSketch.h	/^    void quick_insert(uint8_t *key, int f = 1)$/;"	f	class:ElasticSketch	access:public	signature:(uint8_t *key, int f = 1)
+quick_insert	elastic/HeavyPart.h	/^	int quick_insert(uint8_t *key, uint32_t f = 1)$/;"	f	class:HeavyPart	access:public	signature:(uint8_t *key, uint32_t f = 1)
+r	ReversibleSketch/ReversibleSketch.h	/^    static constexpr int r = 1;$/;"	m	class:ReversibleSketch	access:public
+rand_pos	Sieving/entropy_ams.h	/^        uint32_t rand_pos[g * z];$/;"	m	class:algorithms::entropy::EntropyAMS	access:private
+range	common/hashInfo.h	/^  unsigned long long range;$/;"	m	struct:HashInfo	access:public
+rev	common/hashInfo.h	/^  int rev; \/\/ 1 if reversible, 0 otherwise$/;"	m	struct:HashInfo	access:public
+rev_insert	ReversibleSketch/ReversibleSketch.h	/^    void rev_insert(const uint8_t * key, int f = 1)$/;"	f	class:ReversibleSketch	access:public	signature:(const uint8_t * key, int f = 1)
+reversible4096	common/common.cc	/^uint32 reversible4096(uint32 value, uint32 bins, uint64 hasha) {$/;"	f	signature:(uint32 value, uint32 bins, uint64 hasha)
+reversible4096	common/common.h	/^uint32 reversible4096(uint32 value, uint32 bins, uint64 a);$/;"	p	signature:(uint32 value, uint32 bins, uint64 a)
+run	common/BOBHash32.h	/^	uint32_t run(const char * str, uint32_t len);	\/\/ produce a hash number$/;"	p	class:BOBHash32	access:public	signature:(const char * str, uint32_t len)
+run	common/BOBHash32.h	/^uint32_t BOBHash32::run(const char * str, uint32_t len)$/;"	f	class:BOBHash32	signature:(const char * str, uint32_t len)
+seed1	common/os_mangler.h	/^	uint64 seed1, seed2;$/;"	m	class:Mangler	access:public
+seed2	common/os_mangler.h	/^	uint64 seed1, seed2;$/;"	m	class:Mangler	access:public
+seed_idxs	common/k-ary.h	/^    uint32_t * seed_idxs;$/;"	m	class:KAry	access:public
+set	common/cuckoo_hashing.h	/^        void set(const uint8_t * i_key, uint32_t i_val)$/;"	f	struct:cuckoo::CuckooHashing::KVPair	access:public	signature:(const uint8_t * i_key, uint32_t i_val)
+set_counters	common/EMFSD.h	/^    void set_counters(uint32_t _w, uint16_t * counters)$/;"	f	class:EMFSD	access:public	signature:(uint32_t _w, uint16_t * counters)
+set_counters	common/EMFSD.h	/^    void set_counters(uint32_t _w, uint32_t * counters)$/;"	f	class:EMFSD	access:public	signature:(uint32_t _w, uint32_t * counters)
+settheta	TCAMSketch/TCAMsketch.h	/^	void settheta(long theta)$/;"	f	class:TCAMSketch	access:public	signature:(long theta)
+short_mgltbl0	common/os_mangler.h	/^	uint32 short_mgltbl0[65536];$/;"	m	class:Mangler	access:private
+short_mgltbl1	common/os_mangler.h	/^	uint32 short_mgltbl1[65536];$/;"	m	class:Mangler	access:private
+short_revtbl0	common/os_mangler.h	/^	uint32 short_revtbl0[65536];$/;"	m	class:Mangler	access:private
+short_revtbl1	common/os_mangler.h	/^	uint32 short_revtbl1[65536];$/;"	m	class:Mangler	access:private
+sign_hash	CountSketch/Count.h	/^	BOBHash32* sign_hash[d] = {NULL};$/;"	m	class:CountSketch	access:private
+sketch_id	common/counterInfo.h	/^  int sketch_id;$/;"	m	struct:CounterInfo	access:public
+sketches	UnivMon/UnivMon.h	/^    L2HitterDetector * sketches[level];$/;"	m	class:UnivMon	access:public
+srcip	common/packet.h	/^  uint32_t srcip;$/;"	m	class:Packet	access:public
+srcport	common/packet.h	/^  uint32_t srcport;$/;"	m	class:Packet	access:public
+sum	common/EMFSD.h	/^        int sum;$/;"	m	struct:EMFSD::BetaGenerator	access:public
+sum	common/k-ary.h	/^    int sum = 0;$/;"	m	class:KAry	access:public
+swap_insert	elastic/LightPart.h	/^	void swap_insert(uint8_t *key, int f)$/;"	f	class:LightPart	access:public	signature:(uint8_t *key, int f)
+tCounterInfo	common/counterInfo.h	/^} tCounterInfo;$/;"	t	typeref:struct:CounterInfo
+tHashInfo	common/hashInfo.h	/^} tHashInfo;$/;"	t	typeref:struct:HashInfo
+tail_node	SpaceSaving/SpaceSaving.h	/^    SSValNode * tail_node;$/;"	m	class:SpaceSaving	access:private
+test_cycles	throughput.cpp	14;"	d	file:
+total_cnt	CSS/CSS.h	/^    int total_cnt = 0;$/;"	m	class:CSS	access:private
+total_in_bytes	FlowRadar/insertable_iblt.h	/^    int total_in_bytes;$/;"	m	class:InsertableIBLT	access:private
+traces	demo/cmheap.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/cmsketch.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/countheap.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/countsketch.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/css.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/cusketch.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/elastic.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/flowradar.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/hashpipe.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/linearcounting.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/mrac.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/reversiblesketch.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/sieving.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/spacesaving.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/tcamsketch.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	demo/univmon.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+traces	throughput.cpp	/^TRACE traces[END_FILE_NO - START_FILE_NO + 1];$/;"	v
+uint16	common/common.h	/^typedef unsigned short      uint16;$/;"	t
+uint32	common/common.h	/^typedef unsigned int        uint32;$/;"	t
+uint64	common/common.h	/^typedef unsigned long long  uint64;$/;"	t
+uint8	common/common.h	/^typedef unsigned char       uint8;$/;"	t
+updateType	common/counterInfo.h	/^  int updateType;$/;"	m	struct:CounterInfo	access:public
+val	Hashpipe/hashpipe.h	/^        int M,val[d][3000005],i,j;$/;"	m	class:HashPipe	access:private
+val	SpaceSaving/SpaceSaving.h	/^    uint32_t val = 0;$/;"	m	struct:ValueNode	access:public
+val	SpaceSaving/SpaceSavingUtils.h	/^    uint32_t val;$/;"	m	struct:Node	access:public
+val	common/cuckoo_hashing.h	/^        uint32_t val;$/;"	m	struct:cuckoo::CuckooHashing::KVPair	access:public
+val	elastic/param.h	/^	uint32_t val[COUNTER_PER_BUCKET];$/;"	m	struct:Bucket	access:public
+val_node_empty_cnt	SpaceSaving/SpaceSaving.h	/^    int val_node_empty_cnt;$/;"	m	class:SpaceSaving	access:private
+val_node_pool	SpaceSaving/SpaceSaving.h	/^    SSValNode ** val_node_pool;$/;"	m	class:SpaceSaving	access:private
+val_nodes	SpaceSaving/SpaceSaving.h	/^    SSValNode *val_nodes;$/;"	m	class:SpaceSaving	access:private
+w	CMHeap/CMHeap.h	/^    int w;$/;"	m	struct:CMHeap	access:public
+w	CMSketch/CM.h	/^	int w = 0;$/;"	m	class:CMSketch	access:private
+w	CUSketch/CU.h	/^	int w = 0;$/;"	m	class:CUSketch	access:private
+w	CUSketch/CUHeap.h	/^    static constexpr int w = cm_memory_in_bytes \/ 4 \/ d;$/;"	m	class:CUHeap	access:private
+w	CountHeap/CountHeap.h	/^    int w;$/;"	m	struct:CountHeap	access:public
+w	CountSketch/Count.h	/^	int w = 0;$/;"	m	class:CountSketch	access:private
+w	MRAC/MRAC.h	/^        static constexpr uint32_t w = memory_in_bytes \/ 4;$/;"	m	class:MRAC	access:private
+w	ReversibleSketch/ReversibleSketch.h	/^    int w;$/;"	m	class:ReversibleSketch	access:public
+w	common/EMFSD.h	/^    uint32_t w;$/;"	m	class:EMFSD	access:private
+w	common/cuckoo_hashing.h	/^    constexpr static uint32_t w = capacity \/ d;$/;"	m	class:cuckoo::CuckooHashing	access:private
+w	common/k-ary.h	/^    int w;$/;"	m	class:KAry	access:public
+w_bf	FlowRadar/insertable_iblt.h	/^    int w_bf;$/;"	m	class:InsertableIBLT	access:private
+w_iblt	FlowRadar/insertable_iblt.h	/^    int w_iblt;$/;"	m	class:InsertableIBLT	access:private
+work	Hashpipe/hashpipe.h	/^        void work(string x,int y)$/;"	f	class:HashPipe	access:public	signature:(string x,int y)
+~BOBHash32	common/BOBHash32.h	/^	~BOBHash32();$/;"	p	class:BOBHash32	access:public	signature:()
+~BOBHash32	common/BOBHash32.h	/^BOBHash32::~BOBHash32()$/;"	f	class:BOBHash32	signature:()
+~BloomFilter	BloomFilter/bloomfilter.h	/^		~BloomFilter()$/;"	f	class:BloomFilter	access:public	signature:()
+~CMHeap	CMHeap/CMHeap.h	/^    ~CMHeap() {$/;"	f	struct:CMHeap	access:public	signature:()
+~CMSketch	CMSketch/CM.h	/^	~CMSketch(){clear();}$/;"	f	class:CMSketch	access:public	signature:()
+~CSS	CSS/CSS.h	/^    ~CSS(){	delete bobHash;	}$/;"	f	class:CSS	access:public	signature:()
+~CUHeap	CUSketch/CUHeap.h	/^    ~CUHeap() {$/;"	f	class:CUHeap	access:public	signature:()
+~CUSketch	CUSketch/CU.h	/^	~CUSketch(){clear();}$/;"	f	class:CUSketch	access:public	signature:()
+~CountHeap	CountHeap/CountHeap.h	/^    ~CountHeap() {$/;"	f	struct:CountHeap	access:public	signature:()
+~CountSketch	CountSketch/Count.h	/^	~CountSketch(){clear();}$/;"	f	class:CountSketch	access:public	signature:()
+~CuckooHashing	common/cuckoo_hashing.h	/^    ~CuckooHashing()$/;"	f	class:cuckoo::CuckooHashing	access:public	signature:()
+~ElasticSketch	elastic/ElasticSketch.h	/^    ~ElasticSketch(){}$/;"	f	class:ElasticSketch	access:public	signature:()
+~EntropyAMS	Sieving/entropy_ams.h	/^        ~EntropyAMS() { delete hash_fun; }$/;"	f	class:algorithms::entropy::EntropyAMS	access:public	signature:()
+~FlowMap	FlowMap/flowmap.h	/^		~FlowMap()$/;"	f	class:FlowMap	access:public	signature:()
+~GaloisField	common/os_galoisField.h	/^	~GaloisField()$/;"	f	class:GaloisField	access:public	signature:()
+~HeavyPart	elastic/HeavyPart.h	/^	~HeavyPart(){}$/;"	f	class:HeavyPart	access:public	signature:()
+~InsertableIBLT	FlowRadar/insertable_iblt.h	/^    ~InsertableIBLT()$/;"	f	class:InsertableIBLT	access:public	signature:()
+~KAry	common/k-ary.h	/^    ~KAry()$/;"	f	class:KAry	access:public	signature:()
+~LightPart	elastic/LightPart.h	/^	~LightPart()$/;"	f	class:LightPart	access:public	signature:()
+~LinearCounting	LinearCounting/Linear_counting.h	/^        ~LinearCounting() {}$/;"	f	class:LinearCounting	access:public	signature:()
+~Mangler	common/os_mangler.h	/^	~Mangler()$/;"	f	class:Mangler	access:public	signature:()
+~TCAMSketch	TCAMSketch/TCAMsketch.h	/^	~TCAMSketch()$/;"	f	class:TCAMSketch	access:public	signature:()
+~UnivMon	UnivMon/UnivMon.h	/^    ~UnivMon()$/;"	f	class:UnivMon	access:public	signature:()
