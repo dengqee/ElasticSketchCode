@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/CPU/testhash.cpp \
 ../src/CPU/throughput.cpp 
 
 OBJS += \
+./src/CPU/testhash.o \
 ./src/CPU/throughput.o 
 
 CPP_DEPS += \
+./src/CPU/testhash.d \
 ./src/CPU/throughput.d 
 
 

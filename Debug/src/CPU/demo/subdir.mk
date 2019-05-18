@@ -20,11 +20,6 @@ CPP_SRCS += \
 ../src/CPU/demo/spacesaving.cpp \
 ../src/CPU/demo/univmon.cpp 
 
-O_SRCS += \
-../src/CPU/demo/common.o \
-../src/CPU/demo/os_galoisField.o \
-../src/CPU/demo/os_mangler.o 
-
 OBJS += \
 ./src/CPU/demo/cmheap.o \
 ./src/CPU/demo/cmsketch.o \

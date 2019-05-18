@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unordered_map>
 #include <vector>
+#include <cmath>
 
 #include "./elastic/ElasticSketch.h"
 #include "./BloomFilter/bloomfilter.h"
@@ -55,36 +56,51 @@ int main()
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
-		cm = NULL;
-
-		timespec time1, time2;
-		long long resns;
-		int packet_cnt = (int)traces[datafileCnt - 1].size();
-
-		uint8_t **keys = new uint8_t*[(int)traces[datafileCnt - 1].size()];
-		for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
+		for(int sample=10;sample>=1;sample--)
 		{
-			keys[i] = new uint8_t[13];
-			memcpy(keys[i], traces[datafileCnt - 1][i].key, 13);
+			cm = NULL;
+
+			timespec time1, time2;
+			long long resns;
+			int packet_cnt = (int)traces[datafileCnt - 1].size();
+
+			uint8_t **keys = new uint8_t*[(int)traces[datafileCnt - 1].size()];
+			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
+			{
+				keys[i] = new uint8_t[13];
+				memcpy(keys[i], traces[datafileCnt - 1][i].key, 13);
+			}
+			bool tag[3000000];
+			for(int i=0;i<packet_cnt;++i)
+				if((i)%sample==0)
+					tag[i]=1;
+
+
+			clock_gettime(CLOCK_MONOTONIC, &time1);
+			for(int t = 0; t < test_cycles; ++t)
+			{
+				int packet_insert=0;
+				cm = new CMSketch<4, SK_D>(600 * 1024);
+				for(int i = 0; i < packet_cnt; ++i)
+//					if(i%(int)floor(1.0*packet_cnt/(packet_cnt*sample/100))==0)
+					if(tag[i])
+					{
+						cm->insert(keys[i]);
+						packet_insert++;
+					}
+				delete cm;
+				cout<<packet_insert<<endl;
+			}
+			clock_gettime(CLOCK_MONOTONIC, &time2);
+			resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
+			double th = (double)1000.0 * test_cycles * packet_cnt / resns;
+			cout<<"time:"<<resns<<endl;
+			/* free memory */
+			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
+				delete[] keys[i];
+			delete[] keys;
+
+			printf("throughput is %lf mbps\n", th);
 		}
-
-		clock_gettime(CLOCK_MONOTONIC, &time1);
-		for(int t = 0; t < test_cycles; ++t)
-		{
-			cm = new CMSketch<4, SK_D>(600 * 1024);
-			for(int i = 0; i < packet_cnt; ++i)
-				cm->insert(keys[i]);
-			delete cm;
-		}
-		clock_gettime(CLOCK_MONOTONIC, &time2);
-		resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
-		double th = (double)1000.0 * test_cycles * packet_cnt / resns;
-
-		/* free memory */
-		for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
-			delete[] keys[i];
-		delete[] keys;
-
-		printf("throughput is %lf mbps\n", th);
 	}
 }
