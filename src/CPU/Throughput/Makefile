@@ -9,7 +9,7 @@ cm-throughput.out: cmsketch-throughput.cpp
 	$(GCC) $(CFLAGS) -o cm-throughput.out cmsketch-throughput.cpp
 
 ss-throughput.out: spacesaving-throughput.cpp
-	$(GCC) $(CFLAGS) -o ss-throughput.out ss-throughput.cpp
+	$(GCC) $(CFLAGS) -o ss-throughput.out spacesaving-throughput.cpp
 
 es-throughput.out: elastic-throughput.cpp
 	$(GCC) $(CFLAGS) $(SSEFLAGS) -o es-throughput.out elastic-throughput.cpp
