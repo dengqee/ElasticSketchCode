@@ -111,83 +111,89 @@ int main()
 	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/最大流匹配/";
 	MyReadInTraces(dir,traces_origin,traces_balanced);
 
-#define HEAVY_MEM (150 * 1024)
+#define HEAVY_MEM (150*1024)
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
-	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
+		constexpr int k=1000;
+		constexpr int tot_men_in_byte=k*1024;
+		constexpr int bucket_num=tot_men_in_byte/4/64;
+		ElasticSketch<bucket_num, tot_men_in_byte> *elastic = NULL;
 
 
 
-	for(int node = 0; node < numNode; ++node)
-	{
-		unordered_map<string, int> Real_Freq;
-		elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
-		int packet_cnt = traces_origin[node].size();
-		for(int i = 0; i < packet_cnt; ++i)
+		for(int node = 0; node < numNode; ++node)
 		{
-			elastic->insert((uint8_t*)traces_origin[node][i].c_str());
-			int est=elastic->query((uint8_t*)traces_origin[node][i].c_str());
-			Real_Freq[traces_origin[node][i]]++;
-		}
-		string filename=dir+"result/"+topoName+"_"+to_string(node)+"_original_measure.txt";
-		ofstream ofs(filename);
-		double ARE = 0;
-		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
-		{
-			uint8_t key[13];
-			memcpy(key, (it->first).c_str(), 13);
-			int est_val=elastic->query(key);
+			unordered_map<string, int> Real_Freq;
+			elastic = new ElasticSketch<bucket_num, tot_men_in_byte>();
+			int packet_cnt = traces_origin[node].size();
+			for(int i = 0; i < packet_cnt; ++i)
+			{
+				elastic->insert((uint8_t*)traces_origin[node][i].c_str());
+				int est=elastic->query((uint8_t*)traces_origin[node][i].c_str());
+				Real_Freq[traces_origin[node][i]]++;
+			}
+			string filename=dir+"result/"+topoName+"_"+to_string(node)+"_original_measure.txt";
+			ofstream ofs(filename);
+			double ARE = 0;
+			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
+			{
+				uint8_t key[13];
+				memcpy(key, (it->first).c_str(), 13);
+				bool flag;
+				int est_val=elastic->query(key,flag);
 
-			//解码流ID
-			uint32_t s,d,num;//source,dest,number
-			s=(uint32_t)(key[0]);
-			d=(uint32_t)(key[1]);
-			num=(uint32_t)((key[2]<<8)|key[3]);
-			ofs<<s<<" "<<d<<" "<<num<<" "<<est_val<<endl;
+				//解码流ID
+				uint32_t s,d,num;//source,dest,number
+				s=(uint32_t)(key[0]);
+				d=(uint32_t)(key[1]);
+				num=(uint32_t)((key[2]<<8)|key[3]);
+				ofs<<s<<" "<<d<<" "<<num<<" "<<est_val<<" "<<flag<<endl;
 
-			int dist = std::abs(it->second - est_val);
-			ARE += dist * 1.0 / (it->second);
+				int dist = std::abs(it->second - est_val);
+				ARE += dist * 1.0 / (it->second);
+			}
+			ARE /= (int)Real_Freq.size();
+			cout << to_string(node)+" original ARE:"<<ARE<<endl;
+			ofs.close();
+			delete elastic;
+			Real_Freq.clear();
 		}
-		ARE /= (int)Real_Freq.size();
-		cout << to_string(node)+" original ARE:"<<ARE<<endl;
-		ofs.close();
-		delete elastic;
-		Real_Freq.clear();
-	}
-/************************************************************/
-	for(int node = 0; node < numNode; ++node)
-	{
-		unordered_map<string, int> Real_Freq;
-		elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
-		int packet_cnt = traces_origin[node].size();
-		for(int i = 0; i < packet_cnt; ++i)
+	/************************************************************/
+		for(int node = 0; node < numNode; ++node)
 		{
-			elastic->insert((uint8_t*)traces_origin[node][i].c_str());
-			Real_Freq[traces_origin[node][i]]++;
+			unordered_map<string, int> Real_Freq;
+			elastic = new ElasticSketch<bucket_num, tot_men_in_byte>();
+			int packet_cnt = traces_origin[node].size();
+			for(int i = 0; i < packet_cnt; ++i)
+			{
+				elastic->insert((uint8_t*)traces_origin[node][i].c_str());
+				Real_Freq[traces_origin[node][i]]++;
+			}
+			string filename=dir+"result/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
+			ofstream ofs(filename);
+			double ARE = 0;
+			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
+			{
+				uint8_t key[13];
+				memcpy(key, (it->first).c_str(), 13);
+				bool flag;
+				int est_val=elastic->query(key,flag);
+				//解码流ID
+				uint32_t s,d,num;//source,dest,number
+				s=(uint32_t)(key[0]);
+				d=(uint32_t)(key[1]);
+				num=(uint32_t)((key[2]<<8)|key[3]);
+				ofs<<s<<" "<<d<<" "<<num<<" "<<est_val<<" "<<flag<<endl;
+				int dist = std::abs(it->second - est_val);
+				ARE += dist * 1.0 / (it->second);
+			}
+			ARE /= (int)Real_Freq.size();
+			cout << to_string(node)+" balanced ARE:"<<ARE<<endl;
+			ofs.close();
+			delete elastic;
+			Real_Freq.clear();
 		}
-		string filename=dir+"result"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
-		ofstream ofs(filename);
-		double ARE = 0;
-		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
-		{
-			uint8_t key[13];
-			memcpy(key, (it->first).c_str(), 13);
-			int est_val=elastic->query(key);
-			//解码流ID
-			uint32_t s,d,num;//source,dest,number
-			s=(uint32_t)(key[0]);
-			d=(uint32_t)(key[1]);
-			num=(uint32_t)((key[2]<<8)|key[3]);
-			ofs<<s<<" "<<d<<" "<<num<<" "<<est_val<<endl;
-			int dist = std::abs(it->second - est_val);
-			ARE += dist * 1.0 / (it->second);
-		}
-		ARE /= (int)Real_Freq.size();
-		cout << to_string(node)+" balanced ARE:"<<ARE<<endl;
-		ofs.close();
-		delete elastic;
-		Real_Freq.clear();
-	}
+
 }
 
 

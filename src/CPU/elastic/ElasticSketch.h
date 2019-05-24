@@ -62,6 +62,18 @@ public:
         return heavy_result;
     }
 
+    int query(uint8_t *key,bool &flag)
+        {
+            uint32_t heavy_result = heavy_part.query(key);
+            flag=HIGHEST_BIT_IS_1(heavy_result);
+            if(heavy_result == 0 || HIGHEST_BIT_IS_1(heavy_result))
+            {
+                int light_result = light_part.query(key);
+                return (int)GetCounterVal(heavy_result) + light_result;
+            }
+            return heavy_result;
+        }
+
     int query_compressed_part(uint8_t *key, uint8_t *compress_part, int compress_counter_num)
     {
         uint32_t heavy_result = heavy_part.query(key);
