@@ -9,8 +9,8 @@
 #include <unordered_map>
 #include <vector>
 #include <cmath>
-
-
+#include <set>
+#include <iostream>
 #include "../CMSketch/CM.h"
 //#include "../MultiCore/setup.h"
 using namespace std;
@@ -60,26 +60,49 @@ int main()
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
-		for(int sample=10;sample>=1;sample--)
+		set<string>flowID;
+
+
+		cm = NULL;
+
+		timespec time1, time2;
+		long long resns;
+		int packet_cnt = (int)traces[datafileCnt - 1].size();
+
+		uint8_t **keys = new uint8_t*[(int)traces[datafileCnt - 1].size()];
+		for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
 		{
-			cm = NULL;
-
-			timespec time1, time2;
-			long long resns;
-			int packet_cnt = (int)traces[datafileCnt - 1].size();
-
-			uint8_t **keys = new uint8_t*[(int)traces[datafileCnt - 1].size()];
-			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
+			keys[i] = new uint8_t[13];
+			memcpy(keys[i], traces[datafileCnt - 1][i].key, 13);
+			string key_str((const char*)(traces[datafileCnt - 1][i].key), 4);
+			flowID.insert(key_str);
+		}
+		int flow_cnt=flowID.size();
+		set<string>::iterator flow_it=flowID.begin();
+		set<string>flow_ins;
+		int flow_ins_num=0;
+		for(int sample=1;sample<=10;sample++)
+		{
+			flow_ins_num+=flow_cnt/10;
+			for(;flow_ins.size()<=flow_ins_num;flow_it++)
 			{
-				keys[i] = new uint8_t[13];
-				memcpy(keys[i], traces[datafileCnt - 1][i].key, 13);
+				if(flow_it==flowID.end())
+					break;
+				flow_ins.insert(*flow_it);
 			}
 			bool tag[3000000];
-			for(int i=0;i<packet_cnt;++i)
-				if((i)%sample==0)
+			for(int i=0;i<packet_cnt;i++)
+			{
+				string key_str((const char*)(traces[datafileCnt - 1][i].key), 4);
+				if(flow_ins.find(key_str)!=flow_ins.end())//如果找到
 					tag[i]=1;
+				else
+					tag[i]=0;
+			}
 
 
+
+			//测量
 			clock_gettime(CLOCK_MONOTONIC, &time1);
 			for(int t = 0; t < test_cycles; ++t)
 			{
@@ -99,13 +122,15 @@ int main()
 			resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
 			double th = (double)1000.0 * test_cycles * packet_cnt / resns;
 			cout<<"time:"<<resns<<endl;
+			printf("throughput is %lf mbps\n", th);
+		}
 			/* free memory */
 			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
 				delete[] keys[i];
 			delete[] keys;
 
-			printf("throughput is %lf mbps\n", th);
-		}
+
+
 	}
 }
 
