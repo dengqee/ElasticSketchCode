@@ -12,7 +12,7 @@ ss-throughput.out: spacesaving-throughput.cpp
 	$(GCC) $(CFLAGS) -o ss-throughput.out ss-throughput.cpp
 
 es-throughput.out: elastic-throughput.cpp
-	$(GCC) $(CFLAGS) $(SSEFLAGS) -o es-throughput.out elastic.throughput.cpp
+	$(GCC) $(CFLAGS) $(SSEFLAGS) -o es-throughput.out elastic-throughput.cpp
 
 c-throughput.out: countsketch-throughput.out
 	$(GCC) $(CFLAGS) -o c-throughput.out countsketch-throughput.cpp

@@ -106,23 +106,23 @@ int main()
 			clock_gettime(CLOCK_MONOTONIC, &time1);
 			for(int t = 0; t < test_cycles; ++t)
 			{
-				int packet_insert=0;
+				//int packet_insert=0;
 				cm = new CMSketch<4, SK_D>(600 * 1024);
 				for(int i = 0; i < packet_cnt; ++i)
 //					if(i%(int)floor(1.0*packet_cnt/(packet_cnt*sample/100))==0)
 					if(tag[i])
 					{
 						cm->insert(keys[i]);
-						packet_insert++;
+						//packet_insert++;
 					}
 				delete cm;
-				cout<<packet_insert<<endl;
+				//cout<<packet_insert<<endl;
 			}
 			clock_gettime(CLOCK_MONOTONIC, &time2);
 			resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
 			double th = (double)1000.0 * test_cycles * packet_cnt / resns;
-			cout<<"time:"<<resns<<endl;
-			printf("throughput is %lf mbps\n", th);
+			//cout<<"time:"<<resns<<endl;
+			printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
 		}
 			/* free memory */
 			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
