@@ -1,9 +1,9 @@
 GCC = g++
-CFLAGS = -O1 -g -std=c++14 
+CFLAGS = -g -std=c++14 
 SSEFLAGS = -msse2 -mssse3 -msse4.1 -msse4.2 -mavx -march=native
 FILES = elastic.out cmheap.out cmsketch.out cusketch.out countheap.out countsketch.out \
 		linearcounting.out mrac.out hashpipe.out sieving.out spacesaving.out univmon.out \
-		css.out flowradar.out reversiblesketch.out throughput.out
+		css.out flowradar.out reversiblesketch.out throughput.out myelastic.out
 
 all: $(FILES) 
 
@@ -36,6 +36,9 @@ mrac.out: mrac.cpp
 
 throughput.out: ../throughput.cpp
 	$(GCC) $(CFLAGS) $(SSEFLAGS) -o ../throughput.out ../throughput.cpp
+
+myelastic.out: myelastic.cpp
+	$(GCC) $(CFLAGS) $(SSEFLAGS) -o myelastic.out myelastic.cpp
 
 sieving.out:
 	$(GCC) $(CFLAGS) -o sieving.out sieving.cpp

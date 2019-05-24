@@ -24,6 +24,7 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 .metadata/.plugins/org.eclipse.cdt.make.core \
+src/CPU/Throughput \
 src/CPU/common \
 src/CPU/demo \
 src/CPU \

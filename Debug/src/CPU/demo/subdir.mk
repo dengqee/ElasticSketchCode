@@ -15,10 +15,10 @@ CPP_SRCS += \
 ../src/CPU/demo/hashpipe.cpp \
 ../src/CPU/demo/linearcounting.cpp \
 ../src/CPU/demo/mrac.cpp \
+../src/CPU/demo/myelastic.cpp \
 ../src/CPU/demo/reversiblesketch.cpp \
 ../src/CPU/demo/sieving.cpp \
 ../src/CPU/demo/spacesaving.cpp \
-../src/CPU/demo/tcamsketch.cpp \
 ../src/CPU/demo/univmon.cpp 
 
 OBJS += \
@@ -33,10 +33,10 @@ OBJS += \
 ./src/CPU/demo/hashpipe.o \
 ./src/CPU/demo/linearcounting.o \
 ./src/CPU/demo/mrac.o \
+./src/CPU/demo/myelastic.o \
 ./src/CPU/demo/reversiblesketch.o \
 ./src/CPU/demo/sieving.o \
 ./src/CPU/demo/spacesaving.o \
-./src/CPU/demo/tcamsketch.o \
 ./src/CPU/demo/univmon.o 
 
 CPP_DEPS += \
@@ -51,10 +51,10 @@ CPP_DEPS += \
 ./src/CPU/demo/hashpipe.d \
 ./src/CPU/demo/linearcounting.d \
 ./src/CPU/demo/mrac.d \
+./src/CPU/demo/myelastic.d \
 ./src/CPU/demo/reversiblesketch.d \
 ./src/CPU/demo/sieving.d \
 ./src/CPU/demo/spacesaving.d \
-./src/CPU/demo/tcamsketch.d \
 ./src/CPU/demo/univmon.d 
 
 

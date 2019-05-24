@@ -12,6 +12,7 @@ RM := rm -rf
 -include src/MultiCore/subdir.mk
 -include src/CPU/demo/subdir.mk
 -include src/CPU/common/subdir.mk
+-include src/CPU/Throughput/subdir.mk
 -include src/CPU/subdir.mk
 -include .metadata/.plugins/org.eclipse.cdt.make.core/subdir.mk
 -include subdir.mk

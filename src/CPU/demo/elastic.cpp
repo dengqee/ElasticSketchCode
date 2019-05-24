@@ -37,7 +37,7 @@ void ReadInTraces(const char *trace_prefix)
 
 int main()
 {
-	ReadInTraces("../../../data/");
+	ReadInTraces("/home/dengqi/eclipse-workspace/ElasticSketchCode/data/");
 
 
 #define HEAVY_MEM (150 * 1024)
