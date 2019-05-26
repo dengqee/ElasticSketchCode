@@ -1,7 +1,8 @@
 GCC = g++
-CFLAGS = -g -std=c++14 
+CFLAGS = -O1 -g -std=c++14 
 SSEFLAGS = -msse2 -mssse3 -msse4.1 -msse4.2 -mavx -march=native
-FILES = cm-throughput.out ss-throughput.out es-throughput.out c-throughput.out cu-throughput.out
+FILES = cm-throughput.out ss-throughput.out es-throughput.out c-throughput.out \
+		cu-throughput.out
 
 all: $(FILES)
 
@@ -14,11 +15,11 @@ ss-throughput.out: spacesaving-throughput.cpp
 es-throughput.out: elastic-throughput.cpp
 	$(GCC) $(CFLAGS) $(SSEFLAGS) -o es-throughput.out elastic-throughput.cpp
 
-c-throughput.out: countsketch-throughput.out
+c-throughput.out: countsketch-throughput.cpp
 	$(GCC) $(CFLAGS) -o c-throughput.out countsketch-throughput.cpp
 
-cu-throughput.out: cu-throughput.out
-	$(GCC) $(CFLAGS) -o cu-throughput.out cu-throughput.cpp
+cu-throughput.out: cusketch-throughput.cpp
+	$(GCC) $(CFLAGS) -o cu-throughput.out cusketch-throughput.cpp
 
 clean:
 	rm $(all) -f *~ *.o *.out
