@@ -103,14 +103,13 @@ int main()
 
 
 			//测量预处理
-			char* heavy=new char[packet_cnt];
-//			clock_gettime(CLOCK_MONOTONIC, &time1);
+			int theta=packet_cnt/10000;
+			int* heavy=new int[packet_cnt];
 			for(int t = 0; t < test_cycles; ++t)
 			{
 //				int packet_insert=0;
-				tcamsketch = new TCAMSketch(packet_cnt/1000);
+				tcamsketch = new TCAMSketch(theta);
 				for(int i = 0; i < packet_cnt; ++i)
-//					if(i%(int)floor(1.0*packet_cnt/(packet_cnt*sample/100))==0)
 					if(tag[i])
 					{
 						heavy[i]=tcamsketch->insert(keys[i]);
@@ -122,17 +121,12 @@ int main()
 				delete tcamsketch;
 //				cout<<packet_insert<<endl;
 			}
-//			clock_gettime(CLOCK_MONOTONIC, &time2);
-//			resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
-//			double th = (double)1000.0 * test_cycles * packet_cnt / resns;
-			//cout<<"time:"<<resns<<endl;
-			//printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
 
 			//true measure
 			clock_gettime(CLOCK_MONOTONIC, &time1);
 			for(int t = 0; t < test_cycles; ++t)
 			{
-				tcamsketch = new TCAMSketch(packet_cnt/1000);
+				tcamsketch = new TCAMSketch(theta);
 				for(int i = 0; i < packet_cnt; ++i)
 					tcamsketch->insert(keys[i],heavy[i]);
 
