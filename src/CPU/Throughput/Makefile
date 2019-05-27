@@ -1,5 +1,5 @@
 GCC = g++
-CFLAGS = -O1 -g -std=c++14 
+CFLAGS = -O2 -g -std=c++14 
 SSEFLAGS = -msse2 -mssse3 -msse4.1 -msse4.2 -mavx -march=native
 FILES = cm-throughput.out ss-throughput.out es-throughput.out c-throughput.out \
 		cu-throughput.out tcam-throughput.out
@@ -22,7 +22,7 @@ cu-throughput.out: cusketch-throughput.cpp
 	$(GCC) $(CFLAGS) -o cu-throughput.out cusketch-throughput.cpp
 	
 tcam-throughput.out: tcamsketch-throughput.cpp
-	$(GCC) $(CFLAGS) -o tcam-throughput.out tcamsketch-throughput.cpp
+	$(GCC) $(CFLAGS) $(SSEFLAGS) -o tcam-throughput.out tcamsketch-throughput.cpp
 
 clean:
 	rm $(all) -f *~ *.o *.out
