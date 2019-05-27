@@ -41,9 +41,9 @@ void ReadInTraces(const char *trace_prefix)
 		}
 		fclose(fin);
 
-		printf("Successfully read in %s, %ld packets\n", datafileName, traces[datafileCnt - 1].size());
+//		printf("Successfully read in %s, %ld packets\n", datafileName, traces[datafileCnt - 1].size());
 	}
-	printf("\n");
+//	printf("\n");
 }
 
 int main()
