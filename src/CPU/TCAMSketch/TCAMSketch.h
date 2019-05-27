@@ -30,6 +30,7 @@ private:
 	map<string,unsigned int>m_tcam;
 	CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>*m_cmSketch;
 	long m_theta;
+	int tcam_cnt;
 public:
 	TCAMSketch(int theta=1000):
 
@@ -53,6 +54,7 @@ public:
 		if(it!=m_tcam.end())//found
 		{
 			it->second++;
+			tcam_cnt++;
 		}
 		else//no found
 		{
@@ -62,11 +64,16 @@ public:
 			if(count>m_theta)
 			{
 				m_tcam[str]=count;
-
+//				m_cmSketch->pop(key,count);
+				tcam_cnt++;
 			}
 
 		}
 		return ret;
+	}
+	void print()
+	{
+		cout<<"tcam count:"<<tcam_cnt<<" tcam.size="<<m_tcam.size()<<endl;
 	}
 	void insert(uint8_t* key,bool b)//only for throughput
 	{

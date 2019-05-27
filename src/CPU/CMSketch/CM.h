@@ -77,6 +77,13 @@ public:
 		}
 		return ret;
 	}
+    void pop(uint8_t*key,int f)
+    {
+    	for (int i = 0; i < d; i++) {
+			int index = (hash[i]->run((const char *)key, key_len)) % w;
+			counters[i][index] -= f;
+		}
+    }
 	int query(uint8_t * key)
     {
         int ret = 1 << 30;

@@ -56,7 +56,7 @@ int main()
 
 
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
-		tcamsketch = new TCAMSketch(packet_cnt/1000);
+		tcamsketch = new TCAMSketch(packet_cnt/10000);
 		for(int i = 0; i < packet_cnt; ++i)
 //		for(int i = 0; i < 10000; ++i)
 		{
@@ -81,8 +81,8 @@ int main()
 
 
 		printf("%d.dat: ARE=%.3lf\n", datafileCnt - 1, ARE);
-
-
+		tcamsketch->print();
+		cout<<"flow num:"<<Real_Freq.size()<<endl;
 		delete tcamsketch;
 		Real_Freq.clear();
 	}
