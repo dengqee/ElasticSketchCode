@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <map>
 #include <fstream>
 #include <sstream>
 #include "../elastic/ElasticSketch.h"
@@ -85,6 +86,7 @@ void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector
 		uint32_t s,d;
 		uint32_t num;
 		uint8_t key[5];
+		//压缩string到4个字节中
 		while(getline(ifs,line))
 		{
 			lineBuffer.str (line);
@@ -108,6 +110,7 @@ int main()
 {
 //	ReadInTraces("../../../data/");
 	vector<vector<string> >traces_origin,traces_balanced;
+
 	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/最大流匹配/";
 	MyReadInTraces(dir,traces_origin,traces_balanced);
 
@@ -129,10 +132,9 @@ int main()
 			for(int i = 0; i < packet_cnt; ++i)
 			{
 				elastic->insert((uint8_t*)traces_origin[node][i].c_str());
-				int est=elastic->query((uint8_t*)traces_origin[node][i].c_str());
 				Real_Freq[traces_origin[node][i]]++;
 			}
-			string filename=dir+"result/"+topoName+"_"+to_string(node)+"_original_measure.txt";
+			string filename=dir+"elastic/"+topoName+"_"+to_string(node)+"_original_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
@@ -158,18 +160,18 @@ int main()
 			delete elastic;
 			Real_Freq.clear();
 		}
-	/************************************************************/
+	/************************* balanced ***********************************/
 		for(int node = 0; node < numNode; ++node)
 		{
 			unordered_map<string, int> Real_Freq;
 			elastic = new ElasticSketch<bucket_num, tot_men_in_byte>();
-			int packet_cnt = traces_origin[node].size();
+			int packet_cnt = traces_balanced[node].size();
 			for(int i = 0; i < packet_cnt; ++i)
 			{
-				elastic->insert((uint8_t*)traces_origin[node][i].c_str());
-				Real_Freq[traces_origin[node][i]]++;
+				elastic->insert((uint8_t*)traces_balanced[node][i].c_str());
+				Real_Freq[traces_balanced[node][i]]++;
 			}
-			string filename=dir+"result/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
+			string filename=dir+"elastic/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)

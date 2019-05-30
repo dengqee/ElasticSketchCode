@@ -109,19 +109,23 @@ bool cmp(const pair<string,uint32_t>&a,const pair<string,uint32_t>&b)
 {
 	return a.second>b.second;
 }
-int main()
+int main(int argc,char* argv[])
 {
+	if(argc<2)
+	{
+		cout<<"./tcamsketch-2.cpp theta"<<endl;
+		exit(1);
+	}
 //	ReadInTraces("../../../data/");
 	vector<vector<string> >traces_origin,traces_balanced;
 	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/最大流匹配/";
 	MyReadInTraces(dir,traces_origin,traces_balanced);
-
+#define THETA 100//theta
 #define HEAVY_MEM (150*1024)
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
-		constexpr int k=1000;
-		constexpr int tot_men_in_byte=k*1024;
-		constexpr int bucket_num=tot_men_in_byte/4/64;
+
+	int theta=atoi(argv[1]);
 		TCAMSketch *tcamsketch = NULL;
 
 
@@ -130,7 +134,7 @@ int main()
 		{
 			unordered_map<string, int> Real_Freq;
 			int packet_cnt = traces_origin[node].size();
-			tcamsketch = new TCAMSketch(packet_cnt/10000);
+			tcamsketch = new TCAMSketch(THETA);
 
 			for(int i = 0; i < packet_cnt; ++i)
 			{
@@ -138,11 +142,15 @@ int main()
 				int est=tcamsketch->query((uint8_t*)traces_origin[node][i].c_str());
 				Real_Freq[traces_origin[node][i]]++;
 			}
-			string filename=dir+"tcam/"+topoName+"_"+to_string(node)+"_original_measure.txt";
+			string tmp(argv[1]);
+			string filename=dir+"tcam/"+tmp+"/"+topoName+"_"+to_string(node)+"_original_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
+			map<string,uint32_t>realheavymap;
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 			{
+				if(it->second>=THETA)
+					realheavymap[it->first]=it->second;
 				uint8_t key[13];
 				memcpy(key, (it->first).c_str(), 13);
 
@@ -159,28 +167,46 @@ int main()
 				ARE += dist * 1.0 / (it->second);
 			}
 			ARE /= (int)Real_Freq.size();
-			cout << to_string(node)+" original ARE:"<<ARE<<endl;
+
+			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
+
+			int numDet=0;
+			for(auto it=tcam.begin();it!=tcam.end();++it)
+			{
+				auto tmp=realheavymap.find(it->first);
+				if(tmp!=realheavymap.end())
+					numDet++;
+			}
+			double prec=1.0*numDet/tcam.size();
+
+			cout << to_string(node)+" original ARE:"<<ARE<<" precision:"<<prec<<endl;
+			tcamsketch->print();
+			cout<<"flow num:"<<Real_Freq.size()<<endl;
 			ofs.close();
 			delete tcamsketch;
 			Real_Freq.clear();
 		}
-	/************************************************************/
+	/********************* balanced ***************************************/
 		for(int node = 0; node < numNode; ++node)
 		{
 			unordered_map<string, int> Real_Freq;
-			int packet_cnt = traces_origin[node].size();
-			tcamsketch = new TCAMSketch(packet_cnt/10000);
+			int packet_cnt = traces_balanced[node].size();
+			tcamsketch = new TCAMSketch(THETA);
 
 			for(int i = 0; i < packet_cnt; ++i)
 			{
-				tcamsketch->insert((uint8_t*)traces_origin[node][i].c_str());
-				Real_Freq[traces_origin[node][i]]++;
+				tcamsketch->insert((uint8_t*)traces_balanced[node][i].c_str());
+				Real_Freq[traces_balanced[node][i]]++;
 			}
-			string filename=dir+"tcam/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
+			string tmp(argv[1]);
+			string filename=dir+"tcam/"+tmp+"/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
+			map<string,uint32_t>realheavymap;
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 			{
+				if(it->second>=THETA)
+					realheavymap[it->first]=it->second;
 				uint8_t key[13];
 				memcpy(key, (it->first).c_str(), 13);
 
@@ -195,7 +221,22 @@ int main()
 				ARE += dist * 1.0 / (it->second);
 			}
 			ARE /= (int)Real_Freq.size();
-			cout << to_string(node)+" balanced ARE:"<<ARE<<endl;
+
+			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
+
+			int numDet=0;
+			for(auto it=tcam.begin();it!=tcam.end();++it)
+			{
+				auto tmp=realheavymap.find(it->first);
+				if(tmp!=realheavymap.end())
+					numDet++;
+			}
+			double prec=1.0*numDet/tcam.size();
+
+
+			cout << to_string(node)+" balanced ARE:"<<ARE<<" precision:"<<prec<<endl;
+			tcamsketch->print();
+			cout<<"flow num:"<<Real_Freq.size()<<endl;
 			ofs.close();
 			delete tcamsketch;
 			Real_Freq.clear();

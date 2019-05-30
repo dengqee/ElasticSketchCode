@@ -75,10 +75,13 @@ int main()
 //		data +=std::to_string(datafileCnt)+".dat";
 //		tcamsketch->out_cplex(data);
 		double ARE = 0;
-		vector<pair<string,uint32_t>>realheavy;
+
+		map<string,uint32_t>realheavymap;
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
-			realheavy.push_back(make_pair(it->first,it->second));
+
+			if(it->second>=packet_cnt/10000)
+				realheavymap[it->first]=it->second;
 			uint8_t key[4];
 			memcpy(key, (it->first).c_str(), 4);
 			int est_val = tcamsketch->query(key);
@@ -89,11 +92,7 @@ int main()
 
 		//heavy hitter
 		map<string,uint32_t>tcam=tcamsketch->GetTCAM();
-		sort(realheavy.begin(),realheavy.end(),cmp);
-		realheavy.erase(realheavy.begin()+tcam.size(),realheavy.end());
-		map<string,uint32_t>realheavymap;
-		for(auto it=realheavy.begin();it!=realheavy.end();++it)
-			realheavymap[it->first]=it->second;
+
 		int numDet=0;
 		for(auto it=tcam.begin();it!=tcam.end();++it)
 		{
@@ -103,7 +102,7 @@ int main()
 		}
 		double prec=1.0*numDet/tcam.size();
 
-		printf("%d.dat: ARE=%.3lf precise=%.3lf\n", datafileCnt - 1, ARE, prec);
+		printf("%d.dat: ARE=%.3lf precision=%.3lf\n", datafileCnt - 1, ARE, prec);
 		tcamsketch->print();
 		cout<<"flow num:"<<Real_Freq.size()<<endl;
 		delete tcamsketch;
