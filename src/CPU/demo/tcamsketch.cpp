@@ -6,9 +6,11 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <unordered_map>
 #include <vector>
-
+#include <map>
+#include <algorithm>
 #include "../TCAMSketch/TCAMSketch.h"
 using namespace std;
 
@@ -40,6 +42,10 @@ void ReadInTraces(const char *trace_prefix)
 	}
 	printf("\n");
 }
+bool cmp(const pair<string,uint32_t>&a,const pair<string,uint32_t>&b)
+{
+	return a.second>b.second;
+}
 
 int main()
 {
@@ -69,8 +75,10 @@ int main()
 //		data +=std::to_string(datafileCnt)+".dat";
 //		tcamsketch->out_cplex(data);
 		double ARE = 0;
+		vector<pair<string,uint32_t>>realheavy;
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
+			realheavy.push_back(make_pair(it->first,it->second));
 			uint8_t key[4];
 			memcpy(key, (it->first).c_str(), 4);
 			int est_val = tcamsketch->query(key);
@@ -79,8 +87,23 @@ int main()
 		}
 		ARE /= (int)Real_Freq.size();
 
+		//heavy hitter
+		map<string,uint32_t>tcam=tcamsketch->GetTCAM();
+		sort(realheavy.begin(),realheavy.end(),cmp);
+		realheavy.erase(realheavy.begin()+tcam.size(),realheavy.end());
+		map<string,uint32_t>realheavymap;
+		for(auto it=realheavy.begin();it!=realheavy.end();++it)
+			realheavymap[it->first]=it->second;
+		int numDet=0;
+		for(auto it=tcam.begin();it!=tcam.end();++it)
+		{
+			auto tmp=realheavymap.find(it->first);
+			if(tmp!=realheavymap.end())
+				numDet++;
+		}
+		double prec=1.0*numDet/tcam.size();
 
-		printf("%d.dat: ARE=%.3lf\n", datafileCnt - 1, ARE);
+		printf("%d.dat: ARE=%.3lf precise=%.3lf\n", datafileCnt - 1, ARE, prec);
 		tcamsketch->print();
 		cout<<"flow num:"<<Real_Freq.size()<<endl;
 		delete tcamsketch;

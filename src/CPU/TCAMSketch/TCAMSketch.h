@@ -90,6 +90,10 @@ public:
 		}
 		return m_cmSketch->query(key);
 	}
+	map<string,unsigned int>GetTCAM()
+	{
+		return m_tcam;
+	}
 
 };
 
