@@ -65,7 +65,7 @@ public:
 			{
 				m_tcam[str]=count;
 //				m_cmSketch->pop(key,count);
-				tcam_cnt++;
+				tcam_cnt+=count;
 			}
 
 		}

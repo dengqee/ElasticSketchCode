@@ -52,6 +52,7 @@ void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector
 	{
 		vector<string>packets;
 		string filename=traceDir+topoName+"_"+to_string(node)+"_origional_packets.txt";
+//		string filename=traceDir+topoName+"_packets.txt";
 		ifstream ifs(filename.c_str());
 		string line;
 		istringstream lineBuffer;
@@ -117,7 +118,7 @@ int main()
 #define HEAVY_MEM (150*1024)
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
-		constexpr int k=1000;
+		constexpr int k=600;
 		constexpr int tot_men_in_byte=k*1024;
 		constexpr int bucket_num=tot_men_in_byte/4/64;
 		ElasticSketch<bucket_num, tot_men_in_byte> *elastic = NULL;
@@ -135,6 +136,7 @@ int main()
 				Real_Freq[traces_origin[node][i]]++;
 			}
 			string filename=dir+"elastic/"+topoName+"_"+to_string(node)+"_original_measure.txt";
+//			string filename=dir+"elastic/"+topoName+"_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)

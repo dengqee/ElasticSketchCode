@@ -24,26 +24,7 @@ typedef vector<FIVE_TUPLE> TRACE;
 TRACE traces[END_FILE_NO - START_FILE_NO + 1];
 int numNode=23;
 string topoName="Geant";
-void ReadInTraces(const char *trace_prefix)
-{
-	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
-	{
-		char datafileName[100];
-		sprintf(datafileName, "%s%d.dat", trace_prefix, datafileCnt - 1);
-		FILE *fin = fopen(datafileName, "rb");
 
-		FIVE_TUPLE tmp_five_tuple;
-		traces[datafileCnt - 1].clear();
-		while(fread(&tmp_five_tuple, 1, 13, fin) == 13)
-		{
-			traces[datafileCnt - 1].push_back(tmp_five_tuple);
-		}
-		fclose(fin);
-
-		printf("Successfully read in %s, %ld packets\n", datafileName, traces[datafileCnt - 1].size());
-	}
-	printf("\n");
-}
 
 void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector<vector<string> >&traces_balanced)
 {
@@ -52,6 +33,7 @@ void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector
 	{
 		vector<string>packets;
 		string filename=traceDir+topoName+"_"+to_string(node)+"_origional_packets.txt";
+//		string filename=traceDir+topoName+"_"+"packets.txt";
 		ifstream ifs(filename.c_str());
 		string line;
 		istringstream lineBuffer;
@@ -126,6 +108,7 @@ int main(int argc,char* argv[])
 #define TOT_MEM_IN_BYTES (600 * 1024)
 
 	int theta=atoi(argv[1]);
+	cout<<theta<<endl;
 		TCAMSketch *tcamsketch = NULL;
 
 
@@ -134,7 +117,7 @@ int main(int argc,char* argv[])
 		{
 			unordered_map<string, int> Real_Freq;
 			int packet_cnt = traces_origin[node].size();
-			tcamsketch = new TCAMSketch(THETA);
+			tcamsketch = new TCAMSketch(theta);
 
 			for(int i = 0; i < packet_cnt; ++i)
 			{
@@ -144,6 +127,7 @@ int main(int argc,char* argv[])
 			}
 			string tmp(argv[1]);
 			string filename=dir+"tcam/"+tmp+"/"+topoName+"_"+to_string(node)+"_original_measure.txt";
+//			string filename=dir+"tcam/"+tmp+"/"+topoName+"_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
 			map<string,uint32_t>realheavymap;
@@ -191,7 +175,7 @@ int main(int argc,char* argv[])
 		{
 			unordered_map<string, int> Real_Freq;
 			int packet_cnt = traces_balanced[node].size();
-			tcamsketch = new TCAMSketch(THETA);
+			tcamsketch = new TCAMSketch(theta);
 
 			for(int i = 0; i < packet_cnt; ++i)
 			{
