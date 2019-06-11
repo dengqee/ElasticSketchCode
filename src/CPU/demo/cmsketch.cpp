@@ -47,7 +47,7 @@ int main()
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
 		unordered_map<string, int> Real_Freq;
-		cm = new CMSketch<4, SK_D>(600 * 1024);
+		cm = new CMSketch<4, SK_D>(1000 * 1024);
 
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
 		for(int i = 0; i < packet_cnt; ++i)

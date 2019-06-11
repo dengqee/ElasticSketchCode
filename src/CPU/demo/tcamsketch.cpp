@@ -54,7 +54,7 @@ int main()
 
 //#define SK_D 3
 	TCAMSketch *tcamsketch = NULL;
-
+	int theta=100;
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
@@ -62,7 +62,8 @@ int main()
 
 
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
-		tcamsketch = new TCAMSketch(packet_cnt/10000);
+		theta=packet_cnt/1000;
+		tcamsketch = new TCAMSketch(theta);
 		for(int i = 0; i < packet_cnt; ++i)
 //		for(int i = 0; i < 10000; ++i)
 		{
@@ -80,7 +81,7 @@ int main()
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
 
-			if(it->second>=packet_cnt/10000)
+			if(it->second>=theta)
 				realheavymap[it->first]=it->second;
 			uint8_t key[4];
 			memcpy(key, (it->first).c_str(), 4);
