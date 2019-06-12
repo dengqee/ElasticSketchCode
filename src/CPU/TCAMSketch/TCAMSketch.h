@@ -19,9 +19,9 @@
 
 
 
-#define CMSKETCH_D 3
+#define CMSKETCH_D 4
 #define CMSKETCH_KEY_LEN 4
-#define CMSKETCH_MEMORY 600 * 1024
+
 using namespace std;
 class TCAMSketch
 {
@@ -31,11 +31,12 @@ private:
 	CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>*m_cmSketch;
 	long m_theta;
 	int tcam_cnt;
+	int m_tcamLimit;
 public:
-	TCAMSketch(int theta=1000):
+	TCAMSketch(int theta,int tcamLimit,int cmcounter_num):
 
-		m_cmSketch(new CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>(CMSKETCH_MEMORY)),
-		m_theta(theta),tcam_cnt(0)
+		m_cmSketch(new CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>(cmcounter_num*4)),
+		m_theta(theta),tcam_cnt(0),m_tcamLimit(tcamLimit)
 	{}
 	~TCAMSketch()
 	{
@@ -61,7 +62,7 @@ public:
 			ret=true;
 			int count=m_cmSketch->insert_query(key);
 
-			if(count>m_theta)
+			if(count>m_theta&&m_tcam.size()<m_tcamLimit)
 			{
 				m_tcam[str]=count;
 //				m_cmSketch->pop(key,count);

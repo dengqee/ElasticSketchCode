@@ -54,7 +54,9 @@ int main()
 
 //#define SK_D 3
 	TCAMSketch *tcamsketch = NULL;
-	int theta=100;
+	int theta=1;
+	int tcamLimit=8000;
+	int cmcounter_num=150000;//the TOTAL number of cmsketch counters
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
@@ -62,8 +64,8 @@ int main()
 
 
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
-		theta=packet_cnt/1000;
-		tcamsketch = new TCAMSketch(theta);
+//		theta=100;
+		tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 		for(int i = 0; i < packet_cnt; ++i)
 //		for(int i = 0; i < 10000; ++i)
 		{

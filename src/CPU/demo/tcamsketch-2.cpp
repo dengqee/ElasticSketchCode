@@ -93,22 +93,23 @@ bool cmp(const pair<string,uint32_t>&a,const pair<string,uint32_t>&b)
 }
 int main(int argc,char* argv[])
 {
-	if(argc<2)
-	{
-		cout<<"./tcamsketch-2.cpp theta"<<endl;
-		exit(1);
-	}
+//	if(argc<2)
+//	{
+//		cout<<"./tcamsketch-2.cpp theta"<<endl;
+//		exit(1);
+//	}
 //	ReadInTraces("../../../data/");
 	vector<vector<string> >traces_origin,traces_balanced;
 	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/最大流匹配/";
 	MyReadInTraces(dir,traces_origin,traces_balanced);
-#define THETA 100//theta
-#define HEAVY_MEM (150*1024)
-#define BUCKET_NUM (HEAVY_MEM / 64)
-#define TOT_MEM_IN_BYTES (600 * 1024)
 
-	int theta=atoi(argv[1]);
-	cout<<theta<<endl;
+
+
+//	int theta=atoi(argv[1]);
+//	cout<<theta<<endl;
+	int theta=10;
+	int tcamLimit=8000;
+	int cmcounter_num=10000;//the TOTAL number of cmsketch counters
 		TCAMSketch *tcamsketch = NULL;
 
 
@@ -117,7 +118,7 @@ int main(int argc,char* argv[])
 		{
 			unordered_map<string, int> Real_Freq;
 			int packet_cnt = traces_origin[node].size();
-			tcamsketch = new TCAMSketch(theta);
+			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 
 			for(int i = 0; i < packet_cnt; ++i)
 			{
@@ -125,15 +126,15 @@ int main(int argc,char* argv[])
 				int est=tcamsketch->query((uint8_t*)traces_origin[node][i].c_str());
 				Real_Freq[traces_origin[node][i]]++;
 			}
-			string tmp(argv[1]);
-			string filename=dir+"tcam/"+tmp+"/"+topoName+"_"+to_string(node)+"_original_measure.txt";
+
+			string filename=dir+"tcam/"+to_string(theta)+"/"+topoName+"_"+to_string(node)+"_original_measure.txt";
 //			string filename=dir+"tcam/"+tmp+"/"+topoName+"_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
 			map<string,uint32_t>realheavymap;
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 			{
-				if(it->second>=THETA)
+				if(it->second>=theta)
 					realheavymap[it->first]=it->second;
 				uint8_t key[13];
 				memcpy(key, (it->first).c_str(), 13);
@@ -175,21 +176,21 @@ int main(int argc,char* argv[])
 		{
 			unordered_map<string, int> Real_Freq;
 			int packet_cnt = traces_balanced[node].size();
-			tcamsketch = new TCAMSketch(theta);
+			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 
 			for(int i = 0; i < packet_cnt; ++i)
 			{
 				tcamsketch->insert((uint8_t*)traces_balanced[node][i].c_str());
 				Real_Freq[traces_balanced[node][i]]++;
 			}
-			string tmp(argv[1]);
-			string filename=dir+"tcam/"+tmp+"/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
+
+			string filename=dir+"tcam/"+to_string(theta)+"/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
 			map<string,uint32_t>realheavymap;
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 			{
-				if(it->second>=THETA)
+				if(it->second>=theta)
 					realheavymap[it->first]=it->second;
 				uint8_t key[13];
 				memcpy(key, (it->first).c_str(), 13);

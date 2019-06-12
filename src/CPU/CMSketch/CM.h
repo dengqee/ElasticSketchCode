@@ -36,7 +36,7 @@ public:
 			counters[i] = new int[w];
 			memset(counters[i], 0, 4 * w);
 
-			hash[i] = new BOBHash32(i + 750);
+			hash[i] = new BOBHash32(i*10 + 750);
 		}
 
 

@@ -118,9 +118,15 @@ int main()
 #define HEAVY_MEM (150*1024)
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
-		constexpr int k=600;
-		constexpr int tot_men_in_byte=k*1024;
-		constexpr int bucket_num=tot_men_in_byte/4/64;
+//		constexpr int k=10;
+//		constexpr int tot_men_in_byte=k*1024;
+//		constexpr int bucket_num=tot_men_in_byte/4/64;
+
+
+
+		constexpr int bucket_num=1000;//200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000
+		constexpr int tot_men_in_byte=40000+bucket_num*64;
+
 		ElasticSketch<bucket_num, tot_men_in_byte> *elastic = NULL;
 
 
