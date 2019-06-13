@@ -38,9 +38,9 @@ void ReadInTraces(const char *trace_prefix)
 		}
 		fclose(fin);
 
-		printf("Successfully read in %s, %ld packets\n", datafileName, traces[datafileCnt - 1].size());
+//		printf("Successfully read in %s, %ld packets\n", datafileName, traces[datafileCnt - 1].size());
 	}
-	printf("\n");
+//	printf("\n");
 }
 bool cmp(const pair<string,uint32_t>&a,const pair<string,uint32_t>&b)
 {
@@ -56,58 +56,66 @@ int main()
 	TCAMSketch *tcamsketch = NULL;
 	int theta=1;
 	int tcamLimit=8000;
-	int cmcounter_num=150000;//the TOTAL number of cmsketch counters
-
-	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
+	int cmcounter_num=100000;//the TOTAL number of cmsketch counters
+	printf("tcam cm theta ARE prec\n");
+	for(int cmcounter_num=10000;cmcounter_num<=200000;cmcounter_num+=10000)
+	for(int tcamLimit=10000;tcamLimit<=10000;tcamLimit+=2000)
+	for(int theta=10;theta<=100;theta+=10)
+//	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
 		unordered_map<string, int> Real_Freq;
 
 
-		int packet_cnt = (int)traces[datafileCnt - 1].size();
-//		theta=100;
+//		int packet_cnt = (int)traces[datafileCnt - 1].size();
+		int packet_cnt = (int)traces[1 - 1].size();
+//		theta+=1;
 		tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 		for(int i = 0; i < packet_cnt; ++i)
 //		for(int i = 0; i < 10000; ++i)
 		{
-			tcamsketch->insert((uint8_t*)(traces[datafileCnt - 1][i].key));
+			tcamsketch->insert((uint8_t*)(traces[1 - 1][i].key));
 
-			string str((const char*)(traces[datafileCnt - 1][i].key), 4);
+			string str((const char*)(traces[1 - 1][i].key), 4);
 			Real_Freq[str]++;
 		}
 //		string data = "/home/dengqi/eclipse-workspace/ElasticSketchCode/src/CPU/FlowmapSketch/data_cplex/";
 //		data +=std::to_string(datafileCnt)+".dat";
 //		tcamsketch->out_cplex(data);
 		double ARE = 0;
-
-		map<string,uint32_t>realheavymap;
+		int heavyThreshold=packet_cnt/1000;
+		map<string,uint32_t>realheavymap,estheavymap;
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
 
-			if(it->second>=theta)
+			if(it->second>=heavyThreshold)
 				realheavymap[it->first]=it->second;
 			uint8_t key[4];
 			memcpy(key, (it->first).c_str(), 4);
 			int est_val = tcamsketch->query(key);
+			if(est_val>=heavyThreshold)
+				estheavymap[it->first]=it->second;
 			int dist = std::abs(it->second - est_val);
 			ARE += dist * 1.0 / (it->second);
 		}
 		ARE /= (int)Real_Freq.size();
 
 		//heavy hitter
-		map<string,uint32_t>tcam=tcamsketch->GetTCAM();
+
 
 		int numDet=0;
-		for(auto it=tcam.begin();it!=tcam.end();++it)
+		for(auto it=estheavymap.begin();it!=estheavymap.end();++it)
 		{
 			auto tmp=realheavymap.find(it->first);
 			if(tmp!=realheavymap.end())
 				numDet++;
 		}
-		double prec=1.0*numDet/tcam.size();
+		double prec=1.0*numDet/estheavymap.size();
 
-		printf("%d.dat: ARE=%.3lf precision=%.3lf\n", datafileCnt - 1, ARE, prec);
-		tcamsketch->print();
-		cout<<"flow num:"<<Real_Freq.size()<<endl;
+//		printf("%d.dat: ARE=%.3lf precision=%.3lf\n", datafileCnt - 1, ARE, prec);
+//		printf("theta %d ARE %.3lf \n", theta, ARE);
+//		tcamsketch->print();
+//		cout<<"flow num:"<<Real_Freq.size()<<endl;
+		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<ARE<<" "<<prec<<endl;
 		delete tcamsketch;
 		Real_Freq.clear();
 	}

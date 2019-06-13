@@ -32,11 +32,12 @@ private:
 	long m_theta;
 	int tcam_cnt;
 	int m_tcamLimit;
+	int m_total;//the total number of packets
 public:
 	TCAMSketch(int theta,int tcamLimit,int cmcounter_num):
 
 		m_cmSketch(new CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>(cmcounter_num*4)),
-		m_theta(theta),tcam_cnt(0),m_tcamLimit(tcamLimit)
+		m_theta(theta),tcam_cnt(0),m_tcamLimit(tcamLimit),m_total(0)
 	{}
 	~TCAMSketch()
 	{
@@ -49,6 +50,9 @@ public:
 	}
 	bool insert(uint8_t* key)
 	{
+		m_total++;
+//		m_theta=tcam_cnt<=m_theta?m_theta:tcam_cnt/m_tcam.size();
+//		m_theta=(m_total-tcam_cnt)/(5*(m_tcamLimit-m_tcam.size()+1))<m_theta?m_theta:(m_total-tcam_cnt)/(m_tcamLimit-m_tcam.size()+1);
 		bool ret=false;//true,if insert to cmsketch;false otherwise
 		string str((const char*)(key), 4);
 		auto it=m_tcam.find(str);
@@ -65,7 +69,7 @@ public:
 			if(count>m_theta&&m_tcam.size()<m_tcamLimit)
 			{
 				m_tcam[str]=count;
-//				m_cmSketch->pop(key,count);
+				m_cmSketch->pop(key,count);
 				tcam_cnt+=count;
 			}
 
