@@ -55,6 +55,9 @@ int main()
 #define TOT_MEM_IN_BYTES (600 * 1024)
 //	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
 #define SK_D 3
+	int theta=10;
+	int tcamLimit=8000;
+	int cmcounter_num=100000;//the TOTAL number of cmsketch counters
 	TCAMSketch *tcamsketch = NULL;
 
 
@@ -81,9 +84,11 @@ int main()
 		set<string>::iterator flow_it=flowID.begin();
 		set<string>flow_ins;
 		int flow_ins_num=0;
+
 		for(int sample=1;sample<=10;sample++)
 		{
 			flow_ins_num+=flow_cnt/10;
+			//抽样
 			for(;flow_ins.size()<=flow_ins_num;flow_it++)
 			{
 				if(flow_it==flowID.end())
@@ -108,7 +113,7 @@ int main()
 			for(int t = 0; t < test_cycles; ++t)
 			{
 //				int packet_insert=0;
-				tcamsketch = new TCAMSketch(theta);
+				tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 				for(int i = 0; i < packet_cnt; ++i)
 					if(tag[i])
 					{
