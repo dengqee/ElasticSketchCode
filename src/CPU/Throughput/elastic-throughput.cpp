@@ -18,7 +18,7 @@
 using namespace std;
 
 #define START_FILE_NO 1
-#define END_FILE_NO 10
+#define END_FILE_NO 1
 #define test_cycles 10
 
 
@@ -52,9 +52,10 @@ int main()
 	ReadInTraces("/home/dengqi/eclipse-workspace/ElasticSketchCode/data/");
 
 
-#define HEAVY_MEM (150 * 1024)
-#define BUCKET_NUM (HEAVY_MEM / 64)
-#define TOT_MEM_IN_BYTES (600 * 1024)
+#define COUNTER_NUM 5000
+#define BUCKET_NUM COUNTER_NUM/8
+#define LIGHT_NUM 40*10000
+#define TOT_MEM_IN_BYTES LIGHT_NUM+BUCKET_NUM*8*8
 	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
 
 
@@ -82,7 +83,7 @@ int main()
 			set<string>::iterator flow_it=flowID.begin();
 			set<string>flow_ins;
 			int flow_ins_num=0;
-			for(int sample=1;sample<=10;sample++)
+			for(int sample=1;sample<=1;sample++)
 			{
 				flow_ins_num+=flow_cnt/10;
 				for(;flow_ins.size()<=flow_ins_num;flow_it++)
@@ -111,19 +112,20 @@ int main()
 					elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
 					for(int i = 0; i < packet_cnt; ++i)
 	//					if(i%(int)floor(1.0*packet_cnt/(packet_cnt*sample/100))==0)
-						if(tag[i])
-						{
+//						if(tag[i])
+//						{
 							elastic->insert(keys[i]);
 							//packet_insert++;
-						}
+//						}
 					delete elastic;
 					//cout<<packet_insert<<endl;
 				}
 				clock_gettime(CLOCK_MONOTONIC, &time2);
 				resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
 				double th = (double)1000.0 * test_cycles * packet_cnt / resns;
-				//cout<<"time:"<<resns<<endl;
-				printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
+//				cout<<"time:"<<resns<<endl;
+//				printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
+				cout<<COUNTER_NUM<<" "<<LIGHT_NUM<<" "<<th<<endl;
 			}
 				/* free memory */
 				for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)

@@ -16,7 +16,7 @@
 using namespace std;
 
 #define START_FILE_NO 1
-#define END_FILE_NO 10
+#define END_FILE_NO 1
 #define test_cycles 10
 
 
@@ -54,9 +54,10 @@ int main()
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
 //	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
-#define SK_D 3
+#define SK_D 4
+	int cmcounter_num=40*10000;//the TOTAL number of cmsketch counters
 	CMSketch<4, SK_D> *cm = NULL;
-
+	for(cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
@@ -81,7 +82,7 @@ int main()
 		set<string>::iterator flow_it=flowID.begin();
 		set<string>flow_ins;
 		int flow_ins_num=0;
-		for(int sample=1;sample<=10;sample++)
+		for(int sample=1;sample<=1;sample++)
 		{
 			flow_ins_num+=flow_cnt/10;
 			for(;flow_ins.size()<=flow_ins_num;flow_it++)
@@ -107,14 +108,14 @@ int main()
 			for(int t = 0; t < test_cycles; ++t)
 			{
 				//int packet_insert=0;
-				cm = new CMSketch<4, SK_D>(600 * 1024);
+				cm = new CMSketch<4, SK_D>(cmcounter_num*4);
 				for(int i = 0; i < packet_cnt; ++i)
 //					if(i%(int)floor(1.0*packet_cnt/(packet_cnt*sample/100))==0)
-					if(tag[i])
-					{
+//					if(tag[i])
+//					{
 						cm->insert(keys[i]);
 						//packet_insert++;
-					}
+//					}
 				delete cm;
 				//cout<<packet_insert<<endl;
 			}
@@ -125,9 +126,9 @@ int main()
 			printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
 		}
 			/* free memory */
-			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
-				delete[] keys[i];
-			delete[] keys;
+//			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
+//				delete[] keys[i];
+//			delete[] keys;
 
 
 

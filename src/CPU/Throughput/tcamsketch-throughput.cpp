@@ -16,7 +16,7 @@
 using namespace std;
 
 #define START_FILE_NO 1
-#define END_FILE_NO 10
+#define END_FILE_NO 1
 #define test_cycles 10
 
 
@@ -54,12 +54,16 @@ int main()
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
 //	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
-#define SK_D 3
-	int theta=10;
-	int tcamLimit=8000;
-	int cmcounter_num=100000;//the TOTAL number of cmsketch counters
+#define SK_D 4
+	int theta=20;
+	int tcamLimit=1*10000;
+	int cmcounter_num=80*10000;//the TOTAL number of cmsketch counters
 	TCAMSketch *tcamsketch = NULL;
-
+	double th;
+	printf("tcam cm theta ARE prec\n");
+	for(int cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
+	for(int tcamLimit=10000;tcamLimit<=10000;tcamLimit+=1000)
+	for(int theta=20;theta<=20;theta+=10)
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
@@ -85,7 +89,7 @@ int main()
 		set<string>flow_ins;
 		int flow_ins_num=0;
 
-		for(int sample=1;sample<=10;sample++)
+		for(int sample=1;sample<=1;sample++)
 		{
 			flow_ins_num+=flow_cnt/10;
 			//抽样
@@ -108,14 +112,15 @@ int main()
 
 
 			//测量预处理
-			int theta=packet_cnt/10000;
+
 			int* heavy=new int[packet_cnt];
 			for(int t = 0; t < test_cycles; ++t)
 			{
 //				int packet_insert=0;
 				tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 				for(int i = 0; i < packet_cnt; ++i)
-					if(tag[i])
+//					if(tag[i])
+					if(1)
 					{
 						heavy[i]=tcamsketch->insert(keys[i]);
 //						if(heavy[i])
@@ -131,7 +136,7 @@ int main()
 			clock_gettime(CLOCK_MONOTONIC, &time1);
 			for(int t = 0; t < test_cycles; ++t)
 			{
-				tcamsketch = new TCAMSketch(theta);
+				tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 				for(int i = 0; i < packet_cnt; ++i)
 					tcamsketch->insert(keys[i],heavy[i]);
 
@@ -139,9 +144,11 @@ int main()
 			}
 			clock_gettime(CLOCK_MONOTONIC, &time2);
 			resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
-			double th = (double)1000.0 * test_cycles * packet_cnt / resns;
-			printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
+			th = (double)1000.0 * test_cycles * packet_cnt / resns;
+//			printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
+
 		}
+		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<th<<endl;
 			/* free memory */
 			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
 				delete[] keys[i];
