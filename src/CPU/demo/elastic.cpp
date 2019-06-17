@@ -43,7 +43,7 @@ int main()
 #define HEAVY_MEM (150 * 1024)
 #define COUNTER_NUM 10000
 #define BUCKET_NUM COUNTER_NUM/8
-#define LIGHT_NUM 200000
+#define LIGHT_NUM 80*10000
 #define TOT_MEM_IN_BYTES LIGHT_NUM+BUCKET_NUM*8*8
 	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
 

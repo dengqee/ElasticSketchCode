@@ -54,13 +54,13 @@ int main()
 
 //#define SK_D 3
 	TCAMSketch *tcamsketch = NULL;
-	int theta=1;
-	int tcamLimit=8000;
-	int cmcounter_num=100000;//the TOTAL number of cmsketch counters
+	int theta;
+	int tcamLimit;
+	int cmcounter_num;//the TOTAL number of cmsketch counters
 	printf("tcam cm theta ARE prec\n");
-	for(int cmcounter_num=10000;cmcounter_num<=200000;cmcounter_num+=10000)
-	for(int tcamLimit=10000;tcamLimit<=10000;tcamLimit+=2000)
-	for(int theta=10;theta<=100;theta+=10)
+	for(int cmcounter_num=40*10000;cmcounter_num<=40*10000;cmcounter_num+=5*10000)
+	for(int tcamLimit=1000;tcamLimit<=12000;tcamLimit+=1000)
+	for(int theta=20;theta<=20;theta+=10)
 //	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
 		unordered_map<string, int> Real_Freq;

@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <unordered_map>
 #include <vector>
-
+#include <iostream>
 #include "../CMSketch/CM.h"
 using namespace std;
 
 #define START_FILE_NO 1
-#define END_FILE_NO 10
+#define END_FILE_NO 1
 
 
 struct FIVE_TUPLE{	char key[13];	};
@@ -40,14 +40,16 @@ int main()
 	ReadInTraces("../../../data/");
 
 
-#define SK_D 3
+#define SK_D 4
 	CMSketch<4, SK_D> *cm = NULL;
+	cout<<"cmsketch"<<" "<<"ARE"<<" "<<endl;
+	int cmcounter_num=40*10000;//the TOTAL number of cmsketch counters
 
-
+	for(cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
 		unordered_map<string, int> Real_Freq;
-		cm = new CMSketch<4, SK_D>(600 * 1024);
+		cm = new CMSketch<4, SK_D>(cmcounter_num*4);
 
 		int packet_cnt = (int)traces[datafileCnt - 1].size();
 		for(int i = 0; i < packet_cnt; ++i)
@@ -70,8 +72,8 @@ int main()
 		ARE /= (int)Real_Freq.size();
 
 
-		printf("%d.dat: ARE=%.3lf\n", datafileCnt - 1, ARE);
-
+//		printf("%d.dat: ARE=%.3lf\n", datafileCnt - 1, ARE);
+		cout<<cmcounter_num<<" "<<ARE<<endl;
 
 		delete cm;
 		Real_Freq.clear();
