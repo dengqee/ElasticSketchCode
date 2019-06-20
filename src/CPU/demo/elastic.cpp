@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <vector>
 #include <map>
+#include <cmath>
 #include "../elastic/ElasticSketch.h"
 using namespace std;
 
@@ -65,6 +66,7 @@ int main()
 		}
 
 		double ARE = 0;
+		double RMMAE=0;
 		int heavyThreshold=packet_cnt/1000;
 		map<string,uint32_t>realheavymap,estheavymap;
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
@@ -80,8 +82,10 @@ int main()
 
 			int dist = std::abs(it->second - est_val);
 			ARE += dist * 1.0 / (it->second);
+			RMMAE+=dist*dist;
 		}
 		ARE /= (int)Real_Freq.size();
+		RMMAE=sqrt(RMMAE/packet_cnt);
 
 		int numDet=0;
 		for(auto it=estheavymap.begin();it!=estheavymap.end();++it)
@@ -91,7 +95,7 @@ int main()
 				numDet++;
 		}
 		double prec=1.0*numDet/estheavymap.size();
-		cout<<LIGHT_NUM<<" "<<ARE<<" "<<prec<<endl;
+		cout<<LIGHT_NUM<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
 //		printf("%d.dat,ARE=%.3lf\n",datafileCnt,ARE);
 //		vector<double> dist;
 //		elastic->get_distribution(dist);

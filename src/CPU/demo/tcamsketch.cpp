@@ -10,12 +10,13 @@
 #include <unordered_map>
 #include <vector>
 #include <map>
+#include <cmath>
 #include <algorithm>
 #include "../TCAMSketch/TCAMSketch.h"
 using namespace std;
 
 #define START_FILE_NO 1
-#define END_FILE_NO 10
+#define END_FILE_NO 1
 
 
 struct FIVE_TUPLE{	char key[13];	};
@@ -58,8 +59,8 @@ int main()
 	int tcamLimit;
 	int cmcounter_num;//the TOTAL number of cmsketch counters
 	printf("tcam cm theta ARE prec\n");
-	for(int cmcounter_num=40*10000;cmcounter_num<=40*10000;cmcounter_num+=5*10000)
-	for(int tcamLimit=1000;tcamLimit<=12000;tcamLimit+=1000)
+	for(int cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
+	for(int tcamLimit=10000;tcamLimit<=10000;tcamLimit+=1000)
 	for(int theta=20;theta<=20;theta+=10)
 //	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
@@ -82,6 +83,7 @@ int main()
 //		data +=std::to_string(datafileCnt)+".dat";
 //		tcamsketch->out_cplex(data);
 		double ARE = 0;
+		double RMMAE=0;
 		int heavyThreshold=packet_cnt/1000;
 		map<string,uint32_t>realheavymap,estheavymap;
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
@@ -96,9 +98,10 @@ int main()
 				estheavymap[it->first]=it->second;
 			int dist = std::abs(it->second - est_val);
 			ARE += dist * 1.0 / (it->second);
+			RMMAE+=dist*dist;
 		}
 		ARE /= (int)Real_Freq.size();
-
+		RMMAE=sqrt(RMMAE/packet_cnt);
 		//heavy hitter
 
 
@@ -115,7 +118,7 @@ int main()
 //		printf("theta %d ARE %.3lf \n", theta, ARE);
 //		tcamsketch->print();
 //		cout<<"flow num:"<<Real_Freq.size()<<endl;
-		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<ARE<<" "<<prec<<endl;
+		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
 		delete tcamsketch;
 		Real_Freq.clear();
 	}

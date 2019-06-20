@@ -60,7 +60,8 @@ int main()
 			Real_Freq[str]++;
 		}
 
-		double ARE = 0;
+		double ARE = 0,RMMAE=0;
+
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
 			uint8_t key[4];
@@ -68,12 +69,13 @@ int main()
 			int est_val = cm->query(key);
 			int dist = std::abs(it->second - est_val);
 			ARE += dist * 1.0 / (it->second);
+			RMMAE+=dist*dist;
 		}
 		ARE /= (int)Real_Freq.size();
-
+		RMMAE=sqrt(RMMAE/packet_cnt);
 
 //		printf("%d.dat: ARE=%.3lf\n", datafileCnt - 1, ARE);
-		cout<<cmcounter_num<<" "<<ARE<<endl;
+		cout<<cmcounter_num<<" "<<ARE<<" "<<RMMAE<<endl;
 
 		delete cm;
 		Real_Freq.clear();

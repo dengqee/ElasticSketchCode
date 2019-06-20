@@ -45,14 +45,14 @@ void ReadInTraces(const char *trace_prefix)
 	printf("\n");
 }
 
-void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector<vector<string> >&traces_balanced)
+void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector<vector<string> >&traces_balanced,vector<vector<string> >&traces_random)
 {
 
 	for(int node=0;node<numNode;node++)
 	{
 		vector<string>packets;
 		string filename=traceDir+topoName+"_"+to_string(node)+"_origional_packets.txt";
-//		string filename=traceDir+topoName+"_packets.txt";
+//		string filename=traceDir+topoName+"_"+"packets.txt";
 		ifstream ifs(filename.c_str());
 		string line;
 		istringstream lineBuffer;
@@ -87,7 +87,6 @@ void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector
 		uint32_t s,d;
 		uint32_t num;
 		uint8_t key[5];
-		//压缩string到4个字节中
 		while(getline(ifs,line))
 		{
 			lineBuffer.str (line);
@@ -106,42 +105,74 @@ void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector
 		ifs.close();
 	}
 
+	for(int node=0;node<numNode;node++)
+	{
+		vector<string>packets;
+		string filename=traceDir+topoName+"_"+to_string(node)+"_random_packets.txt";
+		ifstream ifs(filename.c_str());
+		string line;
+		istringstream lineBuffer;
+		uint32_t s,d;
+		uint32_t num;
+		uint8_t key[5];
+		while(getline(ifs,line))
+		{
+			lineBuffer.str (line);
+			lineBuffer>>s>>d>>num;
+			key[0]=s;
+			key[1]=d;
+			key[2]=num>>8;
+			key[3]=0xff&num;
+			string packet;
+			for(int i=0;i<4;i++)
+				packet.push_back(key[i]);
+			packets.push_back(packet);
+
+		}
+		traces_random.push_back(packets);
+		ifs.close();
+	}
+
 }
 int main()
 {
 //	ReadInTraces("../../../data/");
-	vector<vector<string> >traces_origin,traces_balanced;
+	vector<vector<string> >traces_origin,traces_balanced,traces_random;
 
 	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/最大流匹配/";
-	MyReadInTraces(dir,traces_origin,traces_balanced);
+	MyReadInTraces(dir,traces_origin,traces_balanced,traces_random);
 
-#define HEAVY_MEM (150*1024)
-#define BUCKET_NUM (HEAVY_MEM / 64)
-#define TOT_MEM_IN_BYTES (600 * 1024)
+//#define HEAVY_MEM (150 * 1024)
+#define COUNTER_NUM 3000
+#define BUCKET_NUM COUNTER_NUM/8
+#define LIGHT_NUM 12000
+#define TOT_MEM_IN_BYTES LIGHT_NUM+BUCKET_NUM*8*8
 //		constexpr int k=10;
 //		constexpr int tot_men_in_byte=k*1024;
 //		constexpr int bucket_num=tot_men_in_byte/4/64;
 
+	string outdir=dir+"elastic/"+to_string(COUNTER_NUM)+"_"+to_string(LIGHT_NUM);
+	string md="mkdir "+outdir;
+	system(md.c_str());
 
+//		constexpr int bucket_num=1000;//200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000
+//		constexpr int tot_men_in_byte=40000+bucket_num*64;
 
-		constexpr int bucket_num=1000;//200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000
-		constexpr int tot_men_in_byte=40000+bucket_num*64;
-
-		ElasticSketch<bucket_num, tot_men_in_byte> *elastic = NULL;
-
+		ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
+		cout<<"****************************"<<endl;
 
 
 		for(int node = 0; node < numNode; ++node)
 		{
 			unordered_map<string, int> Real_Freq;
-			elastic = new ElasticSketch<bucket_num, tot_men_in_byte>();
+			elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
 			int packet_cnt = traces_origin[node].size();
 			for(int i = 0; i < packet_cnt; ++i)
 			{
 				elastic->insert((uint8_t*)traces_origin[node][i].c_str());
 				Real_Freq[traces_origin[node][i]]++;
 			}
-			string filename=dir+"elastic/"+topoName+"_"+to_string(node)+"_original_measure.txt";
+			string filename=outdir+"/"+topoName+"_"+to_string(node)+"_original_measure.txt";
 //			string filename=dir+"elastic/"+topoName+"_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
@@ -168,18 +199,19 @@ int main()
 			delete elastic;
 			Real_Freq.clear();
 		}
+		cout<<"========="<<endl;
 	/************************* balanced ***********************************/
 		for(int node = 0; node < numNode; ++node)
 		{
 			unordered_map<string, int> Real_Freq;
-			elastic = new ElasticSketch<bucket_num, tot_men_in_byte>();
+			elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
 			int packet_cnt = traces_balanced[node].size();
 			for(int i = 0; i < packet_cnt; ++i)
 			{
 				elastic->insert((uint8_t*)traces_balanced[node][i].c_str());
 				Real_Freq[traces_balanced[node][i]]++;
 			}
-			string filename=dir+"elastic/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
+			string filename=outdir+"/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
 			ofstream ofs(filename);
 			double ARE = 0;
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
@@ -199,6 +231,42 @@ int main()
 			}
 			ARE /= (int)Real_Freq.size();
 			cout << to_string(node)+" balanced ARE:"<<ARE<<endl;
+			ofs.close();
+			delete elastic;
+			Real_Freq.clear();
+		}
+		cout<<"========="<<endl;
+		/************************* random ***********************************/
+		for(int node = 0; node < numNode; ++node)
+		{
+			unordered_map<string, int> Real_Freq;
+			elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
+			int packet_cnt = traces_random[node].size();
+			for(int i = 0; i < packet_cnt; ++i)
+			{
+				elastic->insert((uint8_t*)traces_random[node][i].c_str());
+				Real_Freq[traces_random[node][i]]++;
+			}
+			string filename=outdir+"/"+topoName+"_"+to_string(node)+"_random_measure.txt";
+			ofstream ofs(filename);
+			double ARE = 0;
+			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
+			{
+				uint8_t key[13];
+				memcpy(key, (it->first).c_str(), 13);
+				bool flag;
+				int est_val=elastic->query(key,flag);
+				//解码流ID
+				uint32_t s,d,num;//source,dest,number
+				s=(uint32_t)(key[0]);
+				d=(uint32_t)(key[1]);
+				num=(uint32_t)((key[2]<<8)|key[3]);
+				ofs<<s<<" "<<d<<" "<<num<<" "<<est_val<<" "<<flag<<endl;
+				int dist = std::abs(it->second - est_val);
+				ARE += dist * 1.0 / (it->second);
+			}
+			ARE /= (int)Real_Freq.size();
+			cout << to_string(node)+" random ARE:"<<ARE<<endl;
 			ofs.close();
 			delete elastic;
 			Real_Freq.clear();
