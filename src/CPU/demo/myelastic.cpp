@@ -143,9 +143,9 @@ int main()
 	MyReadInTraces(dir,traces_origin,traces_balanced,traces_random);
 
 //#define HEAVY_MEM (150 * 1024)
-#define COUNTER_NUM 3000
+#define COUNTER_NUM 1000
 #define BUCKET_NUM COUNTER_NUM/8
-#define LIGHT_NUM 12000
+#define LIGHT_NUM 48000
 #define TOT_MEM_IN_BYTES LIGHT_NUM+BUCKET_NUM*8*8
 //		constexpr int k=10;
 //		constexpr int tot_men_in_byte=k*1024;

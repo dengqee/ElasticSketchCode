@@ -35,7 +35,7 @@ public:
 		__m256i *keys_p = (__m256i *)(buckets[pos].key);
 		int matched = 0;
 
-		__m256i a_comp = _mm256_cmpeq_epi32(item, keys_p[0]);
+		__m256i a_comp = _mm256_cmpeq_epi32(item, keys_p[1]);
 		matched = _mm256_movemask_ps((__m256)a_comp);
 
 		if (matched != 0)

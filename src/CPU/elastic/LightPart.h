@@ -7,11 +7,11 @@
 template<int init_mem_in_bytes>
 class LightPart
 {
-	static constexpr int counter_num = init_mem_in_bytes;
+	static constexpr int counter_num = init_mem_in_bytes/4;
 	BOBHash32 *bobhash = NULL;
 
 public:
-	uint8_t counters[counter_num];
+	uint32_t counters[counter_num];
 	int mice_dist[256];
 	EMFSD *em_fsd_algo = NULL;
 
@@ -28,7 +28,7 @@ public:
 
 	void clear()
 	{
-		memset(counters, 0, counter_num);
+		memset(counters, 0, 4*counter_num);
 		memset(mice_dist, 0, sizeof(int) * 256);
 	}
 
@@ -39,12 +39,13 @@ public:
 		uint32_t hash_val = (uint32_t)bobhash->run((const char*)key, KEY_LENGTH_4);
 		uint32_t pos = hash_val % (uint32_t)counter_num;
 
-		int old_val = (int)counters[pos];
-        int new_val = (int)counters[pos] + f;
+		int old_val = counters[pos];
+        int new_val = counters[pos] + f;
 
-        new_val = new_val < 255 ? new_val : 255;
-        counters[pos] = (uint8_t)new_val;
 
+        counters[pos] = new_val;
+        old_val=old_val<255?old_val:255;
+        new_val=new_val<255?new_val:255;
         mice_dist[old_val]--;
         mice_dist[new_val]++;
 	}
@@ -54,16 +55,17 @@ public:
 		uint32_t hash_val = (uint32_t)bobhash->run((const char*)key, KEY_LENGTH_4);
         uint32_t pos = hash_val % (uint32_t)counter_num;
 
-        f = f < 255 ? f : 255;
-        if (counters[pos] < f) 
-        {
-            int old_val = (int)counters[pos];
-            counters[pos] = (uint8_t)f;
-            int new_val = (int)counters[pos];
 
-			mice_dist[old_val]--;
-			mice_dist[new_val]++;
-		}
+
+		int old_val = counters[pos];
+		counters[pos] += f;
+		int new_val = counters[pos];
+
+		old_val=old_val<255?old_val:255;
+		new_val=new_val<255?new_val:255;
+		mice_dist[old_val]--;
+		mice_dist[new_val]++;
+
 	}
 
 
@@ -73,7 +75,7 @@ public:
         uint32_t hash_val = (uint32_t)bobhash->run((const char*)key, KEY_LENGTH_4);
         uint32_t pos = hash_val % (uint32_t)counter_num;
 
-        return (int)counters[pos];
+        return counters[pos];
     }
 
 

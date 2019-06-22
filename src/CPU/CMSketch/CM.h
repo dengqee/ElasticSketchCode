@@ -16,7 +16,7 @@ private:
 	int memory_in_bytes = 0;
 
 	int w = 0;
-	uint8_t* counters[d] = {NULL};
+	uint32_t* counters[d] = {NULL};
 	BOBHash32* hash[d] = {NULL};
 
 public:
@@ -30,11 +30,11 @@ public:
 	void initial(int memory_in_bytes)
 	{
 		this->memory_in_bytes = memory_in_bytes;
-		w = memory_in_bytes / 1 / d;
+		w = memory_in_bytes / 4 / d;
 
 		for(int i = 0; i < d; ++i){
-			counters[i] = new uint8_t[w];
-			memset(counters[i], 0, 1 * w);
+			counters[i] = new uint32_t[w];
+			memset(counters[i], 0, 4 * w);
 
 			hash[i] = new BOBHash32(i*10 + 750);
 		}
@@ -57,18 +57,15 @@ public:
     {
         printf("CM sketch\n");
         printf("\tCounters: %d\n", w);
-        printf("\tMemory: %.6lfMB\n", w * 1.0 / 1024 / 1024);
+        printf("\tMemory: %.6lfMB\n", w * 4.0 / 1024 / 1024);
     }
 
     void insert(uint8_t * key, int f = 1)
     {
         for (int i = 0; i < d; i++) {
             int index = (hash[i]->run((const char *)key, key_len)) % w;
-            int old_val = (int)counters[i][index];
-			int new_val = (int)counters[i][index] + f;
 
-			new_val = new_val < 255 ? new_val : 255;
-			counters[i][index] = (uint8_t)new_val;
+			counters[i][index] += f;
         }
     }
 
@@ -77,12 +74,9 @@ public:
     	int ret = 1 << 30;
 		for (int i = 0; i < d; i++) {
 			int index = (hash[i]->run((const char *)key, key_len)) % w;
-			int old_val = (int)counters[i][index];
-			int new_val = (int)counters[i][index] + f;
 
-			new_val = new_val < 255 ? new_val : 255;
-			counters[i][index] = (uint8_t)new_val;
-			ret = min(ret, new_val);
+			counters[i][index] += f;
+			ret = ret < counters[i][index]?ret:counters[i][index];
 		}
 		return ret;
 	}

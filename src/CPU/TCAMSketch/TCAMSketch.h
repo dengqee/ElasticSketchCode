@@ -69,7 +69,7 @@ public:
 			if(count>m_theta&&m_tcam.size()<m_tcamLimit)
 			{
 				m_tcam[str]=count;
-				m_cmSketch->pop(key,count);
+//				m_cmSketch->pop(key,count);
 				tcam_cnt+=count;
 			}
 

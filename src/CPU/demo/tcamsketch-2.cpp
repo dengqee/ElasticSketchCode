@@ -138,131 +138,131 @@ int main(int argc,char* argv[])
 	int theta=20;
 	int tcamLimit=250;
 	int cmcounter_num=12000;//the TOTAL number of cmsketch counters
-	for(tcamLimit=1000;tcamLimit<=1000;tcamLimit+=250)
-		for(cmcounter_num=4000;cmcounter_num<=48000;cmcounter_num+=4000)
+	for(tcamLimit=250;tcamLimit<=3000;tcamLimit+=250)
+		for(cmcounter_num=12000;cmcounter_num<=12000;cmcounter_num+=4000)
 	{
-		cout<<"****************************"<<endl;
+		cout<<"************"<<tcamLimit<<"_"<<cmcounter_num<<"****************"<<endl;
 		TCAMSketch *tcamsketch = NULL;
 
-		string outdir=dir+"tcam/"+to_string(tcamLimit)+"_"+to_string(cmcounter_num);
+		string outdir=dir+"tcam_4/"+to_string(tcamLimit)+"_"+to_string(cmcounter_num);
 		string md="mkdir "+outdir;
 		system(md.c_str());
 
-//		for(int node = 0; node < numNode; ++node)
-//		{
-//			unordered_map<string, int> Real_Freq;
-//			int packet_cnt = traces_origin[node].size();
-//			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
-//
-//			for(int i = 0; i < packet_cnt; ++i)
-//			{
-//				tcamsketch->insert((uint8_t*)traces_origin[node][i].c_str());
-//				int est=tcamsketch->query((uint8_t*)traces_origin[node][i].c_str());
-//				Real_Freq[traces_origin[node][i]]++;
-//			}
-//
-//			string filename=outdir+"/"+topoName+"_"+to_string(node)+"_original_measure.txt";
-////			string filename=dir+"tcam/"+tmp+"/"+topoName+"_measure.txt";
-//
-//			ofstream ofs(filename);
-//			double ARE = 0;
-//			map<string,uint32_t>realheavymap;
-//			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
-//			{
-//				if(it->second>=theta)
-//					realheavymap[it->first]=it->second;
-//				uint8_t key[13];
-//				memcpy(key, (it->first).c_str(), 13);
-//
-//				int est_val=tcamsketch->query(key);
-//
-//				//解码流ID
-//				uint32_t s,d,num;//source,dest,number
-//				s=(uint32_t)(key[0]);
-//				d=(uint32_t)(key[1]);
-//				num=(uint32_t)((key[2]<<8)|key[3]);
-//				ofs<<s<<" "<<d<<" "<<num<<" "<<est_val<<endl;
-//
-//				int dist = std::abs(it->second - est_val);
-//				ARE += dist * 1.0 / (it->second);
-//			}
-//			ARE /= (int)Real_Freq.size();
-//
-//			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
-//
-//			int numDet=0;
-//			for(auto it=tcam.begin();it!=tcam.end();++it)
-//			{
-//				auto tmp=realheavymap.find(it->first);
-//				if(tmp!=realheavymap.end())
-//					numDet++;
-//			}
-//			double prec=1.0*numDet/tcam.size();
-//
-//			cout << to_string(node)+" original ARE:"<<ARE<<" precision:"<<prec<<endl;
-////			tcamsketch->print();
-////			cout<<"flow num:"<<Real_Freq.size()<<endl;
-//			ofs.close();
-//			delete tcamsketch;
-//			Real_Freq.clear();
-//		}
-//		cout<<"========="<<endl;
-//	/********************* balanced ***************************************/
-//		for(int node = 0; node < numNode; ++node)
-//		{
-//			unordered_map<string, int> Real_Freq;
-//			int packet_cnt = traces_balanced[node].size();
-//			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
-//
-//			for(int i = 0; i < packet_cnt; ++i)
-//			{
-//				tcamsketch->insert((uint8_t*)traces_balanced[node][i].c_str());
-//				Real_Freq[traces_balanced[node][i]]++;
-//			}
-//
-//			string filename=outdir+"/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
-//			ofstream ofs(filename);
-//			double ARE = 0;
-//			map<string,uint32_t>realheavymap;
-//			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
-//			{
-//				if(it->second>=theta)
-//					realheavymap[it->first]=it->second;
-//				uint8_t key[13];
-//				memcpy(key, (it->first).c_str(), 13);
-//
-//				int est_val=tcamsketch->query(key);
-//				//解码流ID
-//				uint32_t s,d,num;//source,dest,number
-//				s=(uint32_t)(key[0]);
-//				d=(uint32_t)(key[1]);
-//				num=(uint32_t)((key[2]<<8)|key[3]);
-//				ofs<<s<<" "<<d<<" "<<num<<" "<<est_val<<endl;
-//				int dist = std::abs(it->second - est_val);
-//				ARE += dist * 1.0 / (it->second);
-//			}
-//			ARE /= (int)Real_Freq.size();
-//
-//			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
-//
-//			int numDet=0;
-//			for(auto it=tcam.begin();it!=tcam.end();++it)
-//			{
-//				auto tmp=realheavymap.find(it->first);
-//				if(tmp!=realheavymap.end())
-//					numDet++;
-//			}
-//			double prec=1.0*numDet/tcam.size();
-//
-//
-//			cout << to_string(node)+" balanced ARE:"<<ARE<<" precision:"<<prec<<endl;
+		for(int node = 0; node < numNode; ++node)
+		{
+			unordered_map<string, int> Real_Freq;
+			int packet_cnt = traces_origin[node].size();
+			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
+
+			for(int i = 0; i < packet_cnt; ++i)
+			{
+				tcamsketch->insert((uint8_t*)traces_origin[node][i].c_str());
+				int est=tcamsketch->query((uint8_t*)traces_origin[node][i].c_str());
+				Real_Freq[traces_origin[node][i]]++;
+			}
+
+			string filename=outdir+"/"+topoName+"_"+to_string(node)+"_original_measure.txt";
+//			string filename=dir+"tcam/"+tmp+"/"+topoName+"_measure.txt";
+
+			ofstream ofs(filename);
+			double ARE = 0;
+			map<string,uint32_t>realheavymap;
+			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
+			{
+				if(it->second>=theta)
+					realheavymap[it->first]=it->second;
+				uint8_t key[13];
+				memcpy(key, (it->first).c_str(), 13);
+
+				int est_val=tcamsketch->query(key);
+
+				//解码流ID
+				uint32_t s,d,num;//source,dest,number
+				s=(uint32_t)(key[0]);
+				d=(uint32_t)(key[1]);
+				num=(uint32_t)((key[2]<<8)|key[3]);
+				ofs<<s<<" "<<d<<" "<<num<<" "<<est_val<<endl;
+
+				int dist = std::abs(it->second - est_val);
+				ARE += dist * 1.0 / (it->second);
+			}
+			ARE /= (int)Real_Freq.size();
+
+			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
+
+			int numDet=0;
+			for(auto it=tcam.begin();it!=tcam.end();++it)
+			{
+				auto tmp=realheavymap.find(it->first);
+				if(tmp!=realheavymap.end())
+					numDet++;
+			}
+			double prec=1.0*numDet/tcam.size();
+
+			cout << to_string(node)+" original ARE:"<<ARE<<" precision:"<<prec<<endl;
 //			tcamsketch->print();
 //			cout<<"flow num:"<<Real_Freq.size()<<endl;
-//			ofs.close();
-//			delete tcamsketch;
-//			Real_Freq.clear();
-//		}
-//		cout<<"========="<<endl;
+			ofs.close();
+			delete tcamsketch;
+			Real_Freq.clear();
+		}
+		cout<<"========="<<endl;
+	/********************* balanced ***************************************/
+		for(int node = 0; node < numNode; ++node)
+		{
+			unordered_map<string, int> Real_Freq;
+			int packet_cnt = traces_balanced[node].size();
+			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
+
+			for(int i = 0; i < packet_cnt; ++i)
+			{
+				tcamsketch->insert((uint8_t*)traces_balanced[node][i].c_str());
+				Real_Freq[traces_balanced[node][i]]++;
+			}
+
+			string filename=outdir+"/"+topoName+"_"+to_string(node)+"_balanced_measure.txt";
+			ofstream ofs(filename);
+			double ARE = 0;
+			map<string,uint32_t>realheavymap;
+			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
+			{
+				if(it->second>=theta)
+					realheavymap[it->first]=it->second;
+				uint8_t key[13];
+				memcpy(key, (it->first).c_str(), 13);
+
+				int est_val=tcamsketch->query(key);
+				//解码流ID
+				uint32_t s,d,num;//source,dest,number
+				s=(uint32_t)(key[0]);
+				d=(uint32_t)(key[1]);
+				num=(uint32_t)((key[2]<<8)|key[3]);
+				ofs<<s<<" "<<d<<" "<<num<<" "<<est_val<<endl;
+				int dist = std::abs(it->second - est_val);
+				ARE += dist * 1.0 / (it->second);
+			}
+			ARE /= (int)Real_Freq.size();
+
+			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
+
+			int numDet=0;
+			for(auto it=tcam.begin();it!=tcam.end();++it)
+			{
+				auto tmp=realheavymap.find(it->first);
+				if(tmp!=realheavymap.end())
+					numDet++;
+			}
+			double prec=1.0*numDet/tcam.size();
+
+
+			cout << to_string(node)+" balanced ARE:"<<ARE<<" precision:"<<prec<<endl;
+			tcamsketch->print();
+			cout<<"flow num:"<<Real_Freq.size()<<endl;
+			ofs.close();
+			delete tcamsketch;
+			Real_Freq.clear();
+		}
+		cout<<"========="<<endl;
 
 		/************random*****************/
 		for(int node = 0; node < numNode; ++node)

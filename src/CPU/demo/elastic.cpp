@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <cmath>
+#include <algorithm>
 #include "../elastic/ElasticSketch.h"
 using namespace std;
 
@@ -35,16 +36,19 @@ void ReadInTraces(const char *trace_prefix)
 	}
 //	printf("\n");
 }
-
+bool cmp(const pair<string,uint32_t>&a,const pair<string,uint32_t>&b)
+{
+	return a.second>b.second;
+}
 int main()
 {
 	ReadInTraces("/home/dengqi/eclipse-workspace/ElasticSketchCode/data/");
 
 
 #define HEAVY_MEM (150 * 1024)
-#define COUNTER_NUM 10000
+#define COUNTER_NUM 12000
 #define BUCKET_NUM COUNTER_NUM/8
-#define LIGHT_NUM 80*10000
+#define LIGHT_NUM 40*10000
 #define TOT_MEM_IN_BYTES LIGHT_NUM+BUCKET_NUM*8*8
 	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
 
@@ -55,7 +59,7 @@ int main()
 		unordered_map<string, int> Real_Freq;
 		elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
 
-		int packet_cnt = (int)traces[1 - 1].size();
+		long packet_cnt = (int)traces[1 - 1].size();
 		for(int i = 0; i < packet_cnt; ++i)
 		{
 			elastic->insert((uint8_t*)(traces[1 - 1][i].key));
@@ -67,35 +71,49 @@ int main()
 
 		double ARE = 0;
 		double RMMAE=0;
-		int heavyThreshold=packet_cnt/1000;
+		long sum=0;
 		map<string,uint32_t>realheavymap,estheavymap;
+		vector<pair<string,int> >orderRealFreq(Real_Freq.begin(),Real_Freq.end());
+		vector<pair<string,int> >orderEstFreq;
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
-			if(it->second>=heavyThreshold)
-				realheavymap[it->first]=it->second;
+
+
 			uint8_t key[4];
 			memcpy(key, (it->first).c_str(), 4);
 			int est_val = elastic->query(key);
-
-			if(est_val>=heavyThreshold)
-				estheavymap[it->first]=it->second;
-
+			orderEstFreq.push_back(make_pair(it->first,est_val));
 			int dist = std::abs(it->second - est_val);
 			ARE += dist * 1.0 / (it->second);
-			RMMAE+=dist*dist;
+			RMMAE+=1.0*dist*dist;
+			sum+=(it->second)*(it->second);
 		}
+
+
 		ARE /= (int)Real_Freq.size();
-		RMMAE=sqrt(RMMAE/packet_cnt);
+		RMMAE=sqrt(RMMAE/sum);
+		//heavy hitter
+		sort(orderRealFreq.begin(),orderRealFreq.end(),cmp);
+		sort(orderEstFreq.begin(),orderEstFreq.end(),cmp);
 
 		int numDet=0;
-		for(auto it=estheavymap.begin();it!=estheavymap.end();++it)
+		for(size_t i=0;i<orderRealFreq.size()/10;i++)
 		{
-			auto tmp=realheavymap.find(it->first);
-			if(tmp!=realheavymap.end())
-				numDet++;
+			for(size_t j=0;i<orderRealFreq.size()/10;j++)
+			{
+				if(orderRealFreq[i]==orderRealFreq[j])
+				{
+					numDet++;
+					break;
+				}
+
+			}
 		}
-		double prec=1.0*numDet/estheavymap.size();
-		cout<<LIGHT_NUM<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
+
+		double prec=1.0*numDet/(orderRealFreq.size()/10);
+
+//		cout<<LIGHT_NUM<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
+		cout<<COUNTER_NUM<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
 //		printf("%d.dat,ARE=%.3lf\n",datafileCnt,ARE);
 //		vector<double> dist;
 //		elastic->get_distribution(dist);

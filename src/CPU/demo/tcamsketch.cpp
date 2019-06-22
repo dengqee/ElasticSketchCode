@@ -58,9 +58,9 @@ int main()
 	int theta;
 	int tcamLimit;
 	int cmcounter_num;//the TOTAL number of cmsketch counters
-	printf("tcam cm theta ARE prec\n");
-	for(int cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
-	for(int tcamLimit=10000;tcamLimit<=10000;tcamLimit+=1000)
+	printf("tcam cm theta ARE RMMAE prec\n");
+	for(int cmcounter_num=40*10000;cmcounter_num<=40*10000;cmcounter_num+=5*10000)
+	for(int tcamLimit=1000;tcamLimit<=12000;tcamLimit+=1000)
 	for(int theta=20;theta<=20;theta+=10)
 //	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
@@ -68,7 +68,7 @@ int main()
 
 
 //		int packet_cnt = (int)traces[datafileCnt - 1].size();
-		int packet_cnt = (int)traces[1 - 1].size();
+		long packet_cnt = (int)traces[1 - 1].size();
 //		theta+=1;
 		tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 		for(int i = 0; i < packet_cnt; ++i)
@@ -84,35 +84,46 @@ int main()
 //		tcamsketch->out_cplex(data);
 		double ARE = 0;
 		double RMMAE=0;
-		int heavyThreshold=packet_cnt/1000;
+		long sum=0;
 		map<string,uint32_t>realheavymap,estheavymap;
+		vector<pair<string,int> >orderRealFreq(Real_Freq.begin(),Real_Freq.end());
+		vector<pair<string,int> >orderEstFreq;
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
 
-			if(it->second>=heavyThreshold)
-				realheavymap[it->first]=it->second;
+
 			uint8_t key[4];
 			memcpy(key, (it->first).c_str(), 4);
 			int est_val = tcamsketch->query(key);
-			if(est_val>=heavyThreshold)
-				estheavymap[it->first]=it->second;
+			orderEstFreq.push_back(make_pair(it->first,est_val));
 			int dist = std::abs(it->second - est_val);
 			ARE += dist * 1.0 / (it->second);
 			RMMAE+=dist*dist;
+			sum+=(it->second)*(it->second);
 		}
-		ARE /= (int)Real_Freq.size();
-		RMMAE=sqrt(RMMAE/packet_cnt);
-		//heavy hitter
 
+
+		ARE /= (int)Real_Freq.size();
+		RMMAE=sqrt(RMMAE/sum);
+		//heavy hitter
+		sort(orderRealFreq.begin(),orderRealFreq.end(),cmp);
+		sort(orderEstFreq.begin(),orderEstFreq.end(),cmp);
 
 		int numDet=0;
-		for(auto it=estheavymap.begin();it!=estheavymap.end();++it)
+		for(size_t i=0;i<orderRealFreq.size()/10;i++)
 		{
-			auto tmp=realheavymap.find(it->first);
-			if(tmp!=realheavymap.end())
-				numDet++;
+			for(size_t j=0;i<orderRealFreq.size()/10;j++)
+			{
+				if(orderRealFreq[i]==orderRealFreq[j])
+				{
+					numDet++;
+					break;
+				}
+
+			}
 		}
-		double prec=1.0*numDet/estheavymap.size();
+
+		double prec=1.0*numDet/(orderRealFreq.size()/10);
 
 //		printf("%d.dat: ARE=%.3lf precision=%.3lf\n", datafileCnt - 1, ARE, prec);
 //		printf("theta %d ARE %.3lf \n", theta, ARE);
