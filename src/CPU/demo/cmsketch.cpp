@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <vector>
 #include <iostream>
+#include <fstream>
 #include "../CMSketch/CM.h"
 using namespace std;
 
@@ -39,6 +40,7 @@ int main()
 {
 	ReadInTraces("../../../data/");
 
+	string outdir="../../../data/cmsketch/";
 
 #define SK_D 4
 	CMSketch<4, SK_D> *cm = NULL;
@@ -48,6 +50,8 @@ int main()
 	for(cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
+		string outfile=outdir+to_string(cmcounter_num)+".txt";
+		ofstream ofs(outfile.c_str());
 		unordered_map<string, int> Real_Freq;
 		cm = new CMSketch<4, SK_D>(cmcounter_num*4);
 
@@ -67,11 +71,17 @@ int main()
 			uint8_t key[4];
 			memcpy(key, (it->first).c_str(), 4);
 			int est_val = cm->query(key);
+
+			ofs<<*((uint32_t*)key)<<" "<<est_val<<endl;
+
+
+
 			int dist = std::abs(it->second - est_val);
 			ARE += dist * 1.0 / (it->second);
 			RMMAE+=dist*dist;
 			sum+=(it->second)*(it->second);
 		}
+		ofs.close();
 		ARE /= (int)Real_Freq.size();
 		RMMAE=sqrt(RMMAE/sum);
 

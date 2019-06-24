@@ -12,6 +12,7 @@
 #include <map>
 #include <cmath>
 #include <algorithm>
+#include <fstream>
 #include "../TCAMSketch/TCAMSketch.h"
 using namespace std;
 
@@ -52,20 +53,22 @@ int main()
 {
 //	ReadInTraces("../../../data/");
 	ReadInTraces("/home/dengqi/eclipse-workspace/ElasticSketchCode/data/");
-
+	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/";
 //#define SK_D 3
 	TCAMSketch *tcamsketch = NULL;
 	int theta;
 	int tcamLimit;
 	int cmcounter_num;//the TOTAL number of cmsketch counters
 	printf("tcam cm theta ARE RMMAE prec\n");
-	for(int cmcounter_num=40*10000;cmcounter_num<=40*10000;cmcounter_num+=5*10000)
-	for(int tcamLimit=1000;tcamLimit<=12000;tcamLimit+=1000)
+
+
+	for(int cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
+	for(int tcamLimit=10000;tcamLimit<=10000;tcamLimit+=1000)
 	for(int theta=20;theta<=20;theta+=10)
 //	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
 		unordered_map<string, int> Real_Freq;
-
+		string outdir=dir+"tcam_4/";
 
 //		int packet_cnt = (int)traces[datafileCnt - 1].size();
 		long packet_cnt = (int)traces[1 - 1].size();
@@ -88,6 +91,10 @@ int main()
 		map<string,uint32_t>realheavymap,estheavymap;
 		vector<pair<string,int> >orderRealFreq(Real_Freq.begin(),Real_Freq.end());
 		vector<pair<string,int> >orderEstFreq;
+//			string outfile1=outdir+to_string(COUNTER_NUM)+"_"+to_string(light_num)+"_real.txt";
+		string outfile2=outdir+to_string(tcamLimit)+"_"+to_string(cmcounter_num)+"_est.txt";
+//			ofstream ofs1(outfile1.c_str());
+		ofstream ofs2(outfile2.c_str());
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
 
@@ -96,12 +103,14 @@ int main()
 			memcpy(key, (it->first).c_str(), 4);
 			int est_val = tcamsketch->query(key);
 			orderEstFreq.push_back(make_pair(it->first,est_val));
+			ofs2<<*((uint32_t*)key)<<" "<<est_val<<endl;
+
 			int dist = std::abs(it->second - est_val);
 			ARE += dist * 1.0 / (it->second);
 			RMMAE+=dist*dist;
 			sum+=(it->second)*(it->second);
 		}
-
+		ofs2.close();
 
 		ARE /= (int)Real_Freq.size();
 		RMMAE=sqrt(RMMAE/sum);
