@@ -1,7 +1,7 @@
 /*
- * cmsketch-throughput.cpp
+ * tcamsketch-throughput.cpp
  *
- *  Created on: 2019年5月23日
+ *  Created on: 2019年5月27日
  *      Author: dengqi
  */
 #include <stdio.h>
@@ -11,7 +11,7 @@
 #include <cmath>
 #include <set>
 #include <iostream>
-#include "../CMSketch/CM.h"
+#include "../TCAMSketch/TCAMSketch.h"
 //#include "../MultiCore/setup.h"
 using namespace std;
 
@@ -55,16 +55,22 @@ int main()
 #define TOT_MEM_IN_BYTES (600 * 1024)
 //	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
 #define SK_D 4
-	int cmcounter_num=40*10000;//the TOTAL number of cmsketch counters
-	CMSketch<4, SK_D> *cm = NULL;
-	for(cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
+	int theta=20;
+	int tcamLimit=1*10000;
+	int cmcounter_num=80*10000;//the TOTAL number of cmsketch counters
+	TCAMSketch *tcamsketch = NULL;
+	double th;
+	printf("tcam cm theta ARE prec\n");
+	for(int cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
+	for(int tcamLimit=10000;tcamLimit<=10000;tcamLimit+=1000)
+	for(int theta=20;theta<=20;theta+=10)
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
 		set<string>flowID;
 
 
-		cm = NULL;
+		tcamsketch = NULL;
 
 		timespec time1, time2;
 		long long resns;
@@ -82,9 +88,11 @@ int main()
 		set<string>::iterator flow_it=flowID.begin();
 		set<string>flow_ins;
 		int flow_ins_num=0;
+
 		for(int sample=1;sample<=1;sample++)
 		{
 			flow_ins_num+=flow_cnt/10;
+			//抽样
 			for(;flow_ins.size()<=flow_ins_num;flow_it++)
 			{
 				if(flow_it==flowID.end())
@@ -103,32 +111,48 @@ int main()
 
 
 
-			//测量
+			//测量预处理
+
+			int* heavy=new int[packet_cnt];
+			for(int t = 0; t < test_cycles; ++t)
+			{
+//				int packet_insert=0;
+				tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
+				for(int i = 0; i < packet_cnt; ++i)
+//					if(tag[i])
+					if(1)
+					{
+						heavy[i]=tcamsketch->insert(keys[i]);
+//						if(heavy[i])
+//							packet_insert++;
+					}
+					else
+						heavy[i]=0;
+				delete tcamsketch;
+//				cout<<packet_insert<<endl;
+			}
+
+			//true measure
 			clock_gettime(CLOCK_MONOTONIC, &time1);
 			for(int t = 0; t < test_cycles; ++t)
 			{
-				//int packet_insert=0;
-				cm = new CMSketch<4, SK_D>(cmcounter_num*4);
+				tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 				for(int i = 0; i < packet_cnt; ++i)
-//					if(i%(int)floor(1.0*packet_cnt/(packet_cnt*sample/100))==0)
-//					if(tag[i])
-//					{
-						cm->insert(keys[i]);
-						//packet_insert++;
-//					}
-				delete cm;
-				//cout<<packet_insert<<endl;
+					tcamsketch->insert(keys[i],heavy[i]);
+
+				delete tcamsketch;
 			}
 			clock_gettime(CLOCK_MONOTONIC, &time2);
 			resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
-			double th = (double)1000.0 * test_cycles * packet_cnt / resns;
-			//cout<<"time:"<<resns<<endl;
-			printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
+			th = (double)1000.0 * test_cycles * packet_cnt / resns;
+//			printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
+
 		}
+		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<th<<endl;
 			/* free memory */
-//			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
-//				delete[] keys[i];
-//			delete[] keys;
+			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
+				delete[] keys[i];
+			delete[] keys;
 
 
 

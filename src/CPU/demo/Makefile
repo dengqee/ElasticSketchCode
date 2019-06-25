@@ -43,6 +43,9 @@ throughput.out: ../throughput.cpp
 
 myelastic.out: myelastic.cpp
 	$(GCC) $(CFLAGS) $(SSEFLAGS) -o myelastic.out myelastic.cpp
+	
+tcamsketch.out: tcamsketch.cpp
+	$(GCC) $(CFLAGS) -o tcamsketch.out tcamsketch.cpp
 
 myelastic-n.out: myelastic-n.cpp
 	$(GCC) $(CFLAGS) $(SSEFLAGS) -o myelastic-n.out myelastic-n.cpp
