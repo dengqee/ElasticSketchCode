@@ -63,8 +63,8 @@ int main()
 
 
 	for(int cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
-	for(int tcamLimit=10000;tcamLimit<=10000;tcamLimit+=1000)
-	for(int theta=20;theta<=20;theta+=10)
+	for(int tcamLimit=20000;tcamLimit<=2*10000;tcamLimit+=2000)
+	for(int theta=15;theta<=15;theta+=10)
 //	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
 		unordered_map<string, int> Real_Freq;
@@ -136,7 +136,7 @@ int main()
 
 //		printf("%d.dat: ARE=%.3lf precision=%.3lf\n", datafileCnt - 1, ARE, prec);
 //		printf("theta %d ARE %.3lf \n", theta, ARE);
-//		tcamsketch->print();
+		tcamsketch->print();
 //		cout<<"flow num:"<<Real_Freq.size()<<endl;
 		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
 		delete tcamsketch;

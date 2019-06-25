@@ -52,12 +52,12 @@ int main()
 	ReadInTraces("/home/dengqi/eclipse-workspace/ElasticSketchCode/data/");
 
 	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/";
-#define COUNTER_NUM 12000
+#define COUNTER_NUM 2000*10
 #define BUCKET_NUM COUNTER_NUM/8
 	int light_num;
-	for(light_num=40*10000;light_num<=40*10000;light_num+=5*10000)
+	for(light_num=30*10000;light_num<=80*10000;light_num+=5*10000)
 	{
-		string outdir=dir+"elastic_1/";
+		string outdir=dir+"elastic_4/";
 //		string md="mkdir "+outdir;
 //		system(md.c_str());
 
@@ -68,13 +68,13 @@ int main()
 			unordered_map<string, int> Real_Freq;
 			elastic = new ElasticSketch<BUCKET_NUM>(light_num);
 
-			long packet_cnt = (int)traces[1 - 1].size();
+			long packet_cnt = (int)traces[datafileCnt - 1].size();
 			for(int i = 0; i < packet_cnt; ++i)
 			{
-				elastic->insert((uint8_t*)(traces[1 - 1][i].key));
+				elastic->insert((uint8_t*)(traces[datafileCnt - 1][i].key));
 				// elastic->quick_insert((uint8_t*)(traces[datafileCnt - 1][i].key));
 
-				string str((const char*)(traces[1 - 1][i].key), 4);
+				string str((const char*)(traces[datafileCnt - 1][i].key), 4);
 				Real_Freq[str]++;
 			}
 

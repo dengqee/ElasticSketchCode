@@ -36,7 +36,7 @@ public:
 			counters[i] = new uint32_t[w];
 			memset(counters[i], 0, 4 * w);
 
-			hash[i] = new BOBHash32(i*10 + 750);
+			hash[i] = new BOBHash32(i+750);
 		}
 
 
@@ -68,7 +68,14 @@ public:
 			counters[i][index] += f;
         }
     }
-
+    void swap_insert(uint8_t * key, int f = 1)
+        {
+            for (int i = 0; i < d; i++) {
+                int index = (hash[i]->run((const char *)key, key_len)) % w;
+                if(counters[i][index]<f)
+                	counters[i][index] = f;
+            }
+        }
     int insert_query(uint8_t * key, int f = 1)
 	{
     	int ret = 1 << 30;

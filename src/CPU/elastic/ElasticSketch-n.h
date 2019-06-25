@@ -6,7 +6,7 @@
 #include "../CMSketch/CM.h"
 
 
-#define CMSKETCH_D 1
+#define CMSKETCH_D 4
 #define CMSKETCH_KEY_LEN 4
 
 template<int bucket_num>
@@ -42,7 +42,7 @@ public:
                 if(HIGHEST_BIT_IS_1(swap_val))
                     light_part.insert(swap_key, GetCounterVal(swap_val));
                 else
-                    light_part.insert(swap_key, swap_val);
+                    light_part.swap_insert(swap_key, swap_val);
                 return;
             }
             case 2: light_part.insert(key, 1);  return;

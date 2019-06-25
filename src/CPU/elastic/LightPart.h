@@ -7,19 +7,20 @@
 template<int init_mem_in_bytes>
 class LightPart
 {
-	static constexpr int counter_num = init_mem_in_bytes/4;
+	static constexpr int counter_num = init_mem_in_bytes;
 	BOBHash32 *bobhash = NULL;
 
 public:
-	uint32_t counters[counter_num];
+	uint8_t counters[counter_num];
 	int mice_dist[256];
 	EMFSD *em_fsd_algo = NULL;
 
 	LightPart()
 	{
 		clear();
-		std::random_device rd;
-       	bobhash = new BOBHash32(rd() % MAX_PRIME32);
+//		std::random_device rd;
+//       	bobhash = new BOBHash32(rd() % MAX_PRIME32);
+       	bobhash = new BOBHash32(750);
 	}
 	~LightPart()
 	{
@@ -28,7 +29,7 @@ public:
 
 	void clear()
 	{
-		memset(counters, 0, 4*counter_num);
+		memset(counters, 0, counter_num);
 		memset(mice_dist, 0, sizeof(int) * 256);
 	}
 
@@ -56,16 +57,16 @@ public:
         uint32_t pos = hash_val % (uint32_t)counter_num;
 
 
+        if(counters[pos]<f){
+			int old_val = counters[pos];
+			counters[pos] = f;
+			int new_val = counters[pos];
 
-		int old_val = counters[pos];
-		counters[pos] += f;
-		int new_val = counters[pos];
-
-		old_val=old_val<255?old_val:255;
-		new_val=new_val<255?new_val:255;
-		mice_dist[old_val]--;
-		mice_dist[new_val]++;
-
+			old_val=old_val<255?old_val:255;
+			new_val=new_val<255?new_val:255;
+			mice_dist[old_val]--;
+			mice_dist[new_val]++;
+        }
 	}
 
 
