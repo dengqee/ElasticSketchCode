@@ -20,13 +20,13 @@ class ElasticSketch
 public:
     ElasticSketch(int lightCounterNum):
 	light_part(CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>(lightCounterNum*4))//4 is the byte number of per counter
-//	heavy_part()
+
 	{}
     ~ElasticSketch(){}
     void clear()
     {
         heavy_part.clear();
-        light_part.clear();
+//        light_part.clear();
     }
 
     void insert(uint8_t *key, int f = 1)

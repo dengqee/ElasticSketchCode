@@ -54,19 +54,20 @@ int main()
 #define BUCKET_NUM (HEAVY_MEM / 64)
 #define TOT_MEM_IN_BYTES (600 * 1024)
 //	ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES> *elastic = NULL;
-#define SK_D 4
-	int theta=20;
-	int tcamLimit=1*10000;
-	int cmcounter_num=80*10000;//the TOTAL number of cmsketch counters
-	TCAMSketch *tcamsketch = NULL;
-	double th;
-	printf("tcam cm theta ARE prec\n");
-	for(int cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
-	for(int tcamLimit=10000;tcamLimit<=10000;tcamLimit+=1000)
-	for(int theta=20;theta<=20;theta+=10)
+	int theta;
+	int tcamLimit;
+	int cmcounter_num;//the TOTAL number of cmsketch counters
 
+
+
+//	printf("tcam cm theta th\n");
+	for(cmcounter_num=40*10000;cmcounter_num<=40*10000;cmcounter_num+=5*10000)
+	for(tcamLimit=2000;tcamLimit<=20000;tcamLimit+=2000)
+	for(theta=15;theta<=15;theta+=10){
+		TCAMSketch *tcamsketch = NULL;
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
+
 		set<string>flowID;
 
 
@@ -89,65 +90,79 @@ int main()
 		set<string>flow_ins;
 		int flow_ins_num=0;
 
-		for(int sample=1;sample<=1;sample++)
-		{
-			flow_ins_num+=flow_cnt/10;
-			//抽样
-			for(;flow_ins.size()<=flow_ins_num;flow_it++)
-			{
-				if(flow_it==flowID.end())
-					break;
-				flow_ins.insert(*flow_it);
-			}
-			bool tag[3000000];
-			for(int i=0;i<packet_cnt;i++)
-			{
-				string key_str((const char*)(traces[datafileCnt - 1][i].key), 4);
-				if(flow_ins.find(key_str)!=flow_ins.end())//如果找到
-					tag[i]=1;
-				else
-					tag[i]=0;
-			}
+//		for(int sample=1;sample<=1;sample++)
+//		{
+//			flow_ins_num+=flow_cnt/10;
+//			//抽样
+//			for(;flow_ins.size()<=flow_ins_num;flow_it++)
+//			{
+//				if(flow_it==flowID.end())
+//					break;
+//				flow_ins.insert(*flow_it);
+//			}
+//			bool tag[3000000];
+//			for(int i=0;i<packet_cnt;i++)
+//			{
+//				string key_str((const char*)(traces[datafileCnt - 1][i].key), 4);
+//				if(flow_ins.find(key_str)!=flow_ins.end())//如果找到
+//					tag[i]=1;
+//				else
+//					tag[i]=0;
+//			}
 
 
 
 			//测量预处理
 
 			int* heavy=new int[packet_cnt];
-			for(int t = 0; t < test_cycles; ++t)
-			{
-//				int packet_insert=0;
-				tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
-				for(int i = 0; i < packet_cnt; ++i)
+
+			int packet_insert=0;
+			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
+			for(int i = 0; i < packet_cnt; ++i)
 //					if(tag[i])
-					if(1)
-					{
-						heavy[i]=tcamsketch->insert(keys[i]);
-//						if(heavy[i])
-//							packet_insert++;
+				if(1)
+				{
+					heavy[i]=tcamsketch->insert(keys[i]);
+					if(heavy[i]){
+						packet_insert++;
 					}
-					else
-						heavy[i]=0;
-				delete tcamsketch;
-//				cout<<packet_insert<<endl;
+				}
+				else
+					heavy[i]=0;
+			delete tcamsketch;
+			uint8_t **ins_keys = new uint8_t*[packet_insert];
+			int j=0;
+			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
+			{
+				if(heavy[i])
+				{
+					ins_keys[j]= new uint8_t[13];
+					memcpy(ins_keys[j], traces[datafileCnt - 1][i].key, 13);
+					j++;
+				}
+
 			}
 
 			//true measure
+			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
+
 			clock_gettime(CLOCK_MONOTONIC, &time1);
 			for(int t = 0; t < test_cycles; ++t)
 			{
-				tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
-				for(int i = 0; i < packet_cnt; ++i)
-					tcamsketch->insert(keys[i],heavy[i]);
 
-				delete tcamsketch;
+				for(int i = 0; i < packet_insert; ++i)
+//					tcamsketch->insert(keys[i],heavy[i]);
+//					if(heavy[i])
+					tcamsketch->insert(ins_keys[i],1);
 			}
 			clock_gettime(CLOCK_MONOTONIC, &time2);
+			delete tcamsketch;
+			delete[] heavy;
 			resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
-			th = (double)1000.0 * test_cycles * packet_cnt / resns;
+			double th = (double)1000.0 * test_cycles * packet_cnt / resns;
 //			printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
 
-		}
+//		}
 		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<th<<endl;
 			/* free memory */
 			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)
@@ -156,6 +171,7 @@ int main()
 
 
 
+	}
 	}
 }
 

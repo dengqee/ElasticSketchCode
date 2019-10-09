@@ -124,12 +124,12 @@ int main()
 	MyReadInTraces(dir,traces_origin,traces_balanced,traces_random);
 
 //#define HEAVY_MEM (150 * 1024)
-#define COUNTER_NUM 250*12
+#define COUNTER_NUM 1000
 #define BUCKET_NUM COUNTER_NUM/8
 	int light_num;
-	for(light_num=12000;light_num<=12000;light_num+=4000)
+	for(light_num=4000;light_num<=48000;light_num+=4000)
 	{
-		string outdir=dir+"elastic_1/"+to_string(COUNTER_NUM)+"_"+to_string(light_num);
+		string outdir=dir+"elastic_4/"+to_string(COUNTER_NUM)+"_"+to_string(light_num);
 		string md="mkdir "+outdir;
 		system(md.c_str());
 

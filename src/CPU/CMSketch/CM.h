@@ -95,15 +95,6 @@ public:
 		}
     }
 
-    int insert_query(uint8_t * key, int f = 1)
-	{
-    	int ret = 1 << 30;
-		for (int i = 0; i < d; i++) {
-			int index = (hash[i]->run((const char *)key, key_len)) % w;
-			ret = min(ret, (counters[i][index] += f));
-		}
-		return ret;
-	}
 	int query(uint8_t * key)
     {
         int ret = 1 << 30;

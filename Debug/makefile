@@ -14,6 +14,7 @@ RM := rm -rf
 -include src/CPU/common/subdir.mk
 -include src/CPU/Throughput/subdir.mk
 -include src/CPU/subdir.mk
+-include data/最大流匹配/subdir.mk
 -include .metadata/.plugins/org.eclipse.cdt.make.core/subdir.mk
 -include subdir.mk
 -include objects.mk

@@ -181,6 +181,18 @@ public:
         }
     }
 
+    uint32_t query(uint8_t * key)
+    {
+    	auto itr = hash_table.find(string((const char *)key, key_len));
+		if (itr == hash_table.end()) {
+			// key not found
+			return tail_node->val;
+		} else {
+			// key found
+			return itr->second->parent->val;
+		}
+    }
+
     void get_top_k(uint16_t k, vector<pair<string, uint32_t>> & result)
     {
         SSValNode * p = tail_node;

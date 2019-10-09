@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <unordered_map>
 #include <vector>
-
+#include <string>
+#include <fstream>
 #include "../SpaceSaving/SpaceSaving.h"
 using namespace std;
 
 #define START_FILE_NO 1
-#define END_FILE_NO 10
+#define END_FILE_NO 1
 
 
 struct FIVE_TUPLE{	char key[13];	};
@@ -37,16 +38,20 @@ void ReadInTraces(const char *trace_prefix)
 
 int main()
 {
-	ReadInTraces("../../../data/");
 
-
-#define TOT_MEM_IN_BYTES (600 * 1024)
+	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/";
+	ReadInTraces(dir.c_str());
+#define HEAVY 2000*10
+#define TOT_MEM_IN_BYTES (HEAVY*44)
 	SpaceSaving<4> *ss = NULL;
 
 
 
 	for(int datafileCnt = START_FILE_NO; datafileCnt <= END_FILE_NO; ++datafileCnt)
 	{
+		string outdir=dir+"spacesaving/";
+//		string md="mkdir "+outdir;
+//		system(md.c_str());
 		unordered_map<string, int> Real_Freq;
 		ss = new SpaceSaving<4>(TOT_MEM_IN_BYTES);
 
@@ -59,24 +64,35 @@ int main()
 			Real_Freq[str]++;
 		}
 
+		string outfile=outdir+to_string(HEAVY)+"_est.txt";
 
-
-#define HEAVY_HITTER_THRESHOLD(total_packet) (total_packet * 1 / 1000)
-		vector< pair<string, uint32_t> > heavy_hitters;
-		ss->get_heavy_hitters(HEAVY_HITTER_THRESHOLD(packet_cnt), heavy_hitters);
-
-		printf("%d.dat: ", datafileCnt - 1);
-		printf("heavy hitters: <srcIP, count>, threshold=%d\n", HEAVY_HITTER_THRESHOLD(packet_cnt));
-		for(int i = 0, j = 0; i < (int)heavy_hitters.size(); ++i)
+		ofstream ofs(outfile.c_str());
+		for(auto it=Real_Freq.begin();it!=Real_Freq.end();it++)
 		{
-			uint32_t srcIP;
-			memcpy(&srcIP, heavy_hitters[i].first.c_str(), 4);
-			printf("<%.8x, %d>", srcIP, (int)heavy_hitters[i].second);
-			if(++j % 5 == 0)
-				printf("\n");
-			else printf("\t");
+			uint8_t key[4];
+			memcpy(key, (it->first).c_str(), 4);
+			int est_val = ss->query(key);
+			ofs<<*((uint32_t*)key)<<" "<<est_val<<endl;
 		}
-		printf("\n");
+		ofs.close();
+
+
+//#define HEAVY_HITTER_THRESHOLD(total_packet) (total_packet * 1 / 1000)
+//		vector< pair<string, uint32_t> > heavy_hitters;
+//		ss->get_heavy_hitters(HEAVY_HITTER_THRESHOLD(packet_cnt), heavy_hitters);
+//
+//		printf("%d.dat: ", datafileCnt - 1);
+//		printf("heavy hitters: <srcIP, count>, threshold=%d\n", HEAVY_HITTER_THRESHOLD(packet_cnt));
+//		for(int i = 0, j = 0; i < (int)heavy_hitters.size(); ++i)
+//		{
+//			uint32_t srcIP;
+//			memcpy(&srcIP, heavy_hitters[i].first.c_str(), 4);
+//			printf("<%.8x, %d>", srcIP, (int)heavy_hitters[i].second);
+//			if(++j % 5 == 0)
+//				printf("\n");
+//			else printf("\t");
+//		}
+//		printf("\n");
 
 
 		delete ss;

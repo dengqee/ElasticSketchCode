@@ -123,7 +123,8 @@ int main()
 			resns = (long long)(time2.tv_sec - time1.tv_sec) * 1000000000LL + (time2.tv_nsec - time1.tv_nsec);
 			double th = (double)1000.0 * test_cycles * packet_cnt / resns;
 			//cout<<"time:"<<resns<<endl;
-			printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
+//			printf("%d.dat sampling rate:%d throughput is %lf mbps\n",datafileCnt,sample,th);
+			cout<<cmcounter_num<<" "<<th<<endl;
 		}
 			/* free memory */
 //			for(int i = 0; i < (int)traces[datafileCnt - 1].size(); ++i)

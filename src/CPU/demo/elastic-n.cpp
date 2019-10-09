@@ -57,7 +57,7 @@ int main()
 	int light_num;
 	for(light_num=30*10000;light_num<=80*10000;light_num+=5*10000)
 	{
-		string outdir=dir+"elastic_4/";
+		string outdir=dir+"elastic_1/";
 //		string md="mkdir "+outdir;
 //		system(md.c_str());
 
@@ -130,7 +130,7 @@ int main()
 
 //			cout<<LIGHT_NUM<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
 			cout<<COUNTER_NUM<<" "<<light_num<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
-
+//			cout<<elastic->get_heavy_bucket_util()<<endl;
 
 
 			delete elastic;

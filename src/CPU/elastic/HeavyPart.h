@@ -30,12 +30,11 @@ public:
 		uint32_t fp;
 		int pos = CalculateFP(key, fp);	
 
-
 		const __m256i item = _mm256_set1_epi32((int)fp);
 		__m256i *keys_p = (__m256i *)(buckets[pos].key);
 		int matched = 0;
 
-		__m256i a_comp = _mm256_cmpeq_epi32(item, keys_p[1]);
+		__m256i a_comp = _mm256_cmpeq_epi32(item, keys_p[0]);
 		matched = _mm256_movemask_ps((__m256)a_comp);
 
 		if (matched != 0)
@@ -204,6 +203,7 @@ private:
 		return CalculateBucketPos(fp) % bucket_num;
 	}
 };
+
 
 #endif
 

@@ -28,21 +28,22 @@ class TCAMSketch
 private:
 
 	map<string,unsigned int>m_tcam;
-	CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>*m_cmSketch;
+	CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>m_cmSketch;
 	long m_theta;
 	int tcam_cnt;
 	int m_tcamLimit;
 	int m_total;//the total number of packets
 public:
+	int cm_cnt;
 	TCAMSketch(int theta,int tcamLimit,int cmcounter_num):
 
-		m_cmSketch(new CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>(cmcounter_num*4)),
-		m_theta(theta),tcam_cnt(0),m_tcamLimit(tcamLimit),m_total(0)
+		m_cmSketch(CMSketch<CMSKETCH_KEY_LEN,CMSKETCH_D>(cmcounter_num*4)),
+		m_theta(theta),tcam_cnt(0),m_tcamLimit(tcamLimit),m_total(0),cm_cnt(0)
 	{}
 	~TCAMSketch()
 	{
 
-		delete m_cmSketch;
+//		delete m_cmSketch;
 	}
 	void settheta(long theta)
 	{
@@ -64,8 +65,8 @@ public:
 		else//no found
 		{
 			ret=true;
-			int count=m_cmSketch->insert_query(key);
-
+			int count=m_cmSketch.insert_query(key);
+			cm_cnt++;
 			if(count>m_theta&&m_tcam.size()<m_tcamLimit)
 			{
 				m_tcam[str]=count;
@@ -83,7 +84,7 @@ public:
 	void insert(uint8_t* key,bool b)//only for throughput
 	{
 		if(b)
-			m_cmSketch->insert(key);
+			m_cmSketch.insert(key);
 	}
 	unsigned int query(uint8_t* key)
 	{
@@ -93,12 +94,13 @@ public:
 		{
 			return it->second;
 		}
-		return m_cmSketch->query(key);
+		return m_cmSketch.query(key);
 	}
 	map<string,unsigned int>GetTCAM()
 	{
 		return m_tcam;
 	}
+
 
 };
 
