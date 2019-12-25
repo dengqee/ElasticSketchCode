@@ -4,7 +4,8 @@ SSEFLAGS = -msse2 -mssse3 -msse4.1 -msse4.2 -mavx -march=native
 FILES = elastic.out cmheap.out cmsketch.out cusketch.out countheap.out countsketch.out \
 		linearcounting.out mrac.out hashpipe.out sieving.out spacesaving.out univmon.out \
 		css.out flowradar.out reversiblesketch.out throughput.out myelastic.out tcamsketch.out\
-		tcamsketch-2.out myelastic-n.out elastic-n.out tcamsketch-3.out 
+		tcamsketch-2.out myelastic-n.out elastic-n.out tcamsketch-3.out elastic-3.out cmsketch-3.out \
+		spacesaving-3.out
 
 all: $(FILES) 
 
@@ -58,6 +59,15 @@ tcamsketch-2.out: tcamsketch-2.cpp
 
 tcamsketch-3.out: tcamsketch-3.cpp
 	$(GCC) $(CFLAGS) -o tcamsketch-3.out tcamsketch-3.cpp
+	
+elastic-3.out: elastic-3.cpp
+	$(GCC) $(CFLAGS) $(SSEFLAGS) -o elastic-3.out elastic-3.cpp
+
+cmsketch-3.out: cmsketch-3.cpp
+	$(GCC) $(CFLAGS) -o cmsketch-3.out cmsketch-3.cpp
+	
+spacesaving-3.out: spacesaving-3.cpp
+	$(GCC) $(CFLAGS) -o spacesaving-3.out spacesaving-3.cpp
 
 sieving.out:
 	$(GCC) $(CFLAGS) -o sieving.out sieving.cpp

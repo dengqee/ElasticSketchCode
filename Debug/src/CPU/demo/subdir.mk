@@ -5,11 +5,13 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/CPU/demo/cmheap.cpp \
+../src/CPU/demo/cmsketch-3.cpp \
 ../src/CPU/demo/cmsketch.cpp \
 ../src/CPU/demo/countheap.cpp \
 ../src/CPU/demo/countsketch.cpp \
 ../src/CPU/demo/css.cpp \
 ../src/CPU/demo/cusketch.cpp \
+../src/CPU/demo/elastic-3.cpp \
 ../src/CPU/demo/elastic-n.cpp \
 ../src/CPU/demo/elastic.cpp \
 ../src/CPU/demo/flowradar.cpp \
@@ -20,6 +22,7 @@ CPP_SRCS += \
 ../src/CPU/demo/myelastic.cpp \
 ../src/CPU/demo/reversiblesketch.cpp \
 ../src/CPU/demo/sieving.cpp \
+../src/CPU/demo/spacesaving-3.cpp \
 ../src/CPU/demo/spacesaving.cpp \
 ../src/CPU/demo/tcamsketch-2.cpp \
 ../src/CPU/demo/tcamsketch-3.cpp \
@@ -33,11 +36,13 @@ O_SRCS += \
 
 OBJS += \
 ./src/CPU/demo/cmheap.o \
+./src/CPU/demo/cmsketch-3.o \
 ./src/CPU/demo/cmsketch.o \
 ./src/CPU/demo/countheap.o \
 ./src/CPU/demo/countsketch.o \
 ./src/CPU/demo/css.o \
 ./src/CPU/demo/cusketch.o \
+./src/CPU/demo/elastic-3.o \
 ./src/CPU/demo/elastic-n.o \
 ./src/CPU/demo/elastic.o \
 ./src/CPU/demo/flowradar.o \
@@ -48,6 +53,7 @@ OBJS += \
 ./src/CPU/demo/myelastic.o \
 ./src/CPU/demo/reversiblesketch.o \
 ./src/CPU/demo/sieving.o \
+./src/CPU/demo/spacesaving-3.o \
 ./src/CPU/demo/spacesaving.o \
 ./src/CPU/demo/tcamsketch-2.o \
 ./src/CPU/demo/tcamsketch-3.o \
@@ -56,11 +62,13 @@ OBJS += \
 
 CPP_DEPS += \
 ./src/CPU/demo/cmheap.d \
+./src/CPU/demo/cmsketch-3.d \
 ./src/CPU/demo/cmsketch.d \
 ./src/CPU/demo/countheap.d \
 ./src/CPU/demo/countsketch.d \
 ./src/CPU/demo/css.d \
 ./src/CPU/demo/cusketch.d \
+./src/CPU/demo/elastic-3.d \
 ./src/CPU/demo/elastic-n.d \
 ./src/CPU/demo/elastic.d \
 ./src/CPU/demo/flowradar.d \
@@ -71,6 +79,7 @@ CPP_DEPS += \
 ./src/CPU/demo/myelastic.d \
 ./src/CPU/demo/reversiblesketch.d \
 ./src/CPU/demo/sieving.d \
+./src/CPU/demo/spacesaving-3.d \
 ./src/CPU/demo/spacesaving.d \
 ./src/CPU/demo/tcamsketch-2.d \
 ./src/CPU/demo/tcamsketch-3.d \

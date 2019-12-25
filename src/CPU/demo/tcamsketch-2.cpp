@@ -44,6 +44,7 @@ void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector
 		//把string line的3个字符串压缩到32位中，作为一个ID
 		while(getline(ifs,line))
 		{
+			lineBuffer.clear();
 			lineBuffer.str (line);
 			lineBuffer>>s>>d>>num;
 			key[0]=s;
@@ -71,6 +72,7 @@ void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector
 		uint8_t key[5];
 		while(getline(ifs,line))
 		{
+			lineBuffer.clear();
 			lineBuffer.str (line);
 			lineBuffer>>s>>d>>num;
 			key[0]=s;
@@ -99,6 +101,7 @@ void MyReadInTraces(string traceDir,vector<vector<string> >&traces_origin,vector
 		uint8_t key[5];
 		while(getline(ifs,line))
 		{
+			lineBuffer.clear();
 			lineBuffer.str (line);
 			lineBuffer>>s>>d>>num;
 			key[0]=s;

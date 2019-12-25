@@ -1,7 +1,7 @@
 /*
- * tcamsketch-3.cpp
+ * spacesaving-3.cpp
  *
- *  Created on: 2019年9月16日
+ *  Created on: 2019年11月20日
  *      Author: dengqi
  *      多点，分段函数负载均衡
  */
@@ -16,7 +16,9 @@
 #include <sstream>
 #include <cmath>
 #include <set>
-#include "../TCAMSketch/TCAMSketch.h"
+#include <iostream>
+#include "../SpaceSaving/SpaceSaving.h"
+
 using namespace std;
 #define START_FILE_NO 1
 #define END_FILE_NO 10
@@ -110,20 +112,23 @@ int main(int argc,char* argv[])
 //		exit(1);
 //	}
 //	ReadInTraces("../../../data/");
+
+
 for(numNode=13;numNode<=23;numNode++){
 
 	measureNode.clear();
 	vector<vector<string> >traces_origin,traces_balanced,traces_random,traces_subbalanced;
+
 	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/multiswitch/packet/"+to_string(numNode)+"/";
-		string outdir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/multiswitch/tcam/"+to_string(numNode)+"/";
+	string outdir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/multiswitch/spacesaving/"+to_string(numNode)+"/";
 	string measureNodeFile=dir+"measureNode.txt";
 	ifstream ifs(measureNodeFile.c_str());
 	int tmp;
 	while(ifs>>tmp)
 		measureNode.push_back(tmp);
 	ifs.close();
-	int theta=20;
-	int tcamLimit=250;
+
+
 	int test;//实验次数，对应RAND_SEED:1到10
 	string tracedir;
 	if(original)
@@ -141,7 +146,8 @@ for(numNode=13;numNode<=23;numNode++){
 		tracedir=dir+"packets_random/";
 		MyReadInTraces(tracedir,traces_random);
 	}
-	for(tcamLimit=1000;tcamLimit<=1000;tcamLimit+=250)
+
+
 //	for(test=1;test<=1;test++)
 	for(test=3000;test<=3000;test+=1000)//这是为了跑所有节点容量设置为一样，这里test是cm的宽度
 	{
@@ -171,8 +177,10 @@ for(numNode=13;numNode<=23;numNode++){
 		{
 			w[i]=ceil(cap[i]/(1+e_percent));
 		}
-		cout<<"************"<<tcamLimit<<"_"<<test<<"****************"<<endl;
-		TCAMSketch *tcamsketch = NULL;
+		cout <<"*************"<<test<<"***************"<<endl;
+#define HEAVY 1000
+#define TOT_MEM_IN_BYTES (HEAVY*44)
+		SpaceSaving<4> *ss = NULL;
 		map<string,int>allReal,allEST;//记录所有节点的流的真实值和测量值
 
 	//	int theta=atoi(argv[1]);
@@ -187,12 +195,12 @@ for(numNode=13;numNode<=23;numNode++){
 			int cmcounter_num=w[node]*4;
 			unordered_map<string, int> Real_Freq;
 			int packet_cnt = traces_origin[node].size();
-			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
+			ss = new SpaceSaving<4>(TOT_MEM_IN_BYTES);
 			//测量
 			for(int i = 0; i < packet_cnt; ++i)
 			{
-				tcamsketch->insert((uint8_t*)traces_origin[node][i].c_str());
-				int est=tcamsketch->query((uint8_t*)traces_origin[node][i].c_str());
+				ss->insert((uint8_t*)traces_origin[node][i].c_str());
+				int est=ss->query((uint8_t*)traces_origin[node][i].c_str());
 				Real_Freq[traces_origin[node][i]]++;
 				allReal[traces_origin[node][i]]++;
 
@@ -202,16 +210,13 @@ for(numNode=13;numNode<=23;numNode++){
 
 
 			double ARE = 0;
-			map<string,uint32_t>realheavymap;
 			//统计
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 			{
-				if(it->second>=theta)
-					realheavymap[it->first]=it->second;
 				uint8_t key[13];
 				memcpy(key, (it->first).c_str(), 13);
 
-				int est_val=tcamsketch->query(key);
+				int est_val=ss->query(key);
 				if(allEST.find(it->first)!=allEST.end())
 				{
 					allEST[it->first]=min(est_val,allEST[it->first]);
@@ -229,29 +234,15 @@ for(numNode=13;numNode<=23;numNode++){
 				ARE += dist * 1.0 / (it->second);
 			}
 			ARE /= (int)Real_Freq.size();
+			cout << to_string(node)+" original ARE:"<<ARE<<endl;
 
-			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
-
-			int numDet=0;
-			for(auto it=tcam.begin();it!=tcam.end();++it)
-			{
-				auto tmp=realheavymap.find(it->first);
-				if(tmp!=realheavymap.end())
-					numDet++;
-			}
-			double prec=1.0*numDet/tcam.size();
-
-			cout << to_string(node)+" original ARE:"<<ARE<<" precision:"<<prec<<endl;
-//			tcamsketch->print();
-//			cout<<"flow num:"<<Real_Freq.size()<<endl;
-
-			delete tcamsketch;
+			delete ss;
 			Real_Freq.clear();
 		}
 		string md="mkdir -p "+outdir+"est_original/";
 		system(md.c_str());
 		string outfile=outdir+"est_original/"+
-				to_string(tcamLimit)+"_"+to_string(test)+"_est.txt";
+				to_string(HEAVY)+"_"+to_string(test)+"_est.txt";
 		OutPutTM(outfile,allEST);
 		outfile=outdir+"est_original/real.txt";
 		OutPutTM(outfile,allReal);
@@ -261,36 +252,37 @@ for(numNode=13;numNode<=23;numNode++){
 		}//endif original
 /******************************************** balanced ***************************************/
 		if(balanced){
-		allReal.clear();
+		allReal.clear();//original 的real不可信，因为他统计了一条流进过的所有节点上的包，重复统计
 		allEST.clear();
 		for(int node = 0; node < numNode; ++node)
 		{
 			int cmcounter_num=w[node]*4;
 			unordered_map<string, int> Real_Freq;
 			int packet_cnt = traces_balanced[node].size();
-			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
+			ss = new SpaceSaving<4>(TOT_MEM_IN_BYTES);
 			//测量
 			for(int i = 0; i < packet_cnt; ++i)
 			{
-				tcamsketch->insert((uint8_t*)traces_balanced[node][i].c_str());
-				int est=tcamsketch->query((uint8_t*)traces_balanced[node][i].c_str());
+				ss->insert((uint8_t*)traces_balanced[node][i].c_str());
+				int est=ss->query((uint8_t*)traces_balanced[node][i].c_str());
 				Real_Freq[traces_balanced[node][i]]++;
 				allReal[traces_balanced[node][i]]++;
 
 			}
 
 
+
+
 			double ARE = 0;
-			map<string,uint32_t>realheavymap;
+
 			//统计
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 			{
-				if(it->second>=theta)
-					realheavymap[it->first]=it->second;
+
 				uint8_t key[13];
 				memcpy(key, (it->first).c_str(), 13);
 
-				int est_val=tcamsketch->query(key);
+				int est_val=ss->query(key);
 				if(allEST.find(it->first)!=allEST.end())
 				{
 					allEST[it->first]=min(est_val,allEST[it->first]);
@@ -308,69 +300,56 @@ for(numNode=13;numNode<=23;numNode++){
 				ARE += dist * 1.0 / (it->second);
 			}
 			ARE /= (int)Real_Freq.size();
+			cout << to_string(node)+" balanced ARE:"<<ARE<<endl;
 
-			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
-
-			int numDet=0;
-			for(auto it=tcam.begin();it!=tcam.end();++it)
-			{
-				auto tmp=realheavymap.find(it->first);
-				if(tmp!=realheavymap.end())
-					numDet++;
-			}
-			double prec=1.0*numDet/tcam.size();
-
-			cout << to_string(node)+" balanced ARE:"<<ARE<<" precision:"<<prec<<endl;
-//			tcamsketch->print();
-//			cout<<"flow num:"<<Real_Freq.size()<<endl;
-
-			delete tcamsketch;
+			delete ss;
 			Real_Freq.clear();
 		}
 		string md="mkdir -p "+outdir+"est_balanced/";
 		system(md.c_str());
 		string outfile=outdir+"est_balanced/"+
-				to_string(tcamLimit)+"_"+to_string(test)+"_est.txt";
+				to_string(HEAVY)+"_"+to_string(test)+"_est.txt";
 		OutPutTM(outfile,allEST);
 		outfile=outdir+"est_balanced/real.txt";
 		OutPutTM(outfile,allReal);
 		double RRMSE=CalRRMSE(allReal,allEST);
 		cout<<"balanced RRMSE="<<RRMSE<<endl;
-//		cout<<"=================================================================="<<endl;
+		//		cout<<"=================================================================="<<endl;
 		}//endif balanced
 
 /****************************************random**********************************************/
 		if(ran){
-		allReal.clear();
+		allReal.clear();//original 的real不可信，因为他统计了一条流进过的所有节点上的包，重复统计
 		allEST.clear();
 		for(int node = 0; node < numNode; ++node)
 		{
 			int cmcounter_num=w[node]*4;
 			unordered_map<string, int> Real_Freq;
 			int packet_cnt = traces_random[node].size();
-			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
+			ss = new SpaceSaving<4>(TOT_MEM_IN_BYTES);
 			//测量
 			for(int i = 0; i < packet_cnt; ++i)
 			{
-				tcamsketch->insert((uint8_t*)traces_random[node][i].c_str());
-				int est=tcamsketch->query((uint8_t*)traces_random[node][i].c_str());
+				ss->insert((uint8_t*)traces_random[node][i].c_str());
+				int est=ss->query((uint8_t*)traces_random[node][i].c_str());
 				Real_Freq[traces_random[node][i]]++;
 				allReal[traces_random[node][i]]++;
 
 			}
 
 
+
+
 			double ARE = 0;
-			map<string,uint32_t>realheavymap;
+
 			//统计
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 			{
-				if(it->second>=theta)
-					realheavymap[it->first]=it->second;
+
 				uint8_t key[13];
 				memcpy(key, (it->first).c_str(), 13);
 
-				int est_val=tcamsketch->query(key);
+				int est_val=ss->query(key);
 				if(allEST.find(it->first)!=allEST.end())
 				{
 					allEST[it->first]=min(est_val,allEST[it->first]);
@@ -388,71 +367,58 @@ for(numNode=13;numNode<=23;numNode++){
 				ARE += dist * 1.0 / (it->second);
 			}
 			ARE /= (int)Real_Freq.size();
+			cout << to_string(node)+" random ARE:"<<ARE<<endl;
 
-			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
-
-			int numDet=0;
-			for(auto it=tcam.begin();it!=tcam.end();++it)
-			{
-				auto tmp=realheavymap.find(it->first);
-				if(tmp!=realheavymap.end())
-					numDet++;
-			}
-			double prec=1.0*numDet/tcam.size();
-
-//			cout << to_string(node)+" random ARE:"<<ARE<<" precision:"<<prec<<endl;
-//			tcamsketch->print();
-//			cout<<"flow num:"<<Real_Freq.size()<<endl;
-
-			delete tcamsketch;
+			delete ss;
 			Real_Freq.clear();
 		}
 		string md="mkdir -p "+outdir+"est_random/";
 		system(md.c_str());
 		string outfile=outdir+"est_random/"+
-				to_string(tcamLimit)+"_"+to_string(test)+"_est.txt";
+				to_string(HEAVY)+"_"+to_string(test)+"_est.txt";
 		OutPutTM(outfile,allEST);
 		outfile=outdir+"est_random/real.txt";
 		OutPutTM(outfile,allReal);
 		double RRMSE=CalRRMSE(allReal,allEST);
 		cout<<"random RRMSE="<<RRMSE<<endl;
-//		cout<<"=================================================================="<<endl;
+		//		cout<<"=================================================================="<<endl;
 		}//endif random
 /***************************************subbalanced*****************************************/
 		if(subbalanced){
 		allReal.clear();
 		allEST.clear();
+
 		tracedir=dir+"packets_subbalanced/"+to_string(test)+"/";
-//		tracedir=dir+"packets_subbalanced/"+to_string(test)+"/";//这是为了跑所有节点容量设置为一样，这里test是cm的宽度
 		MyReadInTraces(tracedir,traces_subbalanced);
 		for(int node = 0; node < numNode; ++node)
 		{
 			int cmcounter_num=w[node]*4;
 			unordered_map<string, int> Real_Freq;
 			int packet_cnt = traces_subbalanced[node].size();
-			tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
+			ss = new SpaceSaving<4>(TOT_MEM_IN_BYTES);
 			//测量
 			for(int i = 0; i < packet_cnt; ++i)
 			{
-				tcamsketch->insert((uint8_t*)traces_subbalanced[node][i].c_str());
-				int est=tcamsketch->query((uint8_t*)traces_subbalanced[node][i].c_str());
+				ss->insert((uint8_t*)traces_subbalanced[node][i].c_str());
+				int est=ss->query((uint8_t*)traces_subbalanced[node][i].c_str());
 				Real_Freq[traces_subbalanced[node][i]]++;
 				allReal[traces_subbalanced[node][i]]++;
 
 			}
 
 
+
+
 			double ARE = 0;
-			map<string,uint32_t>realheavymap;
+
 			//统计
 			for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 			{
-				if(it->second>=theta)
-					realheavymap[it->first]=it->second;
+
 				uint8_t key[13];
 				memcpy(key, (it->first).c_str(), 13);
 
-				int est_val=tcamsketch->query(key);
+				int est_val=ss->query(key);
 				if(allEST.find(it->first)!=allEST.end())
 				{
 					allEST[it->first]=min(est_val,allEST[it->first]);
@@ -470,40 +436,28 @@ for(numNode=13;numNode<=23;numNode++){
 				ARE += dist * 1.0 / (it->second);
 			}
 			ARE /= (int)Real_Freq.size();
+			cout << to_string(node)+" subbalanced ARE:"<<ARE<<endl;
 
-			map<string,uint32_t>tcam=tcamsketch->GetTCAM();
-
-			int numDet=0;
-			for(auto it=tcam.begin();it!=tcam.end();++it)
-			{
-				auto tmp=realheavymap.find(it->first);
-				if(tmp!=realheavymap.end())
-					numDet++;
-			}
-			double prec=1.0*numDet/tcam.size();
-
-//			cout << to_string(node)+" subbalanced ARE:"<<ARE<<" precision:"<<prec<<endl;
-//			tcamsketch->print();
-//			cout<<"flow num:"<<Real_Freq.size()<<endl;
-
-			delete tcamsketch;
+			delete ss;
 			Real_Freq.clear();
 		}
 		string md="mkdir -p "+outdir+"est_subbalanced/";
 		system(md.c_str());
 		string outfile=outdir+"est_subbalanced/"+
-				to_string(tcamLimit)+"_"+to_string(test)+"_est.txt";
+				to_string(HEAVY)+"_"+to_string(test)+"_est.txt";
 		OutPutTM(outfile,allEST);
 		outfile=outdir+"est_subbalanced/real.txt";
 		OutPutTM(outfile,allReal);
 		double RRMSE=CalRRMSE(allReal,allEST);
 		cout<<"subbalanced RRMSE="<<RRMSE<<endl;
-//		cout<<"=================================================================="<<endl;
+		//		cout<<"=================================================================="<<endl;
 		}//endif subbalanced
 
 	}//end for(test=1;test<=1;test++)
 }//end for(numNode=13;numNode<=22;numNode++)
 }//end main
+
+
 
 
 
