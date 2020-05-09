@@ -30,8 +30,8 @@ bool subbalanced=true;
 struct FIVE_TUPLE{	char key[13];	};
 typedef vector<FIVE_TUPLE> TRACE;
 TRACE traces[END_FILE_NO - START_FILE_NO + 1];
-int numNode=23;
-string topoName="Geant";
+int numNode=50;
+string topoName="BA50";
 vector<int>measureNode;
 
 void MyReadInTraces(string traceDir,vector<vector<string> >&traces)
@@ -111,7 +111,7 @@ int main(int argc,char* argv[])
 //		exit(1);
 //	}
 //	ReadInTraces("../../../data/");
-for(numNode=13;numNode<=23;numNode++){
+for(numNode=32;numNode<=39;numNode++){
 
 	measureNode.clear();
 	vector<vector<string> >traces_origin,traces_balanced,traces_random,traces_subbalanced;
@@ -145,8 +145,8 @@ for(numNode=13;numNode<=23;numNode++){
 	}
 #define COUNTER_NUM 1000
 #define BUCKET_NUM COUNTER_NUM/8
-//	for(test=1;test<=1;test++)
-	for(test=3000;test<=3000;test+=1000)//这是为了跑所有节点容量设置为一样，这里test是cm的宽度
+for(test=1;test<=1;test++)
+//for(test=3000;test<=3000;test+=1000)//这是为了跑所有节点容量设置为一样，这里test是cm的宽度
 	{
 
 
@@ -240,7 +240,7 @@ for(numNode=13;numNode<=23;numNode++){
 				to_string(COUNTER_NUM)+"_"+to_string(test)+"_est.txt";
 		OutPutTM(outfile,allEST);
 		outfile=outdir+"est_original/real.txt";
-		OutPutTM(outfile,allReal);
+		//OutPutTM(outfile,allReal);
 		double RRMSE=CalRRMSE(allReal,allEST);
 		cout<<"original RRMSE="<<RRMSE<<endl;
 //		cout<<"=================================================================="<<endl;
@@ -306,7 +306,7 @@ for(numNode=13;numNode<=23;numNode++){
 				to_string(COUNTER_NUM)+"_"+to_string(test)+"_est.txt";
 		OutPutTM(outfile,allEST);
 		outfile=outdir+"est_balanced/real.txt";
-		OutPutTM(outfile,allReal);
+		//OutPutTM(outfile,allReal);
 		double RRMSE=CalRRMSE(allReal,allEST);
 		cout<<"balanced RRMSE="<<RRMSE<<endl;
 		//		cout<<"=================================================================="<<endl;
@@ -373,7 +373,7 @@ for(numNode=13;numNode<=23;numNode++){
 				to_string(COUNTER_NUM)+"_"+to_string(test)+"_est.txt";
 		OutPutTM(outfile,allEST);
 		outfile=outdir+"est_random/real.txt";
-		OutPutTM(outfile,allReal);
+		//OutPutTM(outfile,allReal);
 		double RRMSE=CalRRMSE(allReal,allEST);
 		cout<<"random RRMSE="<<RRMSE<<endl;
 		//		cout<<"=================================================================="<<endl;
@@ -442,7 +442,7 @@ for(numNode=13;numNode<=23;numNode++){
 				to_string(COUNTER_NUM)+"_"+to_string(test)+"_est.txt";
 		OutPutTM(outfile,allEST);
 		outfile=outdir+"est_subbalanced/real.txt";
-		OutPutTM(outfile,allReal);
+		//OutPutTM(outfile,allReal);
 		double RRMSE=CalRRMSE(allReal,allEST);
 		cout<<"subbalanced RRMSE="<<RRMSE<<endl;
 		//		cout<<"=================================================================="<<endl;

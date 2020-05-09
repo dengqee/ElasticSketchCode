@@ -31,8 +31,8 @@ bool subbalanced=true;
 struct FIVE_TUPLE{	char key[13];	};
 typedef vector<FIVE_TUPLE> TRACE;
 TRACE traces[END_FILE_NO - START_FILE_NO + 1];
-int numNode=23;
-string topoName="Geant";
+int numNode=50;
+string topoName="BA50";
 vector<int>measureNode;
 
 void MyReadInTraces(string traceDir,vector<vector<string> >&traces)
@@ -114,7 +114,7 @@ int main(int argc,char* argv[])
 //	ReadInTraces("../../../data/");
 
 
-for(numNode=13;numNode<=23;numNode++){
+for(numNode=30;numNode<=40;numNode++){
 
 	measureNode.clear();
 	vector<vector<string> >traces_origin,traces_balanced,traces_random,traces_subbalanced;
@@ -148,7 +148,7 @@ for(numNode=13;numNode<=23;numNode++){
 	}
 
 
-//	for(test=1;test<=10;test++)
+//    for(test=1;test<=1;test++)
 	for(test=3000;test<=3000;test+=1000)//这是为了跑所有节点容量设置为一样，这里test是cm的宽度
 	{
 

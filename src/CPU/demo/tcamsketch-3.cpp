@@ -21,9 +21,9 @@ using namespace std;
 #define START_FILE_NO 1
 #define END_FILE_NO 10
 #define E 2.71//自然对数的底数
-bool original=true;
-bool balanced=true;
-bool ran=true;
+bool original=false;
+bool balanced=false;
+bool ran=false;
 bool subbalanced=true;
 
 struct FIVE_TUPLE{	char key[13];	};
@@ -142,8 +142,8 @@ for(numNode=40;numNode<=40;numNode++){
 		MyReadInTraces(tracedir,traces_random);
 	}
 	for(tcamLimit=1000;tcamLimit<=1000;tcamLimit+=250)
-//	for(test=1;test<=1;test++)
-	for(test=3000;test<=3000;test+=1000)//这是为了跑所有节点容量设置为一样，这里test是cm的宽度
+	for(test=1;test<=1;test++)
+//	for(test=3000;test<=3000;test+=1000)//这是为了跑所有节点容量设置为一样，这里test是cm的宽度
 	{
 
 

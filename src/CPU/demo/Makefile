@@ -5,7 +5,7 @@ FILES = elastic.out cmheap.out cmsketch.out cusketch.out countheap.out countsket
 		linearcounting.out mrac.out hashpipe.out sieving.out spacesaving.out univmon.out \
 		css.out flowradar.out reversiblesketch.out throughput.out myelastic.out tcamsketch.out\
 		tcamsketch-2.out myelastic-n.out elastic-n.out tcamsketch-3.out elastic-3.out cmsketch-3.out \
-		spacesaving-3.out
+		spacesaving-3.out tcamsketch-4.out
 
 all: $(FILES) 
 
@@ -59,6 +59,9 @@ tcamsketch-2.out: tcamsketch-2.cpp
 
 tcamsketch-3.out: tcamsketch-3.cpp
 	$(GCC) $(CFLAGS) -o tcamsketch-3.out tcamsketch-3.cpp
+
+tcamsketch-4.out: tcamsketch-4.cpp
+	$(GCC) $(CFLAGS) -o tcamsketch-4.out tcamsketch-4.cpp
 	
 elastic-3.out: elastic-3.cpp
 	$(GCC) $(CFLAGS) $(SSEFLAGS) -o elastic-3.out elastic-3.cpp

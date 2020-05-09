@@ -61,7 +61,7 @@ int main()
 	int cmcounter_num;//the TOTAL number of cmsketch counters
 	printf("tcam cm theta ARE RMMAE prec\n");
 
-
+	long packet_cnt;
 	for(int cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
 	for(int tcamLimit=20000;tcamLimit<=2*10000;tcamLimit+=2000)
 	for(int theta=15;theta<=15;theta+=10)
@@ -71,7 +71,7 @@ int main()
 		string outdir=dir+"tcam_4/";
 
 //		int packet_cnt = (int)traces[datafileCnt - 1].size();
-		long packet_cnt = (int)traces[1 - 1].size();
+		packet_cnt = (int)traces[1 - 1].size();
 //		theta+=1;
 		tcamsketch = new TCAMSketch(theta,tcamLimit,cmcounter_num);
 		for(int i = 0; i < packet_cnt; ++i)
@@ -136,9 +136,10 @@ int main()
 
 //		printf("%d.dat: ARE=%.3lf precision=%.3lf\n", datafileCnt - 1, ARE, prec);
 //		printf("theta %d ARE %.3lf \n", theta, ARE);
-		tcamsketch->print();
-//		cout<<"flow num:"<<Real_Freq.size()<<endl;
-		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
+//		tcamsketch->print();
+		cout<<"flow num:"<<Real_Freq.size()<<endl;
+		cout<<"packet num:"<<packet_cnt<<endl;
+//		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
 		delete tcamsketch;
 		Real_Freq.clear();
 	}
