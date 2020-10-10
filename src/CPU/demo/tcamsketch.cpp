@@ -52,14 +52,14 @@ bool cmp(const pair<string,uint32_t>&a,const pair<string,uint32_t>&b)
 int main()
 {
 //	ReadInTraces("../../../data/");
-	ReadInTraces("/home/dengqi/eclipse-workspace/ElasticSketchCode/data/");
-	string dir="/home/dengqi/eclipse-workspace/ElasticSketchCode/data/";
+	ReadInTraces("/opt/ElasticSketchCode/data/");
+	string dir="/opt/ElasticSketchCode/data/";
 //#define SK_D 3
 	TCAMSketch *tcamsketch = NULL;
 	int theta;
 	int tcamLimit;
 	int cmcounter_num;//the TOTAL number of cmsketch counters
-	printf("tcam cm theta ARE RMMAE prec\n");
+	//printf("tcam cm theta ARE RMMAE prec\n");
 
 	long packet_cnt;
 	for(int cmcounter_num=30*10000;cmcounter_num<=80*10000;cmcounter_num+=5*10000)
@@ -91,9 +91,9 @@ int main()
 		map<string,uint32_t>realheavymap,estheavymap;
 		vector<pair<string,int> >orderRealFreq(Real_Freq.begin(),Real_Freq.end());
 		vector<pair<string,int> >orderEstFreq;
-//			string outfile1=outdir+to_string(COUNTER_NUM)+"_"+to_string(light_num)+"_real.txt";
+		string outfile1=outdir+"real.txt";
 		string outfile2=outdir+to_string(tcamLimit)+"_"+to_string(cmcounter_num)+"_est.txt";
-//			ofstream ofs1(outfile1.c_str());
+		ofstream ofs1(outfile1.c_str());
 		ofstream ofs2(outfile2.c_str());
 		for(unordered_map<string, int>::iterator it = Real_Freq.begin(); it != Real_Freq.end(); ++it)
 		{
@@ -103,6 +103,7 @@ int main()
 			memcpy(key, (it->first).c_str(), 4);
 			int est_val = tcamsketch->query(key);
 			orderEstFreq.push_back(make_pair(it->first,est_val));
+			ofs1<<*((uint32_t*)key)<<" "<<it->second<<endl;
 			ofs2<<*((uint32_t*)key)<<" "<<est_val<<endl;
 
 			int dist = std::abs(it->second - est_val);
@@ -110,6 +111,7 @@ int main()
 			RMMAE+=dist*dist;
 			sum+=(it->second)*(it->second);
 		}
+		ofs1.close();
 		ofs2.close();
 
 		ARE /= (int)Real_Freq.size();
@@ -139,7 +141,7 @@ int main()
 //		tcamsketch->print();
 		cout<<"flow num:"<<Real_Freq.size()<<endl;
 		cout<<"packet num:"<<packet_cnt<<endl;
-//		cout<<tcamLimit<<" "<<cmcounter_num<<" "<<theta<<" "<<ARE<<" "<<RMMAE<<" "<<prec<<endl;
+		cout<<"tcam:"<<tcamLimit<<" cm:"<<cmcounter_num<<" theta:"<<theta<<" ARE:"<<ARE<<" RRMSE:"<<RMMAE<<endl;
 		delete tcamsketch;
 		Real_Freq.clear();
 	}
